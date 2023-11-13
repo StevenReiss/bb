@@ -1,0 +1,74 @@
+divert(-1)
+/********************************************************/
+/*							*/
+/*	LANGUAGES					*/
+/*							*/
+/*	This file contains definitions of the languages */
+/*	currently supported by the editor.		*/
+/*							*/
+/********************************************************/
+
+
+
+
+LANG(default,dfltLANG,"",
+	(TAB1=LDFwtab,TAB2=LDFetab,TAB3=LDFbtab,TAB4=LDFstab,TAB5=LDFhtab),
+	(CMD0=LDFcmds,CMD1=LDFcmds,CMD2=LDFcmds,CMD3=LDFcmds,CMD4=LDFcmds),
+	(CMD5=LDFcmds,CMD6=LDFcmds,CMD7=LDFcmds,CMD8=LDFcmds,CMD9=LDFcmds),
+	INDENT=LDFindent,
+	(INITIAL=LDFinit,FINAL=LDFfini)
+    )
+
+LANG(c,ccccLANG,".c.cm.h.H.hm.y.hi.C.l.L.Y.cc.cxx.hxx.cpp.html.pl.ino.pde.",
+	(TAB1=LCCwtab,TAB2=LDFetab,TAB3=LDFbtab,TAB4=LDFstab,TAB5=LDFhtab),
+	(CMD0=LDFcmds,CMD1=LDFcmds,CMD2=LDFcmds,CMD3=LDFcmds,CMD4=LDFcmds),
+	(CMD5=LDFcmds,CMD6=LDFcmds,CMD7=LDFcmds,CMD8=LDFcmds,CMD9=LDFcmds),
+	INDENT=LCCindent,
+	(INITIAL=LCCinit,FINAL=LCCfini)
+    )
+
+LANG(java,javaLANG,".java.jj.jjt.js.taiga.decaf.php.jsp.ascus.remix.",
+	(TAB1=LCCwtab,TAB2=LDFetab,TAB3=LDFbtab,TAB4=LDFstab,TAB5=LDFhtab),
+	(CMD0=LDFcmds,CMD1=LDFcmds,CMD2=LDFcmds,CMD3=LDFcmds,CMD4=LDFcmds),
+	(CMD5=LDFcmds,CMD6=LDFcmds,CMD7=LDFcmds,CMD8=LDFcmds,CMD9=LDFcmds),
+	INDENT=JAVAindent,
+	(INITIAL=JAVAinit,FINAL=JAVAfini)
+    )
+
+LANG(cops,copsLANG,".cops.",
+	(TAB1=LCOwtab,TAB2=LDFetab,TAB3=LDFbtab,TAB4=LDFstab,TAB5=LDFhtab),
+	(CMD0=LDFcmds,CMD1=LDFcmds,CMD2=LDFcmds,CMD3=LDFcmds,CMD4=LDFcmds),
+	(CMD5=LDFcmds,CMD6=LDFcmds,CMD7=LDFcmds,CMD8=LDFcmds,CMD9=LDFcmds),
+	INDENT=LCOindent,
+	(INITIAL=LCOinit,FINAL=LCOfini)
+    )
+
+LANG(lisp,lispLANG,".lisp.",
+	(TAB1=LLIwtab,TAB2=LDFetab,TAB3=LDFbtab,TAB4=LDFstab,TAB5=LDFhtab),
+	(CMD0=LLIcmds,CMD1=LLIcmds,CMD2=LLIcmds,CMD3=LLIcmds,CMD4=LLIcmds),
+	(CMD5=LLIcmds,CMD6=LLIcmds,CMD7=LLIcmds,CMD8=LLIcmds,CMD9=LLIcmds),
+	INDENT=LLIindent,
+	(INITIAL=LLIinit,FINAL=LLIfini)
+    )
+
+LANG(roff,roffLANG,".n.r.me.ms.t.1.2.3.4.5.6.7.8.tex.txt.",
+	(TAB1=LDFwtab,TAB2=LDFetab,TAB3=LDFbtab,TAB4=LDFstab,TAB5=LDFhtab),
+	(CMD0=LDFcmds,CMD1=LDFcmds,CMD2=LDFcmds,CMD3=LDFcmds,CMD4=LDFcmds),
+	(CMD5=LDFcmds,CMD6=LDFcmds,CMD7=LDFcmds,CMD8=LDFcmds,CMD9=LDFcmds),
+	INDENT=LDFindent,
+	(INITIAL=LRFinit,FINAL=LRFfini)
+    )
+
+LANG(f77,fortLANG,".f.f77.",
+	(TAB1=LCCwtab,TAB2=LDFetab,TAB3=LDFbtab,TAB4=LDFstab,TAB5=LDFhtab),
+	(CMD0=LDFcmds,CMD1=LDFcmds,CMD2=LDFcmds,CMD3=LDFcmds,CMD4=LDFcmds),
+	(CMD5=LDFcmds,CMD6=LDFcmds,CMD7=LDFcmds,CMD8=LDFcmds,CMD9=LDFcmds),
+	INDENT=LF77indent,
+	(INITIAL=LF77init,FINAL=LF77fini)
+    )
+
+
+
+
+/* end of languages */
+divert

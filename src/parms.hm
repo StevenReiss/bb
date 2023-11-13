@@ -1,0 +1,185 @@
+/********************************************************/
+/*							*/
+/*		PARMS.H   (from parms.hm)		*/
+/*							*/
+/*	This file contains the definitions for using	*/
+/*   parameters as parameters.	It is not particularly	*/
+/*   specific (see parmdef.h), but does everything	*/
+/*   that is needed by external modules 		*/
+/*							*/
+/********************************************************/
+/*	Copyright 1984 Brown University 				*/
+
+
+include(parmlist.m)
+
+
+
+
+/********************************************************/
+/*							*/
+/*	Type definitions				*/
+/*							*/
+/********************************************************/
+
+
+typedef struct _PARM * PARM;
+typedef struct _PARM   BPARM;
+
+
+typedef enum {		/* parmeter types		*/
+   PMTYNUM,		/*    numeric parameter 	*/
+   PMTYSTR,		/*    string parameter		*/
+   PMTYFLAG,		/*    boolean parameter 	*/
+   PMTYBUF,		/*    buffer name parameter	*/
+   PMTYBFCT,		/*    buffer/count parameter	*/
+   PMTYIGN		/*    ignore argument		*/
+ }
+PARMTYPE;
+
+
+typedef LONG	PARMFLGS;	/* parameter flags	*/
+
+#define PMFnone 	0x0
+#define PMFfile 	0x1	/*    change file	*/
+#define PMFreset	0x2	/*    reset file	*/
+#define PMFctrl 	0x4	/*    part of control	*/
+#define PMFndisp	0x8	/*    dont display	*/
+#define PMFcmd		0x10	/*    command parameter */
+#define PMFfprop	0x20	/*    file property	*/
+#define PMFdisp 	0x40	/*    rewrite display	*/
+#define PMFenv		0x80	/*    take from environ */
+#define PMFfldflt	0x100	/*    reset to default after file set	*/
+#define PMFninit	0x200	/*    don't initialize  */
+#define PMFset		0x400	/*    parameter has been set	*/
+#define PMFprev 	0x800	/*    previous file parm	*/
+#define PMFaltf 	0x1000	/*    alternate file parm	*/
+#define PMFdelay	0x2000	/*    file delayed parm 	*/
+#define PMFstkd 	0x4000	/*    file stack parm		*/
+#define PMFnhist	0x8000	/*    dont save as history	*/
+#define PMFfdset	0x10000 /*    file delayed set parm	*/
+#define PMFnouser	0x20000 /*    cant be set by user	*/
+#define PMFdinit	0x40000 /*    complete reinitialize disp*/
+#define PMFnoflip	0x80000 /*    set parm without flip	*/
+
+
+typedef char *	PARMVAL;	/* parameter value	*/
+
+
+
+
+
+/********************************************************/
+/*							*/
+/*	Global routines 				*/
+/*							*/
+/********************************************************/
+
+
+extern	void	Pinit();	/* initialize parms	*/
+extern	void	Parm(); 	/* set parm from string */
+extern	void	Pgetctrl();	/* get control area	*/
+extern	void	Psetctrl();	/* save control area	*/
+extern	void	Parmdo();	/* act on parm settings */
+extern	int	Pset(); 	/* internal parm set	*/
+extern	int	Pcmdarg();	/* set command arg parm */
+extern	int	Pfini();	/* finish with parms	*/
+extern	void	Pwriteall();	/* write all parms to file	*/
+
+
+
+
+
+
+
+/********************************************************/
+/*							*/
+/*	Data structures -- parameter blocks		*/
+/*							*/
+/********************************************************/
+
+
+struct	_PARM	{		/* parameter descriptor */
+   PARMTYPE	PMtype; 	/*    type of parm	*/
+   char *	PMname; 	/*    parameter name	*/
+   char 	PMnmln; 	/*    min name match sz */
+   PARMFLGS	PMflags;	/*    flags field	*/
+   int		(*PMcall)();	/*    post process fct	*/
+   PARMVAL	PMvalue;	/*    value		*/
+   PARMVAL	PMdflt; 	/*    default value	*/
+   PARMVAL	PMsdflt;	/*    set default value */
+   long 	PMfluse;	/*    parm to use after */
+				/*	  file set	*/
+   long 	PMlbd;		/*    lower bound	*/
+   long 	PMubd;		/*    upper bound	*/
+ };
+#define PMsize	PMlbd		/*    max string size	*/
+#define PMtable PMlbd		/*    table pointer	*/
+
+
+
+
+
+
+/********************************************************/
+/*							*/
+/*	Parameter value access functions		*/
+/*							*/
+/********************************************************/
+
+
+#define BFCCOUNT(x)   ((INT)(((DATA)x)>>8))	/* buffer/count values	*/
+#define BFCBUF(x)     ((INT)(((DATA)x) & 0xFF))
+#define BFCMAKE(b,c)  ((((DATA)c)<<8)|(b&0xFF))
+#define BADBUF	      0xFF
+
+
+
+
+/********************************************************/
+/*							*/
+/*	access functions				*/
+/*							*/
+/********************************************************/
+
+
+#ifndef __STDC__
+#define PVAL(name)     ((PINT) PARMS[P_/**/name].PMvalue)
+#define PDVAL(name)    ((DATA) PARMS[P_/**/name].PMvalue)
+#define PSVAL(name)    ((STRING) PARMS[P_/**/name].PMvalue)
+#define PSET(name,val)	Pset(P_/**/name,(PARMVAL)val)
+#define PSETI(name,val)  Pset(P_/**/name,(PARMVAL)((PINT) val))
+#else
+#define PVAL(name)     ((PINT) PARMS[P_ ## name].PMvalue)
+#define PDVAL(name)    ((DATA) PARMS[P_ ## name].PMvalue)
+#define PSVAL(name)    ((STRING) PARMS[P_ ## name].PMvalue)
+#define PSET(name,val)	Pset(P_ ## name,(PARMVAL)val)
+#define PSETI(name,val)  Pset(P_ ## name,(PARMVAL)((PINT) val))
+#endif
+
+
+
+
+/********************************************************/
+/*							*/
+/*	access definitions				*/
+/*							*/
+/********************************************************/
+
+
+extern	BPARM	PARMS[];
+
+undivert(1)
+
+divert(-1) undivert divert
+
+
+#define PM_LAST 0x1	/* flag indicating last parm	*/
+
+cdefine NUMPARM NUMPARMS /* number of parameters	*/
+
+
+
+
+
+/* end of parms.h */

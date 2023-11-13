@@ -1,0 +1,45 @@
+.sz 8
+.ll 2.25i
+.ft 3
+.TS
+center tab($) ;
+cpf2 s s s s s
+l1 l2 | l1 l2 | l1 l2 .
+Control Sequences
+_
+\(ua[$SVPOS$\(uaj$NL$\(uav$LINS
+\(uaa$MARK$\(uak$0BTAB$\(uaw$1BTAB
+\(uab$\fIback\fP$\(ual$INDENT$\(uax$\fIdelete\fP
+\(uac$COMMAND$\(uan$JOIN$\(uay$\fIyank\fP
+\(uad$EXIT$\(uao$LOPEN$\(uaz$STOP
+\(uae$GOEND$\(uap$\fIput\fP$\(ua=$KNOCK$
+\(uaf$1TAB$\(uar$ENTER$\(ua{$CINS
+\(uag$GOTO$\(uat$\fIto\fP$\(ua-$HOME
+\(uah$BS$\(uau$UNDO$\(ua\'$DO
+.T&
+cpf2 s s s s s
+l1 l2 | l1 l2 | l1 l2 .
+Items:
+_
+l$Lines$w$Words$c$Chars
+e$EOL$b$BlkLn
+p$Pages$]$Para$s$Search
+t$Tab$h$HfTab$v$VTab
+r$Return$o$Home
+.T&
+cpf2 s s s s s
+l1 l2 | l1 l2 | l1 l2 .
+Escape Sequences:
+_
+LEFT$5BTAB$RIGHT$5TAB$\(uai$0BTAB
+_
+-$VTAB$\&=$BHOME$\`$BRET
+\'$HELP$/$PARM${$RESET
+_
+1$LSLIDE$4$SHOW$7$FMAKE
+2$RSLIDE$5$BSAVE$8$FALT
+3$RSTRT$6$BRSTR$9$FNEXT
+$$$$0$LRESET
+.TE
+.ce 1
+Escape { : RESET

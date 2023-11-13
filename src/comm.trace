@@ -1,0 +1,116 @@
+COMM: Attempt slave lock: /usr/tmp/free.fred.spr.addr
+COMM: New socket: 4
+COMM: Send (4), len 13: EXEC fred spr
+COMM: Send (4), len 9: JOB dat4e
+COMM: Header: COMM 10 1128481603 MMOC
+COMM: Receive (4): (0,10) READY igor
+COMM: Send (4), len 32: FILES /dev/null ./.freeouta10406
+COMM: Send (4), len 25: SETWD /natasha/cs3/bb/src
+COMM: Send (4), len 16: SETENV ARCH=sun4
+COMM: Send (4), len 36: SETENV BINPDEF=/u/spr/binpdef.11.sun
+COMM: Send (4), len 14: SETENV BROWN=1
+COMM: Send (4), len 31: SETENV BTERMCAP=/u/spr/btermcap
+COMM: Send (4), len 21: SETENV DDT_AUTO_USE=2
+COMM: Send (4), len 23: SETENV DDT_CALL_TRACE=1
+COMM: Send (4), len 62: SETENV DEFAULT_FONT=/usr/lib/fonts/fixedwidthfonts/screen.r.12
+COMM: Send (4), len 19: SETENV DISPLAY=:0.1
+COMM: Send (4), len 24: SETENV EDITOR=/cs/bin/bb
+COMM: Send (4), len 18: SETENV HOME=/u/spr
+COMM: Send (4), len 16: SETENV HOST=fred
+COMM: Send (4), len 134: SETENV INCLUDE_PATH=.:../src:/pro/field/include:/pro/forest/include:/pro/bwe/include:/pro/include:/pro/bwe/edt/src:/pro/field/xref/src
+COMM: Send (4), len 31: SETENV INDEXPATH=/u/dept/.index
+COMM: Send (4), len 17: SETENV INTERM=x11
+COMM: Send (4), len 39: SETENV LD_LIBRARY_PATH=/cs/lib:/pro/lib
+COMM: Send (4), len 18: SETENV LOGNAME=spr
+COMM: Send (4), len 18: SETENV LOG_PCS=154
+COMM: Send (4), len 31: SETENV MAIL=/usr/spool/mail/spr
+COMM: Send (4), len 45: SETENV MANPATH=/cs/man:/usr/lang/man:/usr/man
+COMM: Send (4), len 415: SETENV PATH=.:/u/spr/commands:/u/spr/commands.sun4:/natasha/sys2/X11R5/usr/bin:/usr/bin/X11:/auto/openwin/bin:/usr/X11R5/bin:/pro/bin/bwe:/pro/bin/field:/pro/bin:/pro/bin/sun4:/pro/bin/AE:/usr/local/bin:/cs/bin:/u/dept/bin:/usr/lang:/usr/ucb:/bin:/usr/bsd:/usr/sbin:/usr/bin:/etc:/usr/suntool:/usr/hosts:/usr/games:/cs/bin/shape:/cs/bin/games:/usr/CC/sun4:/u/dept/bin:/pro/info/wais/bin:/cs/bin/gnu/sun4:/cs/bin/gnu
+COMM: Send (4), len 21: SETENV PRINTER=ps1dup
+COMM: Send (4), len 15: SETENV PRO=/pro
+COMM: Send (4), len 25: SETENV PWD=/cs/src/bb/src
+COMM: Send (4), len 32: SETENV ROOTMENU=/u/spr/.rootmenu
+COMM: Send (4), len 19: SETENV SGI_CC=-cckr
+COMM: Send (4), len 21: SETENV SHELL=/bin/csh
+COMM: Send (4), len 17: SETENV TERM=xterm
+COMM: Send (4), len 641: SETENV TERMCAP=vs|xterm|vs100|xterm terminal emulator (X window system):li#80:co#86:  :	:cr=^M:do=^J:nl=^J:bl=^G:le=^H:ho=\E[H:	:co#80:li#24:cl=\E[H\E[2J:bs:am:cm=\E[%i%d;%dH:nd=\E[C:up=\E[A:	:ce=\E[K:cd=\E[J:so=\E[7m:se=\E[m:us=\E[4m:ue=\E[m:	:md=\E[1m:mr=\E[7m:me=\E[m:	:ku=\EOA:kd=\EOB:kr=\EOC:kl=\EOD:kb=^H:	:k1=\EOP:k2=\EOQ:k3=\EOR:k4=\EOS:ta=^I:pt:sf=\n:sr=\EM:	:al=\E[L:dl=\E[M:ic=\E[@:dc=\E[P:	:MT:ks=\E[?1h\E=:ke=\E[?1l\E>:	:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;3;4;6l:	:rs=\E[r\E<\E[m\E[2J\E[H\E[?7h\E[?1;3;4;6l:xn:	:AL=\E[%dL:DL=\E[%dM:IC=\E[%d@:DC=\E[%dP:	:ti=\E7\E[?47h:te=\E[2J\E[?47l\E8:	:hs:ts=\E[?E\E[?%i%dT:fs=\E[?F:es:ds=\E[?E:
+COMM: Send (4), len 20: SETENV UGA_ARCH=sun4
+COMM: Send (4), len 24: SETENV UGA_ROOT=/pro/uga
+COMM: Send (4), len 15: SETENV USER=spr
+COMM: Send (4), len 17: SETENV USE_IDYL=1
+COMM: Send (4), len 24: SETENV VISUAL=/cs/bin/bb
+COMM: Send (4), len 18: SETENV X11R4PATH= 
+COMM: Send (4), len 44: SETENV X11R5PATH=/natasha/sys2/X11R5/usr/bin
+COMM: Send (4), len 35: SETENV XAPPLRESDIR=/cs/app-defaults
+COMM: Send (4), len 42: SETENV XGLHOME=/pro/xgl/xgl2.0/xgl-2.0/usr
+COMM: Send (4), len 34: SETENV XNEWSPATH=/auto/openwin/bin
+COMM: Send (4), len 111: SETENV bPARM=localcontrol=1 share=1 indent=1 rhsop=0 backup=2 history=100 copy=1 bufout=bBUFFERS bufin=bBUFFERS
+COMM: Send (4), len 24: SETENV WINDOWID=37748750
+COMM: Send (4), len 21: SETENV BWDISPLAY=:0.1
+COMM: Send (4), len 22: SETENV COLDISPLAY=:0.1
+COMM: Send (4), len 16: SETENV REMOTE=12
+COMM: Send (4), len 18: SETENV FREE_DEBUG=
+COMM: Send (4), len 18: SETENV COMM_DEBUG=
+COMM: Send (4), len 2: GO
+COMM: Header: COMM 10 1128481603 MMOC
+COMM: Receive (4): (0,10) START igor
+COMM: Header: COMM 8 1128481603 MMOC
+COMM: Receive (4): (0,8) DONE 256
+COMM: Attempt slave lock: /usr/tmp/free.fred.spr.addr
+COMM: New socket: 4
+COMM: Send (4), len 13: EXEC fred spr
+COMM: Send (4), len 8: JOB date
+COMM: Header: COMM 10 1128481603 MMOC
+COMM: Receive (4): (0,10) READY igor
+COMM: Send (4), len 32: FILES /dev/null ./.freeouta10407
+COMM: Send (4), len 25: SETWD /natasha/cs3/bb/src
+COMM: Send (4), len 16: SETENV ARCH=sun4
+COMM: Send (4), len 36: SETENV BINPDEF=/u/spr/binpdef.11.sun
+COMM: Send (4), len 14: SETENV BROWN=1
+COMM: Send (4), len 31: SETENV BTERMCAP=/u/spr/btermcap
+COMM: Send (4), len 21: SETENV DDT_AUTO_USE=2
+COMM: Send (4), len 23: SETENV DDT_CALL_TRACE=1
+COMM: Send (4), len 62: SETENV DEFAULT_FONT=/usr/lib/fonts/fixedwidthfonts/screen.r.12
+COMM: Send (4), len 19: SETENV DISPLAY=:0.1
+COMM: Send (4), len 24: SETENV EDITOR=/cs/bin/bb
+COMM: Send (4), len 18: SETENV HOME=/u/spr
+COMM: Send (4), len 16: SETENV HOST=fred
+COMM: Send (4), len 134: SETENV INCLUDE_PATH=.:../src:/pro/field/include:/pro/forest/include:/pro/bwe/include:/pro/include:/pro/bwe/edt/src:/pro/field/xref/src
+COMM: Send (4), len 31: SETENV INDEXPATH=/u/dept/.index
+COMM: Send (4), len 17: SETENV INTERM=x11
+COMM: Send (4), len 39: SETENV LD_LIBRARY_PATH=/cs/lib:/pro/lib
+COMM: Send (4), len 18: SETENV LOGNAME=spr
+COMM: Send (4), len 18: SETENV LOG_PCS=154
+COMM: Send (4), len 31: SETENV MAIL=/usr/spool/mail/spr
+COMM: Send (4), len 45: SETENV MANPATH=/cs/man:/usr/lang/man:/usr/man
+COMM: Send (4), len 415: SETENV PATH=.:/u/spr/commands:/u/spr/commands.sun4:/natasha/sys2/X11R5/usr/bin:/usr/bin/X11:/auto/openwin/bin:/usr/X11R5/bin:/pro/bin/bwe:/pro/bin/field:/pro/bin:/pro/bin/sun4:/pro/bin/AE:/usr/local/bin:/cs/bin:/u/dept/bin:/usr/lang:/usr/ucb:/bin:/usr/bsd:/usr/sbin:/usr/bin:/etc:/usr/suntool:/usr/hosts:/usr/games:/cs/bin/shape:/cs/bin/games:/usr/CC/sun4:/u/dept/bin:/pro/info/wais/bin:/cs/bin/gnu/sun4:/cs/bin/gnu
+COMM: Send (4), len 21: SETENV PRINTER=ps1dup
+COMM: Send (4), len 15: SETENV PRO=/pro
+COMM: Send (4), len 25: SETENV PWD=/cs/src/bb/src
+COMM: Send (4), len 32: SETENV ROOTMENU=/u/spr/.rootmenu
+COMM: Send (4), len 19: SETENV SGI_CC=-cckr
+COMM: Send (4), len 21: SETENV SHELL=/bin/csh
+COMM: Send (4), len 17: SETENV TERM=xterm
+COMM: Send (4), len 641: SETENV TERMCAP=vs|xterm|vs100|xterm terminal emulator (X window system):li#80:co#86:  :	:cr=^M:do=^J:nl=^J:bl=^G:le=^H:ho=\E[H:	:co#80:li#24:cl=\E[H\E[2J:bs:am:cm=\E[%i%d;%dH:nd=\E[C:up=\E[A:	:ce=\E[K:cd=\E[J:so=\E[7m:se=\E[m:us=\E[4m:ue=\E[m:	:md=\E[1m:mr=\E[7m:me=\E[m:	:ku=\EOA:kd=\EOB:kr=\EOC:kl=\EOD:kb=^H:	:k1=\EOP:k2=\EOQ:k3=\EOR:k4=\EOS:ta=^I:pt:sf=\n:sr=\EM:	:al=\E[L:dl=\E[M:ic=\E[@:dc=\E[P:	:MT:ks=\E[?1h\E=:ke=\E[?1l\E>:	:is=\E[r\E[m\E[2J\E[H\E[?7h\E[?1;3;4;6l:	:rs=\E[r\E<\E[m\E[2J\E[H\E[?7h\E[?1;3;4;6l:xn:	:AL=\E[%dL:DL=\E[%dM:IC=\E[%d@:DC=\E[%dP:	:ti=\E7\E[?47h:te=\E[2J\E[?47l\E8:	:hs:ts=\E[?E\E[?%i%dT:fs=\E[?F:es:ds=\E[?E:
+COMM: Send (4), len 20: SETENV UGA_ARCH=sun4
+COMM: Send (4), len 24: SETENV UGA_ROOT=/pro/uga
+COMM: Send (4), len 15: SETENV USER=spr
+COMM: Send (4), len 17: SETENV USE_IDYL=1
+COMM: Send (4), len 24: SETENV VISUAL=/cs/bin/bb
+COMM: Send (4), len 18: SETENV X11R4PATH= 
+COMM: Send (4), len 44: SETENV X11R5PATH=/natasha/sys2/X11R5/usr/bin
+COMM: Send (4), len 35: SETENV XAPPLRESDIR=/cs/app-defaults
+COMM: Send (4), len 42: SETENV XGLHOME=/pro/xgl/xgl2.0/xgl-2.0/usr
+COMM: Send (4), len 34: SETENV XNEWSPATH=/auto/openwin/bin
+COMM: Send (4), len 111: SETENV bPARM=localcontrol=1 share=1 indent=1 rhsop=0 backup=2 history=100 copy=1 bufout=bBUFFERS bufin=bBUFFERS
+COMM: Send (4), len 24: SETENV WINDOWID=37748750
+COMM: Send (4), len 21: SETENV BWDISPLAY=:0.1
+COMM: Send (4), len 22: SETENV COLDISPLAY=:0.1
+COMM: Send (4), len 16: SETENV REMOTE=12
+COMM: Send (4), len 18: SETENV FREE_DEBUG=
+COMM: Send (4), len 18: SETENV COMM_DEBUG=
+COMM: Send (4), len 2: GO
+COMM: Header: COMM 10 1128481603 MMOC
+COMM: Receive (4): (0,10) START igor
+COMM: Header: COMM 6 1128481603 MMOC
+COMM: Receive (4): (0,6) DONE 0

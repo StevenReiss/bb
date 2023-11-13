@@ -1,0 +1,101 @@
+Installation Instructions for BB:
+
+bb will not work correctly unless it has been set up for your system,
+terminals, environment, etc.  This file should give you some clues as
+to how this can be accomplished.
+
+Before we start, you have to decide the location of several items.
+These include:
+	bb -- the binary for the editor
+	The directory to be used for temp files (/mnt/tmp,/usr/tmp)
+	Where the help file is to be stored
+
+The first thing that must be done is to recompile bb with the correct
+parameter settings for your system.  To do this, edit the file parameters
+and change all occurrences of
+	/usr/bin/bb		with the location of the binary
+	/usr/info/b.help	with the location of the help file
+	/mnt/tmp		with the directory for temp files
+	/usr/tmp		with the alternate temp file directory
+You may also change any other default parameters (see the b.help file in
+the doc directory for cryptic information about them).	Possibilities
+include 'history' (20->100), 'localcontrol' (FALSE->TRUE).
+
+Now you can make 'newedit' using the Makefile in this directory.  First
+change Makefile by deleting the -DBROWN option. Then make newedit.  This can
+be installed by changing the makefile for the appropriate location for the
+actual binary and then making 'bb' while you are a superuser.  (This later
+step is not necessary, but allows the editor to run at high priority, improving
+response time on a loaded system.
+
+You are still not ready to run the editor however.  Next we want to make sure
+that our envirnoment variables are set up correctly.  bb expects
+	HOME -- home directory
+	SHELL -- user's desired shell
+	MAIL -- location of user's mail spool file if mail checks desired
+	TERM -- name of terminal
+	bPARM -- user's changes to default system parameters
+Of these, HOME, SHELL, and TERM must be present, the others are optional.
+
+Next we have to set up for whatever terminals you have.  This involves two
+files, /etc/termcap and /etc/binpdef.  You probably have a /etc/termcap on
+your system.  This requires only minor changes.  You should add codes to
+termcap for the following:
+	cc -- sequence for printing a control character (in cm form)
+	bi -- initialization sequence for the editor
+	bf -- termination sequence for the editor
+	bw -- terminal wraps for b (boolean)
+	sb -- use standout mode for marking in b
+Set the bw if bb shouldn't use the last column;  set sb if entering and exiting
+standout mode does not occupy a character position.  Examples of these can be
+found in our current termcap file found in this directory.  (You may just want
+to crib some of these entries.)
+
+The other file is a bit more difficult.  It involves defining the meaning of
+keys for input to bb using the file /etc/binpdef.  An example of this file is
+found in this directory (binpdef).  This includes most of the terminals we
+have at Brown, but not that many others.  The format is similar to a termcap
+file.  For each terminal, single key strokes are defined by the character
+(control), an equal sign, and a definition.  The definition may be another
+character (rare), 0 to indicate do nothing, & to indicate the start of a
+multiple character sequence, or >CMD where CMD is the name of a bb command.
+Multiple character sequences are defined by &<character>: followed by defin-
+itions for each string of following characters of the form
+	string=action
+where action is as above.  This is best seen from the examples in the sample
+file.  The actions for signals are also defined here as $signal_name=action.
+This file requires some experimentation to get right for a new terminal,
+especially one with function keys.  You could try using the definition for
+the vt52 as a starter.	Although function keys are used, most commands
+can be used without here.  Note that our vt100s and h19s all run in vt52
+mode nominally.  The key definitions for these terminals is in the doc
+directory in the files b.help.<term>.
+
+Next we have to install the remaining files.  Move the help file (b.help)
+from the doc directory to the chosen spot.  (You might move the terminal
+help files as well).  Move the versions of termcap and binpdef to the
+directory /etc.  (This can be delayed for debugging purposes by setting
+the environment variables TERMCAP and BINPDEF to the full path names of
+these files.)  If you have already run tset to setup TERMCAP, remember
+that this must be undone.
+
+Next type 'bb' or whatever you actually saved it as.  This should put you
+in readonly mode on the help file.  (If you have write permission, you
+might not be in readonly mode.)  Exit with control-D, and then type
+'bb foo'.  Answer yes when it asks if you want to create a file, then
+you should have a blank screen to experiment and get used to the editor
+on the file foo.
+
+The subdirectory APOLLO is used to build bb for the SUN or the apollo (note
+that because of quirks in apollo's unix/terminal implementation, the use
+of bb on the apollo is not recommended yet).  The differences are the files
+apeditor.c and lmove.c (replacing assembler routines on the vax), and the use
+of the APOLLO flag for compilation.  All other files are soft links to the
+files in this directory.  (The Makefile differs appropriately.)
+
+Any comments, suggestions, bugs, opinions, etc. should be sent to spr @
+brunix.
+
+
+
+

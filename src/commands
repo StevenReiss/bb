@@ -1,0 +1,147 @@
+/********************************************************/
+/*							*/
+/*		COMMANDS				*/
+/*							*/
+/*	This file contains the user command definitions */
+/*	Each command that the editor will/can use must	*/
+/*	be defined.  A command is defined by giving 4	*/
+/*	pieces of information:				*/
+/*		name	-- internal name		*/
+/*		parm	-- parameter name		*/
+/*		rtn	-- routine name 		*/
+/*		flags	-- command flags		*/
+/*							*/
+/********************************************************/
+
+
+
+				/* WINDOW commands	*/
+CMD(PPAGE,Apage,window,CMFwindow)
+CMD(MPAGE,Apage,window,CMFwindow)
+CMD(PLINE,Aline,window,CMFwindow)
+CMD(MLINE,Aline,window,CMFwindow)
+CMD(RSLIDE,Aslide,margin,CMFwindow)
+CMD(LSLIDE,Aslide,margin,CMFwindow)
+CMD(GOTO,Agoto,goto,CMFgoto)
+CMD(GOBEG,Agotobeg,goto,CMFgoto)
+CMD(GOEND,Agotoend,goto,CMFgoto)
+CMD(SVPOS,Asavpos,goto,CMFokmark)
+CMD(PSRCH,Asearch,search,CMFsearch)
+CMD(MSRCH,Asearch,search,CMFsearch)
+CMD(PRSRCH,Arsearch,search,CMFsearch)
+CMD(MRSRCH,Arsearch,search,CMFsearch)
+CMD(PFSRCH,Afsearch,search,CMFsearch)
+CMD(MFSRCH,Afsearch,search,CMFsearch)
+CMD(PBSRCH,Absearch,search,CMFokmark)
+CMD(MBSRCH,Absearch,search,CMFokmark)
+
+
+				/* CURSOR movement	*/
+CMD(RIGHT,0,cursor,CMFcursor)
+CMD(LEFT,0,cursor,CMFcursor)
+CMD(UP,0,cursor,CMFcursor)
+CMD(DOWN,0,cursor,CMFcursor)
+CMD(BS,0,cursor,CMFcursor)	/* backspace and delete 	*/
+CMD(RET,0,cursor,CMFmove)
+CMD(BRET,0,cursor,CMFmove)
+CMD(IND,0,cursor,CMFmove)	/* indent only (internal use) */
+CMD(NL,0,cursor,CMFmove)
+CMD(HOME,0,cursor,CMFcursor)
+CMD(BHOME,0,cursor,CMFcursor)	/* bottom home			*/
+CMD(VTAB,0,cursor,CMFmove)	/* vertical tab 		*/
+CMD(0TAB,0,cursor,CMFcursor)
+CMD(0BTAB,0,cursor,CMFcursor)
+CMD(1TAB,0,tabs,CMFtab)
+CMD(1BTAB,0,tabs,CMFtab)
+CMD(2TAB,0,tabs,CMFtab)
+CMD(2BTAB,0,tabs,CMFtab)
+CMD(3TAB,0,tabs,CMFtab)
+CMD(3BTAB,0,tabs,CMFtab)
+CMD(4TAB,0,tabs,CMFtab)
+CMD(4BTAB,0,tabs,CMFtab)
+CMD(5TAB,0,tabs,CMFtab)
+CMD(5BTAB,0,tabs,CMFtab)
+CMD(ABSPOS,0,cursor,CMFcursor)
+CMD(MRKPOS,0,cursor,CMFcursor)
+CMD(MRKAT,0,cursor,CMFcursor)
+
+
+
+				/* EDITING commands	*/
+CMD(CDEL,Acedit,delete,CMFdel)
+CMD(LDEL,Aledit,delete,CMFdel)
+CMD(1DEL,A1edit,delete,CMFdel)
+CMD(2DEL,A2edit,delete,CMFdel)
+CMD(3DEL,A3edit,delete,CMFdel)
+CMD(4DEL,A4edit,delete,CMFdel)
+CMD(5DEL,A5edit,delete,CMFdel)
+CMD(CINS,Acedit,insert,CMFins)
+CMD(LINS,Aledit,insert,CMFins)
+CMD(CPICK,Acedit,pick,CMFpick)
+CMD(LPICK,Aledit,pick,CMFpick)
+CMD(1PICK,A1edit,pick,CMFpick)
+CMD(2PICK,A2edit,pick,CMFpick)
+CMD(3PICK,A3edit,pick,CMFpick)
+CMD(4PICK,A4edit,pick,CMFpick)
+CMD(5PICK,A5edit,pick,CMFpick)
+CMD(CPUT,Acedit,insert,CMFput)
+CMD(LPUT,Aledit,insert,CMFput)
+CMD(1PUT,A1edit,insert,CMFput)
+CMD(2PUT,A2edit,insert,CMFput)
+CMD(3PUT,A3edit,insert,CMFput)
+CMD(4PUT,A4edit,insert,CMFput)
+CMD(5PUT,A5edit,insert,CMFput)
+CMD(CSWAP,Acedit,swap,CMFswap)
+CMD(LSWAP,Aledit,swap,CMFswap)
+CMD(1SWAP,A1edit,swap,CMFswap)
+CMD(2SWAP,A2edit,swap,CMFswap)
+CMD(3SWAP,A3edit,swap,CMFswap)
+CMD(4SWAP,A4edit,swap,CMFswap)
+CMD(5SWAP,A5edit,swap,CMFswap)
+CMD(COPEN,0,reset,CMFaddch)
+CMD(LOPEN,0,insert,CMFerrmark)
+CMD(JOIN,Ajoin,join,CMFdel)
+CMD(INDENT,Aindent,indent,CMFusemark)	      /* indent line  */
+
+
+				/* LANGUAGE commands -- must be in order */
+CMD(0LANG,0,lang,CMFlang)
+CMD(1LANG,0,lang,CMFlang)
+CMD(2LANG,0,lang,CMFlang)
+CMD(3LANG,0,lang,CMFlang)
+CMD(4LANG,0,lang,CMFlang)
+CMD(5LANG,0,lang,CMFlang)
+CMD(6LANG,0,lang,CMFlang)
+CMD(7LANG,0,lang,CMFlang)
+CMD(8LANG,0,lang,CMFlang)
+CMD(9LANG,0,lang,CMFlang)
+
+				/* MISCELLANEOUS commands	*/
+CMD(EXIT,Aexit,exit,CMFexit|CMFalways)
+CMD(ABORT,0,exit,CMFexit)
+CMD(CRASH,0,exit,CMFexit)
+CMD(RSTRT,0,file,CMFexit)
+CMD(SAVE,0,file,CMFexit)
+CMD(PARM,Afile,file,CMFokmark|CMFnosave)
+CMD(FSET,Afile,file,CMFfile)
+CMD(FMAKE,Afile,file,CMFfile)
+CMD(FNEXT,0,file,CMFfile)
+CMD(FALT,Afile,file,CMFfile)
+CMD(SHOW,Ashow,show,CMFokmark)
+CMD(RESET,0,reset,CMFreset)
+CMD(LRESET,0,reset,CMFreset)
+CMD(IGNORE,0,reset,CMFreset)
+CMD(SYSTEM,Asystem,system,CMFokmark)
+CMD(STOP,Asystem,system,CMFokmark)
+CMD(COMMAND,Acommand,command,CMFokmark|CMFalways)
+CMD(UNDO,Aundo,undo,CMFundo)
+CMD(ENTER,0,reset,CMFabort)
+CMD(MARK,0,reset,CMFabort)
+CMD(KNOCK,0,reset,CMFabort)
+CMD(BSAVE,Abfsave,bufsave,CMFokmark)
+CMD(BRSTR,Abfsave,bufsave,CMFokmark)
+CMD(DOSET,Ado,do,CMFdo)
+CMD(DO,Ado,do,CMFdo)
+CMD(HELP,Afile,help,CMFhelp)
+CMD(RUNCMD,Asystem,runcmd,CMFput)
+CMD(INTR,0,exit,CMFexit)

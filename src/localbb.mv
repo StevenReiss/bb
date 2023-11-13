@@ -1,0 +1,2 @@
+#!/bin/csh -f
+ln /usr/src/local/editor/newedit /usr/src/local/bb

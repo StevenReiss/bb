@@ -1,0 +1,198 @@
+# WARNING: DO NOT EDIT.
+# THIS FILE WAS AUTOMATICALLY GENERATED USING THE
+# BUILDMAKE PROGRAM.
+
+#
+# Buildfile for BB editor
+#
+# Copyright 1985 Steven P. Reiss, Brown University - All rights reserved.
+#
+# Last Edited by spr on Fri Sep 13 11:44 EDT 1985
+#
+
+ALL=
+
+.SUFFIXES: .t
+
+.c.o:
+	$(CC) -c $(CFLAGS) $*.c
+
+
+.o.t:
+	$(CC) $(CFLAGS) -o $*.t $*.o $(LIB) $(XLIB)
+
+
+
+CC= cc
+LD= ld
+
+HOME = /cs/src/bb/src
+LIBDIR = ../lib
+SUNID= fred
+APOLLOID= brap0b84
+VAXID= nancy
+UVAXID= charlie
+ENCOREID= zaphod
+BINDFLAGS= -z
+
+#************************* MACHINE DEPENDENT SECTION ***************************
+#--VAX/SUN VERSION GENERATED--
+FLAGS= -g -DSUN -DSYS5
+OPTFLAGS= -O -DSUN -DSYS5
+NPFLAGS= -g -DSUN -DSYS5
+PFLAGS= -g -DSUN -pg -DSYS5
+XLIB= -lcurses -ltermcap
+LBFILES= apeditor.o lmovec.o sys5edit.o
+LCFILES= apeditor.c lmovec.c sys5edit.c
+FG= -DFLEXWIN
+MAKEBB= cp newedit /cs/bin/bb;	cp recover /cs/bin/brecover
+LINT= lint
+AR=/pro/cmd/lar
+RANLIB = /pro/cmd/lranlib
+MAKELIB = $(LD) -r $(BFILES) -o $(LIBDIR)/$(PACKAGE).lib $(OTHERLOAD);	$(AR) ru $(LIB) $(LIBDIR)/$(PACKAGE).lib $(OTHERLIB);  $(RANLIB) $(LIB)
+INSTALL_INCLUDES = @;
+#*******************************************************************************
+
+CFLAGS = $(NPFLAGS) $(FG)
+PCFLAGS = $(PFLAGS) $(FG)
+OPTCFLAGS = $(OPTFLAGS) $(FG)
+
+LANGBFILES= dfltlang.o cccclang.o copslang.o fortlang.o rofflang.o lisplang.o
+LANGCFILES= dfltlang.c cccclang.c copslang.c fortlang.c rofflang.c lisplang.c
+
+BFILES= editor.o bufmod.o cmdmod.o cryptmod.o dispmod.o 	domod.o filemod.o histmod.o input.o langmod.o	lbuff.o linemod.o mdfymod.o parms.o procmod.o srchmod.o tempmod.o	termcurses.o librtns.o strlib.o dummy.o $(LBFILES)	  $(LANGBFILES)
+
+CFILES= editor.c bufmod.c cmdmod.c cryptmod.c dispmod.c 	domod.c filemod.c histmod.c input.c langmod.c	lbuff.c linemod.c mdfymod.c parms.c procmod.c srchmod.c tempmod.c	termcurses.c librtns.c strlib.c dummy.c $(LCFILES)	  $(LANGCFILES)
+
+SFILES= editor.c bufmod.c cmdmod.c cryptmod.c dispmod.c 	domod.c filemod.c histmod.c input.c langmod.cm	lbuff.c linemod.c mdfymod.c parms.c procmod.c srchmod.c tempmod.c	termcurses.c librtns.c strlib.c dummy.c   lmove.s lmovec.c apeditor.c sys5edit.c  $(LANGCFILES)
+
+HFILES= global.h FILES editor.h 	cmdlist.m commands cmds.hm	parmlist.m parameters parms.hm parmdef.hm	langlist.m languages langmod.h	bufmod.h filemod.h lbuff.h linemod.h tempmod.h
+
+OTHERP= recover.c binpdef btermcap termcap
+
+PFILES= Buildfile $(HFILES) $(SFILES) $(OTHERP)
+ACTIVE= Buildfile Makefile $(HFILES) $(SFILES) $(OTHERP)
+
+all: newedit recover
+
+newedit: $(BFILES)
+	-mv newedit newedit.old
+	cc -o newedit $(CFLAGS) $(BINDFLAGS) $(BFILES) $(XLIB)
+
+bb: newedit
+	$(MAKEBB)
+
+pbb:
+	-make clean
+	-make 'CFLAGS=$(PCFLAGS)' profedit
+	-make clean
+	-make newedit
+
+
+profedit: $(BFILES)
+	-rm profedit
+	cc -o profedit $(CFLAGS) $(OBJS) $(LOBJ) $(SLIB) -ltermcap
+
+recover: recover.c editor.h tempmod.h linemod.h bufmod.h cmds.h
+	-rm recover
+	cc -o recover $(CFLAGS) $(BINDFLAGS) recover.c
+
+parms: parameters
+	make parms.h parmdef.h parms.o
+	make -t newedit
+	touch parms.o
+	make newedit
+
+editor.o: editor.c editor.h parms.h cmds.h
+bufmod.o: bufmod.c editor.h bufmod.h cmds.h parms.h
+cmdmod.o: cmdmod.c editor.h parms.h cmds.h langmod.h bufmod.h lbuff.h
+cryptmod.o: cryptmod.c editor.h
+dispmod.o: dispmod.c editor.h lbuff.h parms.h cmds.h
+domod.o: domod.c editor.h bufmod.h parms.h cmds.h
+filemod.o: filemod.c editor.h filemod.h parms.h lbuff.h
+histmod.o: histmod.c editor.h linemod.h parms.h bufmod.h
+input.o: input.c editor.h parms.h cmds.h
+
+langmod.c: langmod.cm langlist.m languages
+	m4 langmod.cm | sed -e 's/^cdefine/#define/' >langmod.c
+
+langmod.o: langmod.c langmod.h editor.h parms.h
+lbuff.o: lbuff.c editor.h lbuff.h parms.h langmod.h
+linemod.o: linemod.c editor.h lbuff.h linemod.h tempmod.h parms.h
+mdfymod.o: mdfymod.c editor.h lbuff.h bufmod.h parms.h cmds.h
+parms.o: parms.c editor.h parms.h parmdef.h filemod.h linemod.h langmod.h
+procmod.o: procmod.c editor.h parms.h cmds.h bufmod.h langmod.h lbuff.h
+srchmod.o: srchmod.c editor.h parms.h lbuff.h
+tempmod.o: editor.h tempmod.h parms.h linemod.h
+$(LANGBFILES): editor.h langmod.h lbuff.h parms.h cmds.h bufmod.h
+
+lmove.o: lmove.s
+lmovec.o: lmovec.c
+apeditor.o: apeditor.c
+
+termcurses.o: termcurses.c parms.h
+strlib.o: strlib.c
+
+parms.h: parmlist.m parms.hm parameters
+	m4 parms.hm | sed -e 's/^cdefine/#define/' >parms.h
+
+parmdef.h: parmlist.m parmdef.hm parameters
+	m4 parmdef.hm | sed -e 's/^cdefine/#define/' >parmdef.h
+
+cmds.h: cmdlist.m cmds.hm commands
+	m4 cmds.hm | sed -e 's/^cdefine/#define/' >cmds.h
+
+
+lint.out:
+	$(LINT) -hxac -I. -I/pro/garden/include -I/pro/include $(CFILES) >lint.out
+
+print:
+	pr $(PFILES) | lpr -low
+
+pribm:
+	/bin/pr -l62 -f $(PFILES) | lpr -Pibm
+
+
+sun:
+	rcp $(ACTIVE) $(SUNID):$(HOME)
+	$(SUNID) "cd $(HOME); make buildmake"
+
+apollo:
+	rcp $(ACTIVE) $(APOLLOID):$(HOME)
+	$(APOLLOID) "cd $(HOME); make buildmake"
+
+vax:
+	rcp $(ACTIVE) $(VAXID):$(HOME)
+	$(VAXID) "cd $(HOME); make buildmake"
+
+uvax:
+	rcp $(ACTIVE) $(UVAXID):$(HOME)
+	$(UVAXID) "cd $(HOME); make buildmake"
+
+encore:
+	rcp $(ACTIVE) $(ENCOREID):$(HOME)
+	$(ENCOREID) "cd $(HOME); make buildmake"
+
+install_includes:
+	@echo Installing include files.
+	$(INSTALL_INCLUDES)
+
+install:
+	cp $(PACKAGE).ext ../lib
+	csh -c "$(INSTALL_INCLUDES)"
+
+opt:
+	make 'CFLAGS=$(OPTCFLAGS)' $(PACKAGE)
+
+clean:
+	-rm -f cmds.h parmdef.h langmod.c
+	-rm -f $(BFILES)
+	make buildmake
+
+buildmake:
+	-mv Makefile Makefile.old
+	buildmake -F Makefile
+
+
+# end of Makefile
+

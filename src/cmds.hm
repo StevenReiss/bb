@@ -1,0 +1,205 @@
+/********************************************************/
+/*							*/
+/*		CMDS.H	 (derived from cmds.hm) 	*/
+/*							*/
+/*	This file contains the definitions of all the	*/
+/*   editor commands and command related information.	*/
+/*   It is generated from cmds.hm and the file commands */
+/*							*/
+/********************************************************/
+/*	Copyright 1984 Brown University					*/
+
+
+include(cmdlist.m)
+
+
+
+
+/********************************************************/
+/*							*/
+/*	Command flags					*/
+/*							*/
+/********************************************************/
+
+
+typedef INT	CMFLAGS;
+
+cdefine CMFusemark	0x1	/* use marking info	*/
+cdefine CMFerrmark	0x2	/* error if marking -ign */
+cdefine CMFokmark	0x4	/* ok during marking	*/
+cdefine CMFwarnmark	0x8	/* warn if marking	*/
+cdefine CMFgomark	0x10	/* start marking	*/
+cdefine CMFnosave	0x20	/* never save parm dflt */
+cdefine CMFabort	0x40	/* illegal		*/
+cdefine CMFcmode	0x80	/* cursor mode command	*/
+cdefine CMFtyping	0x100	/* type-in type command */
+cdefine CMFargs 	0x200	/* can have arguments	*/
+cdefine CMFdoend	0x400	/* end a do compilation */
+cdefine CMFignore	0x800	/* ignore arguments	*/
+cdefine CMFflipsave	0x1000	/* flip save times	*/
+cdefine CMFalways	CMFflipsave|CMFnosave
+
+				/* command categorys	*/
+cdefine CMFwindow	CMFokmark|CMFgomark
+cdefine CMFsearch	CMFokmark|CMFalways
+cdefine CMFgoto 	CMFokmark
+cdefine CMFcursor	CMFgomark|CMFokmark|CMFcmode
+cdefine CMFmove 	CMFgomark|CMFokmark
+cdefine CMFtab		CMFgomark|CMFokmark
+cdefine CMFdel		CMFusemark
+cdefine CMFins		CMFusemark
+cdefine CMFpick 	CMFusemark
+cdefine CMFput		CMFerrmark
+cdefine CMFswap 	CMFusemark
+cdefine CMFaddch	CMFtyping|CMFerrmark
+cdefine CMFfile 	CMFerrmark|CMFnosave
+cdefine CMFreset	CMFokmark|CMFignore
+cdefine CMFdo		CMFokmark|CMFnosave|CMFargs
+cdefine CMFexit 	CMFwarnmark|CMFdoend
+cdefine CMFhelp 	CMFokmark|CMFnosave
+cdefine CMFundo 	CMFokmark|CMFnosave
+
+cdefine CMFlang 	CMFokmark
+
+
+
+
+
+/********************************************************/
+/*							*/
+/*	Command value definitions			*/
+/*							*/
+/********************************************************/
+
+
+				/* RHS options		*/
+cdefine RHS_CONT	0	/*    continue typing	*/
+cdefine RHS_FIXED	1	/*    fixed margin	*/
+
+				/* end marker options	*/
+cdefine EOF_NONE	0	/*    none		*/
+cdefine EOF_PAGE	1	/*    at page bottom	*/
+cdefine EOF_LINE	2	/*    at last line	*/
+
+
+
+
+
+
+/********************************************************/
+/*							*/
+/*	Command name definitions			*/
+/*							*/
+/********************************************************/
+
+
+cdefine CM_FIRST	0x80	/* first command value	*/
+
+undivert(1)
+
+cdefine CM_LAST 	CM_FIRST+CMDCNT
+
+
+			/* OTHER SPECIAL CHARACTERS	*/
+
+cdefine BFC_EOF 	0xf0	/* end of buffer	*/
+cdefine BFC_EOL 	0xf1	/* eol in buffer	*/
+
+cdefine CHR_BS		0xf2	/* internal backspace	*/
+cdefine CHR_BSDEL	0xf3	/* internal bs-delete	*/
+
+cdefine ICH_ENTER	0xf4	/* input editing -- ENTER */
+cdefine ICH_DELIM	0xf5	/*    Argument delimiter  */
+cdefine ICH_WARN	0xf6	/*    ignore but warn	  */
+cdefine ICH_END 	0xf7	/*    end of argument	  */
+cdefine ICH_BS		0xf8	/*    backspace 	  */
+cdefine ICH_LAST	0xf9	/*    use last argument   */
+cdefine ICH_IGNORE	0	/*    ignore		  */
+
+cdefine DCH_START	0xfa	/* start of DO buffer	*/
+cdefine DCH_END 	BFC_EOF /* end of DO buffer	*/
+
+
+
+
+
+
+/********************************************************/
+/*							*/
+/*	Command name scan tables			*/
+/*							*/
+/********************************************************/
+
+
+#ifdef DISPMOD
+
+LONG	CMDTBL[] = {
+
+undivert(2)
+
+};
+
+INT	CMDTBLEN = (sizeof CMDTBL)/(sizeof(LONG));
+
+
+TEXT	CMDVTBL[] = {
+
+undivert(3)
+
+};
+
+#endif
+
+
+
+
+
+/********************************************************/
+/*							*/
+/*	Command action tables				*/
+/*							*/
+/********************************************************/
+
+
+#ifdef CMDMOD
+
+
+				/* command routines	*/
+undivert(4)
+
+#endif
+
+
+
+typedef struct _CMTBL { 	/* table structure	*/
+   INT	CMparm; 		/*    parameter value	*/
+   INT	(*CMrtn)();		/*    processing rtn	*/
+   CMFLAGS CMflags;		/*    flags		*/
+} BCMTBL, *CMTBL;
+
+extern	BCMTBL	CMDTB[];
+
+
+#ifdef CMDMOD
+
+cdefine P_0 -1			/* default parameter	*/
+
+       BCMTBL CMDTB[] = {
+
+undivert(5)
+
+};
+
+#endif
+
+
+cdefine CMDS(cmd) CMDTB[cmd-CM_FIRST]
+
+
+
+
+
+divert(-1) undivert divert
+
+
+/* end of cmds.h */

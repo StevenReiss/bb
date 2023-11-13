@@ -1,0 +1,50 @@
+.bm .25i
+.ll 3.5i
+.ce
+\f3vt100\fP bb input definitions
+.nr SS .25v
+.br
+.ce
+\s8\fIescape\fP\s0/\f3no shift\fP
+.TS
+center box tab($) ;
+lp6e | lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2
+cef3 | cef3 | cef3 | cef3
+lp6e | lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2
+cef3 | cef3 | cef3 | cef3
+lp6e | lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2
+cef3 | cef3 | cef3 | cef3
+lp6e | lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2
+cef3 | cef3 | cef3 | cef3
+lp6e s | lp6e | ^
+cp8ef2 s | cp8ef2 | ^
+cef3 s | cef3 | ^ .
+PF1$PF2$PF3$PF4
+LSLIDE$RSLIDE$VTAB$BRET
+PPAGE$MPAGE$PLINE$MLINE
+.sp \n(SSu
+_
+7$8$9$-
+LANG7$LANG8$LANG9$---
+CINS$CDEL$CPUT$CPICK
+.sp \n(SSu
+_
+4$5$6$,
+LANG4$LANG5$LANG6$---
+LINS$LDEL$LPUT$LPICK
+.sp \n(SSu
+_
+1$2$3$ENTER
+LANG1$LANG2$LANG3$MARK
+COPEN$PSRCH$MSRCH$ENTER
+.sp \n(SSu
+_
+0$.
+LANG0$DOSET
+FSET$DO
+.sp \n(SSu
+.TE

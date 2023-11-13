@@ -1,0 +1,64 @@
+.nr SS .25v
+.po 1i
+.(l C
+.ps 14
+.ft 3
+Standard bb Input Sequence
+.ps
+.ft
+\*(td
+.)l
+.lp
+The following table describes the function of each of the control keys:
+.sp
+.TS
+box expand tab($) ;
+cf2 s s s s s
+l le | l le | l le .
+Control Keys
+.sp \n(SSu
+_
+\(ua@$Save Position$\(uak$---$\(uav$Insert ("vhite") line
+\(uaa$Mark$\(ual$---$\(uaw$\(miWord
+\(uab$\fIback\fP (see below)$\(uam$---$\(uax$\fIdelete\fP (see below)
+\(uac$Command$\(uan$Join$\(uay$\fIyank\fP (see below)
+\(uad$Exit$\(uao$Open Lines$\(uaz$Stop
+\(uae$Go to End$\(uap$\fIput\fP (see below)$\(ua[$(esc)
+\(uaf$\(plWord$\(uaq$---$\(ua\\\\$Knockdown
+\(uag$Go To$\(uar$Enter$\(ua]$Insert Character
+\(uah$---$\(uas$---$\(ua^$---
+\(uai$---$\(uat$\fIto\fP (see below)$\(ua_$Do
+\(uaj$---$\(uau$Undo$$
+.sp \n(SSu
+.TE
+.br
+(--- means that the control key is terminal specific or not assignable)
+.sp
+.lp
+The following table are the two character sequences.
+The first character is a control character which describes
+the operation (i.e. \(uap for put).
+The second character is an item (i.e. l for lines).
+.TS
+expand box tab($) ;
+c s || c s s s s s
+l1 l2 || l1 l2 | l1 l2 | l1 l2 .
+Operations$Items
+.sp \n(SSu
+_
+\(uat$To,Plus,Tab$p$Pages$l$Lines$w$Words
+\(uab$Back,Minus$c$Characters$e$End of line$b$Blank Line
+\(uax$Delete$]$Paragraph$h$Half Tab$s$Search String
+\(uay$Yank,Pick$t$Tab$TAB$Tab$v$Vertical Tab
+\(uap$Put$r$Return$RET$Return$$
+$$o$Home$HOME$Home$$
+.sp \n(SSu
+.TE
+For example, to delete a word, type \(uaxw.
+Obviously, some of the sequences won't work.
+For example, there is no delete return.
+.lp
+Finally, the standard Reset Sequence is 3 escapes.
+.lp
+These sequences will work on any terminal defined for bb.
+In addition, each terminal may have its own input definitions.

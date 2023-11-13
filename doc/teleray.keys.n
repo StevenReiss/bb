@@ -1,0 +1,23 @@
+.nr hm 1v
+.nr fm 1v
+.nr tm 2v
+.nr bm 2v
+.nr SS .25v
+.po .5i
+.sz 10
+.ll 3.0i
+\fIescape shift/\fP\s8\fIescape\fP\s0/shift/\f3no shift\fP
+.TS
+box expand tab($) ;
+lp6e    | lp6e    | lp6e    | lp6e
+cp10ef2 | cp10ef2 | cp10ef2 | cp10ef2
+cp8ef2  | cp8ef2  | cp8ef2  | cp8ef2
+cp10e   | cp10e   | cp10e   | cp10e
+cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3.
+F1$F2$F3$F4
+LINS$RESET$DOSET$FSET
+CINS$COPEN$DO$ENTER
+PSRCH$MSRCH$2BTAB$2TAB
+PPAGE$MPAGE$PLINE$MLINE
+.sp \n(SSu
+.TE

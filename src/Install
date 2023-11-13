@@ -1,0 +1,5 @@
+#!/bin/sh
+# kinda bogus, but better than having /etc/binpdef as the "source"
+install -c -m 644 -o sys -g sys binpdef /etc/binpdef
+install -c -r sluggo -m 644 -o sys -g sys binpdef /etc/binpdef
+install -c -r skyler -m 644 -o sys -g sys binpdef /etc/binpdef

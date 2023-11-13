@@ -1,0 +1,51 @@
+    vt100 bb input definitions
+
+          escape/no shift
++---------+---------+---------+---------+
+|PF1      |PF2      |PF3      |PF4      |
+| InsCh   |SetFile  |  Do     | Enter   |
+|+Pages   |-Pages   |+Lines   |-Lines   |
++---------+---------+---------+---------+
+
+escape/no shift
++---------+---------+---------+---------+
+|  -Srch  |  +Srch  |         |         |
+|    /\   |    \/   |   <-    |    ->   |
++---------+---------+---------+---------+
+
+                Control Sequences
++-----------+-----------+-----------+-----------+
+|^   SvPos  |^g GoTo    |^r Enter   |^y yank    |
+|^a  Mark   |^k BTab    |^t to      |^z Stop    |
+|^b  back   |^l Indent  |^u Undo    |^\ Knock   |
+|^c  Command|^n Join    |^v InsLn   |^] InsCh   |
+|^d  Exit   |^o OpenLn  |^w -Word   |^` GoBeg   |
+|^e  GoEnd  |^p put     |^x delete  |^? Do      |
+|^f  +Word  |           |           |           |
+                     Items:
++-----------+-----------+-----------+-----------+
+| p   Pages | l  Lines  | w  Words  | c  Chars  |
+| e   EOL   | b  BlkLn  | ]  Para   | s  Search |
+| t   Tab   | h  HfTab  | v  VTab   |           |
+| r   Return|           |           |           |
+
+                Escape Sequences:
++-----------+-----------+-----------+-----------+
+| q  DelWrd | w  DelEOL | e DelBlkLn| r  DelPara|
+| a  PutWrd | s  PutEOL | d PutBlkLn| f  PutPara|
+| z  PckWrd | x  PckEOL | c PckBlkLn| v  PckPara|
++-----------+-----------+-----------+-----------+
+| t DelHfTab| y +BfSrch | h  +FSrch | n  +RSrch |
+| g PutHfTab| u -BfSrch | j  -FSrch | m  -RSrch |
+| b PckHfTab|           |           |           |
++-----------+-----------+-----------+-----------+
+| i  +EOL   | k  +BlkLn | ,  +Para  | p  +HfTab |
+| o  -EOL   | l  -BlkLn | .  -Para  | ;  -HfTab |
++-----------+-----------+-----------+-----------+
+| -   VTab  | =  BHome  | ` BReturn |           |
+| '   Help  | /  Parm   |           |           |
+------------+-----------+-----------+-----------+
+| 1 <-Slide | 4  Show   | 7 MakFile | 0  LReset |
+| 2 ->Slide | 5  BfSave | 8 AltFile |           |
+| 3 Restart | 6  BfRstr | 9 NxtFile |           |
+Three escapes: Reset

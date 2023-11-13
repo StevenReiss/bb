@@ -1,0 +1,59 @@
+.sz 8
+.ll 2.25i
+.ft 3
+.TS
+center tab($) ;
+cpf2 s s s s s
+l1 l2 | l1 l2 | l1 l2 .
+Control Sequences
+_
+\(ua@$SVPOS$\(uaj$DOWN$\(uav$DOWN
+\(uaa$---$\(uak$UP$\(uaw$1BTAB
+\(uab$\fIback\fP$\(ual$RIGHT$\(uax$\fIdelete\fP
+\(uac$COMMAND$\(uan$JOIN$\(uay$\fIyank\fP
+\(uad$EXIT$\(uao$LOPEN$\(uaz$STOP
+\(uae$GOEND$\(uap$\fIput\fP$\(ua\e$KNOCK$
+\(uaf$1TAB$\(uar$ENTER$\(ua]$CINS
+\(uag$GOTO$\(uat$\fIto\fP$\(ua^$HOME
+\(uah$LEFT$\(uau$UNDO$\(ua_$DO
+.T&
+cpf2 s s s s s
+l1 l2 | l1 l2 | l1 l2 .
+Items:
+_
+l$Lines$w$Words$c$Chars
+e$EOL$b$BlkLn
+p$Pages$]$Para$s$Search
+t$Tab$h$HfTab$v$VTab
+r$Return$o$Home
+.T&
+cpf2 s s s s s
+l1 l2 | l1 l2 | l1 l2 .
+Escape Sequences:
+_
+q$1DEL$a$1PUT$z$1PICK
+w$2DEL$s$2PUT$x$2PICK
+e$3DEL$d$3PUT$c$3PICK
+r$4DEL$f$4PUT$v$4PICK
+t$5DEL$g$5PUT$b$5PICK
+_
+y$PBSRCH$h$PFSRCH$n$PRSRCH
+u$MBSRCH$j$MFSRCH$m$MRSRCH
+_
+i$2TAB$k$3TAB$,$4TAB
+o$2BTAB$l$3BTAB$.$4BTAB
+p$5TAB$;$5BTAB$$
+_
+LEFT$5BTAB$RIGHT$5TAB$$
+\(uai$0BTAB$DOWN$NL$$
+_
+-$VTAB$\&=$BHOME$\`$BRET
+\'$HELP$/$PARM${$RESET
+_
+1$LSLIDE$4$SHOW$7$FMAKE
+2$RSLIDE$5$BSAVE$8$FALT
+3$RSTRT$6$BRSTR$9$FNEXT
+$$$$0$LRESET
+.TE
+.ce 1
+Escape { : RESET

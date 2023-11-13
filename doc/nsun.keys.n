@@ -1,0 +1,105 @@
+.nr SS .25v
+.lp
+.sz 8
+.bm .25i
+.ll 6.75i
+.ce
+\f3sun\fP bb function keys
+.TS
+box expand tab($) ;
+lp6e | lp6e | lp6e | lp6e | lp6e | lp6e | lp6e | lp6e | lp6e | lp6e
+cp10e | cp10e | cp10e | cp10e | cp10e | cp10e | cp10e | cp10e | cp10e | cp10e
+.
+f1$f2$f3$f4$f5$f6$f7$f8$f9$break
+COPEN$DO$FSET$PSRCH$MSRCH$PRSRCH$MRSRCH$LRESET$RESET$ENTER
+.sp \n(SSu
+.TE
+.sz 10
+.sp
+.ll 3.5i
+.ce
+\f3sun\fP bb right functions keys
+.ce
+\f2escape\fP/normal
+.br
+.TS
+center box tab($) ;
+lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2
+cp10e | cp10e | cp10e
+lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2
+cp10e | cp10e | cp10e
+lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2
+cp10e | cp10e | cp10e
+lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2
+cp10e | cp10e | cp10e
+lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2
+cp10e | cp10e | cp10e .
+R1$R2$R3
+LANG1$LANG2$LANG3
+CPUT$PSRCH$CPICK
+.sp \n(SSu
+_
+R4$R5$R6
+LANG4$LANG5$LANG6
+LPUT$MSRCH$LPICK
+.sp \n(SSu
+_
+R7$R8$R9
+LANG7$LANG8$LANG9
+CINS$UP$CDEL
+.sp \n(SSu
+_
+R10$R11$R12
+LANG0$$
+LEFT$PPAGE$RIGHT
+.sp \n(SSu
+_
+R13$R14$R15
+$$
+LINS$DOWN$LDEL
+.sp \n(SSu
+.TE
+.sz 10
+.sp
+.ll 3.5i
+.br
+.ce
+\f3sun\fP bb left functions keys
+.TS
+center box tab($) ;
+lp6e | lp6e
+cp10e | cp10e
+lp6e | lp6e
+cp10e | cp10e
+lp6e | lp6e
+cp10e | cp10e
+lp6e | lp6e
+cp10e | cp10e
+lp6e | lp6e
+cp10e | cp10e .
+L1$L2$
+$ENTER
+.sp \n(SSu
+_
+L3$L4
+PPAGE$MPAGE
+.sp \n(SSu
+_
+L5$L6
+PLINE$MLINE
+.sp \n(SSu
+_
+L7$L8
+1TAB$1BTAB
+.sp \n(SSu
+_
+L9$L10
+2TAB$2BTAB
+.sp \n(SSu
+.TE
+

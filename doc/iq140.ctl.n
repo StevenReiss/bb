@@ -1,0 +1,41 @@
+.bm .25i
+.ll 3.5i
+.ce
+\f3iq140\fP bb input definitions
+.sz 8
+.TS
+center tab($) ;
+cpf2 s s s s s
+l2 l | l2 l | l2 l .
+Control Sequences
+_
+\(ua[$MARK$\(uan$JOIN$\(uaw$1BTAB
+\(uab$\fIback\fP$\(uao$LOPEN$\(uax$\fIdelete\fP
+\(uac$COMMAND$\(uap$\fIput\fP$\(uay$\fIyank\fP
+\(uad$EXIT$\(uar$ENTER$\(uaz$STOP
+\(uae$GOEND$\(uat$\fIto\fP$\(ua\\\\$KNOCK
+\(uaf$1TAB$\(uau$UNDO$\(ua]$CINS
+\(uag$GOTO$\(uav$LINS$\(ua_$DO
+.T&
+cpf2 s s s s s
+l2 l | l2 l | l2 l .
+Items:
+_
+p$Pages$l$Lines$w$Words
+c$Chars$e$EOL$b$BlkLn
+]$Para$s$Search$$
+t$Tab$h$HfTab$v$VTab
+r$Return$o$Home$$
+.T&
+cpf2 s s s s s
+l2 l | l2 l | l2 l .
+Control-a Sequences:
+_
+0$LRESET$$$$
+1$LSLIDE$4$SHOW$7$FMAKE
+2$RSLIDE$5$BSAVE$8$FALT
+3$RSTRT$6$BRSTR$9$FNEXT
+.TE
+.sp .25v
+.ce
+\(uaa \(uaa \(uaa = RESET.

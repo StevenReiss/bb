@@ -1,0 +1,10 @@
+
+binpdef.orig:	original binpdef
+binpdef:	added def for apollo_19l
+
+	dad, bh		12 feb 86
+
+The distributed version belongs in /etc/binpdef.
+
+binpdef presently the installed version
+

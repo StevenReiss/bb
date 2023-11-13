@@ -1,0 +1,2 @@
+#! /bin/sh
+exec bb backup=0 -noco stream=1 $1

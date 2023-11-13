@@ -1,0 +1,695 @@
+    This file describes the commands provided by the b editor.	To find
+the description of any particular command type
+
+	<ENTER> >command-name  <+search>
+
+The valid commands are:
+
+PPAGE	MPAGE	PLINE	MLINE	RSLIDE	LSLIDE	GOTO	GOBEG	GOEND	SVPOS
+PSRCH	MSRCH	PRSRCH	MRSRCH	PFSRCH	MFSRCH	PBSRCH	MBSRCH	RIGHT	LEFT
+UP	DOWN	BS	RET	BRET	NL	HOME	BHOME	VTAB	0TAB
+0BTAB	1TAB	1BTAB	2TAB	2BTAB	3TAB	3BTAB	4TAB	4BTAB	5TAB
+5BTAB	CDEL	LDEL	1DEL	2DEL	3DEL	4DEL	5DEL	CINS	LINS
+CPICK	LPICK	1PICK	2PICK	3PICK	4PICK	5PICK	CPUT	LPUT	1PUT
+2PUT	3PUT	4PUT	5PUT	COPEN	LOPEN	JOIN	INDENT	0LANG	1LANG
+2LANG	3LANG	4LANG	5LANG	6LANG	7LANG	8LANG	9LANG	EXIT	ABORT
+CRASH	RSTRT	PARM	FSET	FMAKE	FNEXT	FALT	SHOW	RESET	LRESET
+SYSTEM	STOP	COMMAND UNDO	ENTER	MARK	KNOCK	BSAVE	BRSTR	DOSET
+DO	HELP
+
+Other information is available under the headings:
+OVERVIEW	DIFFERENCES	BUFFERS 	RECOVERY	TERMINALS
+ENVIRONMENT
+>>>OVERVIEW	>overview
+
+This is a scope editing program.  Your file will appear on the screen and can
+be modified exactly as you see it.  Commands exist for moving around within
+your program, for locating a given line or text string, and for modifying the
+program.  The editor also supports multiple windows, language specific editing,
+a limited macro capability, backups, and recovery.
+
+The editor supports a host of commands.  How these commands are input will
+differ from one terminal to another.  The commands are discussed here by there
+global name.  The files /usr/info/b.help.<terminal> will provide the mapping
+for a specific terminal.
+
+The simplist way to modify a file is to just type in the changes.  What you see
+will be what you get.  The editor also provides a wide variety of commands to
+handle different types of modifications.
+
+The editor will save backup copies of your source file in the directory
+./bBACKUP.  It also remembers the last file you worked on in the file bCONTROL.
+
+
+
+
+>>>DIFFERENCES	>differences
+
+The new version of b is upward compatible with the old version with a few minor
+exceptions.  The command assignments have been made to preserve the previous
+commands.  Most of the differences are in additional features and commands
+provided by the new editor.  The additional features are listed below.
+
+Features:
+ * Language dependent commands can be added
+ * Terminals defined from file, not builtin
+ * Language dependent tabbing
+ * Multiple windows
+ * Regular expression searching
+ * Marking display in reverse video
+ * Intelligent screen update
+ * Abbreviated display for slow terminals
+ * Buffer save and restore
+ * Join command to fill lines
+ * Recursive DOs
+ * Recovery from editor and system crashes
+ * Two previous files
+ * Help command to provide on-line assistance
+ * Show command to allow easy parameter setting
+ * Default word pick, delete, and put commands (1PICK, 1DELETE, 1PUT)
+ * Default delete to end of line command (2DELETE)
+ * Automatic indent mode available
+ * C language indentation
+
+
+
+
+
+>>>PPAGE	>ppage			>>>MPAGE	>mpage
+>>>PLINE	>pline			>>>MLINE	>mline
+
+These commands are used to move the window around in the file.	They move the
+window either forward or backward (plus or minus respectively) either by a
+given number of lines ((Length/3) default), or by a given number of pages
+(1 default).
+
+These defaults may be changed by entering an argument prior to the command.
+
+These commands, if used immediately following an ENTER command, will cause
+marking mode to begin.
+
+
+
+
+>>>RSLIDE	>rslide 		>>>LSLIDE	>lslide
+
+These commands are used to move the window to the left or right in a file.
+This permits the user to view parts of the file which extend beyond the
+right hand margin of his terminal.  RSLIDE moves the window to the right
+while LSLIDE moves it to the left.  Note that moving the window to the left
+lets the viewer see what is to the right of the screen.
+
+These commands normally move the window in 16 character increments.  This
+may be changed by entering a numeric argument prior to the command.  The
+screen will automatically be adjusted when the user searches for a string
+that would otherwise appear off screen, or when the user moves the cursor
+to the begining of a line.
+
+These commands, if used immediately after an ENTER command, will cause
+marking mode to begin.
+
+
+
+
+>>>GOTO 	>goto			>>>GOBEG	>gobeg
+>>>SVPOS	>svpos			>>>GOEND	>goend
+
+These commands allow the user to goto a specific point in the current file.
+The command GOBEG with an argument of N (default 1), causes the current
+position to become the first character of line N.  Lines are numbered
+starting with 1.  The command GOEND with an argument of N (default 0) causes
+the current position to be the start of the Nth line from the end of the file.
+
+The command SVPOS causes the current position to be saved.  If it is given an
+argument, it should be a letter, and the position is associated with that
+letter.  Twenty-six such positions can be saved.  If no argument is given,
+the position is saved on a stack.  Only the line position is saved, not the
+character position.
+
+The command GOTO with no arguments does a goto to the last position saved on
+the stack (default 1).	With a letter argument, the position changes to the
+start of the saved line.  GOTO with a numeric argument (possibly in addition
+to a letter argument) goes to the specified position plus the number of lines.
+
+
+
+
+>>>PSRCH	>psrch			>>>MSRCH	>msrch
+>>>PRSRCH	>prsrch 		>>>MRSRCH	>mrsrch
+>>>PFSRCH	>pfsrch 		>>>MFSRCH	>mfsrch
+>>>PBSRCH	>pbsrch 		>>>MBSRCH	>mbsrch
+
+These commmands are used for searching for a string in the file.  There are
+two types of search supported.	Fast search takes the given argument as a
+literal string.  Regular expression search takes the argument as a standard
+Unix regular expression.  Search can be done in either the plus or minus
+direction.
+
+PRSRCH and MRSRCH do regular expression search in the plus and minus directions
+respectively.  MPFSRCH and MFSRCH do fast search.  PSRCH and MSRCH do fast
+search if the parameter search is not set, and regular expression search if it
+is set.  PBSRCH and MBSRCH take a buffer name as their argument and do a fast
+search for the contents of that buffer.
+
+
+
+
+>>>RIGHT	>right			>>>LEFT 	>left
+>>>UP		>up			>>>DOWN 	>down
+>>>RET		>ret			>>>NOL		>nl
+>>>HOME 	>home			>>>0TAB 	>0tab
+>>>0BTAB	>0btab			>>>BS		>bs
+>>>BRET 	>bret			>>>BHOME	>bhome
+>>>VTAB 	>vtab
+
+These commands move the cursor about in the window.  RIGHT, LEFT, UP, and DOWN
+each move the cursor one position.  RET moves to the left and down one line,
+indenting if the parameter indent is set, and moving the window if necessary.
+NL acts like return but does not indent.  HOME moves the cursor to the top
+right of the screen.  0TAB and 0BTAB move the cursor to the next standard tab
+position in either the forward or backward direction respectively.  BS is like
+left except the last character is erased during type in.  BRET is a backwards
+return.  BHOME goes to the bottom left of the screen.  VTAB is a vertical tab.
+
+
+
+
+>>>1TAB 	>1tab			>>>1BTAB	>1btab
+>>>2TAB 	>2tab			>>>2BTAB	>2btab
+>>>3TAB 	>3tab			>>>3BTAB	>3btab
+>>>4TAB 	>4tab			>>>4BTAB	>4btab
+>>>5TAB 	>5tab			>>>5BTAB	>5btab
+
+These commands provide language dependent tabs.  They can be separately defined
+for different languages.  The default settings are:
+
+	1TAB,1BTAB	Tab to next (last) word
+	2TAB,2BTAB	Tab to next (last) end of line
+	3TAB,3BTAB	Tab to next (last) blank line
+	4TAB,4BTAB	Tab to next (last) nroff paragraph begining
+	5TAB,5BTAB	Tab to next (last) 1/2 tab stop (every 4 spaces)
+
+The commands can cause the window to move about in the file when necessary. The
+default tabs 2 through 4 can be changed by changing the parameter strings L1,
+L2 and L3 respectively.  These are regular expression search strings.
+
+
+
+
+>>>CDEL 	>cdel			>>>LDEL 	>ldel
+>>>1DEL 	>1del			>>>2DEL 	>2del
+>>>3DEL 	>3del			>>>4DEL 	>4del
+>>>5DEL 	>5del
+
+These commands cause a portion of the file to be deleted and saved in a buffer.
+They each take a count and a buffer letter as an argument.  The count defaults
+to 1, the buffer defaults to a buffer specifically for the command (see BSAVE).
+CDEL deletes (count) characters and LDEL deletes (count) lines.  The remaining
+commands delete from the current position up the position that the equivalent
+language dependent tab would go to (count) times.  Thus, with the default
+language, 1DEL will delete a word, 2DEL will delete to end of line, 3DEL will
+delete up to a blank line, and 4DEL will delete a troff paragraph.
+
+These commands may be used in with marking mode (see MARK).
+
+
+
+
+>>>CINS 	>cins			>>>LINS 	>lins
+
+These two commands insert blanks into the file.  They take a count as their
+argument.  CINS inserts (count) spaces at the current position.  LINS inserts
+(count) blank lines.  Since LINS inserts starting at the current position, it
+can be used to split a line.
+
+For multiple insertions of variable length, the commands COPEN and LOPEN may
+be easier.  Also, CINS and LINS may be used in conjunction with marking mode
+(see MARK).
+
+
+
+
+>>>CPICK	>cpick			>>>LPICK	>lpick
+>>>1PICK	>1pick			>>>2PICK	>2pick
+>>>3PICK	>3pick			>>>4PICK	>4pick
+>>>5PICK	>5pick
+
+These commands take a count and a buffer as their argument and move the
+selected block of text to the selected buffer.	Pick acts like delete without
+actually deleting the text.  Thus CPICK picks (count) characters, LPICK picks
+(count) lines, and iPICK picks though (count) instances of TABi for 1<=i<=5.
+The default count is 1 and the default buffer varies for each of the commands,
+but is the same as the corresponding PUT or DEL command.
+
+The pick commands can be used in marking mode (see MARK).
+
+
+
+
+>>>CPUT 	>cput			>>>LPUT 	>lput
+>>>1PUT 	>1put			>>>2PUT 	>2put
+>>>3PUT 	>3put			>>>4PUT 	>4put
+>>>5PUT 	>5put
+
+These commands take the contents of the specified or implied buffer and place
+it in the file at the current position for the specified number of times.  They
+can each take a buffer name and a count.  The count defaults to 1; the buffer
+defaults to the standard for the command, with each different.	If the command
+holds a DO buffer rather than a PICK or DELETE string, this command executes
+the corresponding DO command.
+
+The PUT commands can be used in combination with the DEL commands to move text
+(characters, lines, words, etc.) around in the file.  It can be used with the
+PICK commands to duplicate text.
+
+
+
+
+>>>COPEN	>copen
+
+This command enter open character (or add character) mode.  It is used for
+typing in text.  After it is used, all text typed will be inserted at the
+current character position and backspace will delete the previous character.
+While in this mode, Add-Char will be displayed on the bottom of the screen.
+
+The mode is exited by typing any command other than a backspace (LEFT).  It
+can be exited without executing a command by entering COPEN again.
+
+
+
+
+>>>LOPEN	>lopen
+
+This command enters insert line mode.  In this mode the location of the next
+line is known to the editor.  Whenever a carriage return is made to the stored
+location, a new line is inserted.  In this way, arbitrary blocks of text can
+be inserted by continuous typing.
+
+The mode is exited by typing LOPEN a second time.  If it is entered with the
+current position at the start of a line, then a blank line is inserted to
+begin with.  While in insert line mode, the flag Insert will appear at the
+bottom of the screen.
+
+
+
+
+>>>JOIN 	>join
+
+This command joins lines together.  It takes a numeric argument which is the
+number of lines to join.  Subsequent lines are concatenated onto the end of
+the current one, with one space being inserted in place of the line break and
+any initial indentation on the subsequent lines.
+
+Join works correctly in stream mode.  It can be used to format the next (count)
+lines so that each line is as long as possible without exceeding the window
+size.
+
+
+
+
+>>>INDENT	>indent
+
+This command takes the current line and computes its indentation using the
+indentation algorithm for the current language.  It then repositions the line
+accordingly.  The cursor is left at the first non-blank of the line.  This
+command can be used for formating blocks of lines.  It takes the number of
+successive lines to indent as its argument (default 1), and will indent all
+lines in a marked block (see MARKING).
+
+
+
+
+>>>0LANG	>0lang			>>>1LANG	>1lang
+>>>2LANG	>2lang			>>>3LANG	>3lang
+>>>4LANG	>4lang			>>>5LANG	>5lang
+>>>6LANG	>6lang			>>>7LANG	>7lang
+>>>8LANG	>8lang			>>>9LANG	>9lang
+
+These commands are language-specific.  They will have different meanings for
+different langauges.  For the default language, they act like a DO or PUT
+command for buffers a (LANG1) through j (LANG0).  This allows the user to
+store a block of text or a DO sequence in one of these buffers and then have
+a one key method of executing it.  Since buffers are saved if desired, this
+provides a means for user-specific commands.
+
+
+
+
+>>>EXIT 	>exit			>>>ABORT	>abort
+>>>CRASH	>crash
+
+These are the two commands that exit the editor.  ABORT exits the editor
+without saving the modified file.  EXIT exits the editor while saving the
+current file.
+
+EXIT takes an optional string argument.  If present, it is taken as the command
+to execute immediately after exiting the editor.  This command will be saved
+for later exits.  It can be canceled by typing ENTER EXIT.  This feature allows
+for very simple EDIT-TEST-EDIT cycles.
+
+CRASH causes the editor to halt leaving its workfiles in the temporary
+directory.  These files can later be recovered using brecover (see RECOVERY).
+
+
+
+
+
+>>>RSTRT	>rstrt
+
+The restart command causes all changes made to the current file since the
+last file change or the start of the editing session to be cancelled.  It
+effectively reloads the original file as it is saved on disk.  The command
+requires confirmation to execute successfully.
+
+
+
+
+>>>PARM 	>parm
+
+This command is used to set parameter values.  Its argument is a string with
+either parameter flags of the form -<name>, or parameter assignments of the
+form <name>=<value>.  No embedded spaces are allowed.
+
+Parameters can be set from the command line, from the PARM command, from the
+previous invocation of the editor, and from the environment variable bPARM.
+They can also be specified along with the FSET, FALT and FMAKE commands.
+
+The parameters include:
+
+NAME		ABBREV	TYPE	DEFAULT DESCRIPTION
+---------	------	------	------- ---------------------------------
+autolang	autol	FLAG	TRUE	Select language by file extension
+backspace	backs	FLAG	FALSE	Backspace erases if set
+backup		b	NUMBER	2	Number of backup versions to save
+bells		bell	NUMBER	2	Number of bells on error messages
+
+NAME		ABBREV	TYPE	DEFAULT DESCRIPTION
+---------	------	------	------- ---------------------------------
+brief		br	FLAG	TRUE	Selective slow display
+bufinfile	bufi	STRING		Initial buffer contents file name
+bufoutfile	bufo	STRING		Save buffer contents file name
+character	ch	NUMBER	0	Initial character position
+copy		cop	FLAG	FALSE	Copy to preserve links if set
+crypt		c	FLAG	FALSE	File is encrypted if set
+directory	di	STRING		Directory of current file
+doboth		do	FLAG	TRUE	Let DO be used for DOSET if true
+endclear	endcl	FLAG	TRUE	Clear screen when exiting if true
+eofmark 	eof	NUMBER	1	Mark eof; 0 -- don't, 1 -- at page,
+					    2 -- at line
+eolspace	eolsp	FLAG	FALSE	Allow spaces at end of line
+errordelay	err	NUMBER	2	Time delay on error message
+filetail	filet	STRING		Current file name without directory
+filename	file	STRING		Current full file name
+find		fi	STRING		Initial search string (Only effective
+					    from command line)
+history 	hi	NUMBER	20	Number of commands to save for UNDO
+indent		i	FLAG	FALSE	Automatic indentation mode if set
+interminal	int	STRING		Input terminal name if different
+
+NAME		ABBREV	TYPE	DEFAULT DESCRIPTION
+---------	------	------	------- ---------------------------------
+language	la	STRING		Language associated with current file
+length		le	NUMBER		Length (in lines) of window
+line		li	NUMBER	1	Current line number for set file
+localcontrol	lo	FLAG	FALSE	Control file based on current directory
+					    if set; home directory otherwise
+margin		ma	NUMBER		Initial left margin setting
+mesg		mesg	FLAG	TRUE	Allow messages if set (writes)
+minustop	minust	FLAG	FALSE	Have minus pages position at top
+motd		motd	FLAG	FALSE	Report changes in message of the day
+movewindow	movew	FLAG	FALSE	Cursor commands move window if set
+nocontrol	noco	FLAG	FALSE	No control file saved if set
+readonly	r	FLAG	FALSE	File will not be saved
+rhsoption	rhsop	FLAG	TRUE	Fixed margin if set
+rowarn		row	FLAG	TRUE	Warn of changes to readonly file
+screen		sc	NUMBER		Initial top of window line number
+search		sea	FLAG	FALSE	Default search is regular expression
+					    if set, fast if not
+stream		s	FLAG	FALSE	Stream mode; file is maintained within
+					    window by splitting lines
+
+NAME		ABBREV	TYPE	DEFAULT DESCRIPTION
+---------	------	------	------- ---------------------------------
+tabin		tabi	FLAG	FALSE	Tabs remain on input if set
+tabout		ta	FLAG	TRUE	Tabs inserted on output if set
+tabtypein	tabty	FLAG	FALSE	Tabs are part of COPEN type in
+terminal	t	STRING		Terminal name; defaults to environment
+					    variable TERM
+width		width	NUMBER		Width of window in characters
+window		wi	NUMBER	0	Number of window; can be 0 or 2
+
+
+
+
+>>>FSET 	>fset			>>>FMAKE	>fmake
+>>>FALT 	>falt			>>>FNEXT	>fnext
+
+These commands are used to change files.  Changing files will save the current
+file unless no changes have been made or readonly mode is set.	FSET takes a
+file name as an optional argument.  If it is given, that file becomes the new
+current file, otherwise, the previous saved file is used.  In either case, the
+old current file becomes the new saved file.  FALT is similar except it uses a
+different saved file.  Thus the editor can switch between three files.	FMAKE
+is similar to FSET except that it allows a file to be created without asking
+the user first.
+
+FNEXT is used when the initial command line specifies more than one file.  The
+editor starts with the first file.  FNEXT will cause the next file to be the
+next one specified on the command line.  The current file becomes the saved
+file.
+
+
+
+
+>>>SHOW 	>show
+
+This command causes the editor to write the parameters into a temporary file
+and to run the editor recursively on that file.  The user can change any
+parameters using the normal editing commands.  When done he should hit the
+EXIT command to return to the original file with the new parameter settings.
+
+
+
+
+>>>RESET	>reset			>>>LRESET	>reset
+
+These commands allow the user to rewrite the screen or cancel a command
+argument.  If given without an argument, RESET and LRESET respectively cause
+the whole screen and the current line to be rewritten.	If given within a
+command argument, they cause the argument to be ignored.
+
+
+
+
+>>>SYSTEM	>system 		>>>STOP 	>stop
+
+These commands takes an optional string argument.  If an argument is given, it
+is interpreted as a unix command and executed.	If no argument is given, then
+SYSTEM runs the user's default shell from the editor.  To exit this shell and
+return to the editor, type <control-D>.  The editor will not clear the screen
+until requested to do so by the user.  If no argument is given to the STOP
+command, then the editor stops itself using the unix job control facilities.
+This returns the user to his original shell.  To continue the editing session,
+the user should use the 'fg' command (see description under csh (I)).  The
+editor will start up immediately where you left off.
+
+
+
+
+>>>COMMAND	>command
+
+This command take a string argument and interprets it as a command name (one
+of those listed in uppercase in this file) followed optionally be a space and
+an argument.  It acts as if the given command were entered with the given
+argument.  This is useful for obscure commands that are not provided on the
+keyboard.	
+
+
+
+
+>>>UNDO 	>undo
+
+This command will undo the previous command.  It will not undo over file
+changes.  All other commands are reversable.  The number of previous commands
+that can be undone is determined by the history parameter.  A DO execution is
+considered a single command.  There might be some difficulties with UNDOing
+a DO sequence within another DO sequence.
+
+
+
+
+>>>ENTER	>enter
+
+This command allows the user to enter arguments to all other commands.	After
+it is typed, the cursor will move to the bottom of the screen with a prompt of
+'>'.  The argument can then be typed.
+
+Within the argument, backspaces are interpreted as deleting the previous
+character; an UP command causes the previous command argument to be reinserted;
+and a RET command is ignored.  A second initial ENTER (ENTER-ENTER) is used to
+indicate that the subsequent argument should be saved as the current default.
+The initial default can be restored by entering ENTER-ENTER with no argument.
+Typing a command will end the argument.
+
+The DO commands allow multiple arguments to be given.  Later arguments are
+initiated with an ENTER after a non-null initial argument.  These are stored
+consecutively in buffers a,b,c,...
+
+
+
+
+>>>MARK 	>mark
+
+This command enters marking mode.  This is used to visually define the
+arguments to many of the commands.  The area marked is that between the initial
+position when MARK was hit and the point at which a command that will use the
+marking is used.  The user is free to move about in the file while in marking
+mode.  All commands that take an argument describing a span of the file can be
+used with marking mode.  The insert, delete and pick commands are the common
+ones.
+
+Marking mode can also be initiated by hitting ENTER followed immediately by
+a command that moves the cursor (other than UP) or that moves the window around
+in the file (other than GOTO).
+
+On terminals that support it, the marked area is displayed in reverse video.
+While in marking mode, the flag Marking will appear on the command line.
+
+
+
+
+>>>KNOCK	>knock
+
+This command acts to map the next character into the corresponding control
+character.  Thus KNOCK-a (or KNOCK-A or KNOWCK-<control a>) will cause a
+<control-a> to be input into the file.	Control characters should be displayed
+differently from normal characters.
+
+
+
+
+>>>BSAVE	>bsave			>>>BRSTR	>brstr
+
+These commands save and restore respectively the current set of buffers.  They
+take a file name as their optional argument if no name is given, the default
+file (bufinfile,bufoutfile), if defined, will be used.	Buffers are saved in
+an editable (although not too pleasant) manner.  Buffers should be restored
+from a previous save.
+
+
+
+
+>>>DOSET	>doset			>>>DO		>do
+
+The DO command provides the editor with a simple macro capability.  A macro is
+entered (and stored in one of the 26 buffers) by first typing DOSET with the
+buffer name as the optional argument (default is the DO buffer).  This will
+display the message "Start compiling Do".  After this whatever commands, text,
+and arguments that the user types will be saved.  This ends when DOSET is typed
+for a second time.  Thereafter, the user can type DO using the buffer name and
+a count (defaults DO buffer and 1) as the argument.  This causes the original
+sequence of typing to be repeated verbatim for <count> times.  The process will
+be terminated early if a search command fails or if ABORT is requested.
+
+DO can be used for making repeated simple or complex changes throughout a file
+or set of files.  Some care must be taken about random cursor movements that
+ight be off the screen after a arbitrary search.  Experience with DO will show
+it to be quite powerful when used correctly.
+
+DO can be used without DOSET.  If DOSET is not defined, or if the doboth
+parameter is set, then ENTER-DO will act as a DOSET command with no argument.
+ENTER-0-<buffer id>-DO will act as a DOSET command with an argument.  Also
+DO alone, when accessing the DO buffer of the DO being compiled, will terminate
+compilation of the current DO.
+
+An additional feature is that the buffers a,b,... can be loaded on the DO
+command.  (See ENTER).
+
+
+
+
+>>>HELP 	>help
+
+The HELP command runs the editor recursively on this file.  If no argument
+is given, then it starts at the begining of the file.  If an argument is given,
+it is taken as a command name and the display for that command will be shown.
+When the user has the necessary information, he should type the EXIT command.
+This will cause the editor to return to what it was doing when help was
+requested.
+
+
+
+>>>BUFFERS	>buffers
+
+Twenty six buffers are available for use with the PICK/DELETE/PUT and DO
+commands.  These are accessed by the names a,b,...,z (or A,B,...,Z).  The
+following buffers have special meanings:
+
+	R	Default for 1PICK,1DEL,1PUT
+	S	Default for 2PICK,2DEL,2PUT
+	T	Default for 3PICK,3DEL,3PUT
+	U	Default for 4PICK,4DEL,4PUT
+	V	Default for 5PICK,5DEL,5PUT
+	W	Default for DO
+	X	Default for CPICK,CDEL,CPUT
+	Y	Default for LPICK,LDEL,LPUT
+	Z	Sink (write only memory)
+	A	Default for 1LANG
+	B	Default for 2LANG
+	C	Default for 3LANG
+	D	Default for 4LANG
+	E	Default for 5LANG
+	F	Default for 6LANG
+	G	Default for 7LANG
+	H	Default for 8LANG
+	I	Default for 9LANG
+	J	Default for 0LANG
+
+
+
+
+>>>RECOVERY	>recovery
+
+The editor periodically (every 10 or 20 updates) saves an image of its
+workfile on disk.  In the event of an editor malfunction, the user can
+recover up to the last update by typing the command
+		brecover
+In the event of a system crash, all workfiles that represented changes
+will be saved and the users will be sent mail instructing them how to
+recover their work.
+
+
+
+
+
+>>>TERMINALS	>terminals
+
+New terminals can be defined for the editor by placing a suitable entry in both
+the /etc/termcap and the /etc/binpdef files.  The first describes the terminal
+for output purposes, while the second defines the association between the input
+of the terminal and the editor commands.
+
+The following terminals are currently supported:
+
+h19	iq140	vt100
+
+Information on how the commands are defined for these terminals can be found in
+the files
+			/usr/info/b.help.<terminal name>
+
+
+
+
+>>>ENVIRONMENT	>environment
+
+The following environment variables are used by the editor:
+
+bPARM		Initial parameter settings
+TERM		Terminal type for output (also default for input)
+INTERM		Terminal type for input (defaults to TERM)
+BINPDEF 	Input definition or definition file
+TERMCAP 	Output definition or definition file
+MAIL		File containing user's mail (A message will indicate when
+		    the user gets new mail if this is set.)
+SHELL		Default shell to run for SYSTEM command
+HOME		User's home directory

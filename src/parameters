@@ -1,0 +1,262 @@
+divert(-1)
+
+/****************************************************************/
+/*								*/
+/*	This file contains the definitions of the actual	*/
+/*	editor parameters.  These can be added to or changed	*/
+/*	as needed, but the programmer is cautioned that they	*/
+/*	are used throughout the editor, and unwise changes	*/
+/*	can be very detrimental.  Also, any changes that affect */
+/*	the number of size of file-based parameters or control	*/
+/*	parameters had better be reflected in the initial	*/
+/*	definitions in this file.  If these are increased, a	*/
+/*	new version of the editor must be created.		*/
+/*								*/
+/****************************************************************/
+
+
+divert
+#define PMXSIZE 1024		/* maximum string space / parm	*/
+divert(-1)
+
+
+				/* control area parameters	*/
+PARMFLG(copy,3,FALSE,TRUE,PMFreset)
+PARMFLG(savetemp,5,TRUE,FALSE,PMFctrl)
+PARMSTR(bufinfile,4,"","",PMFctrl,,,FNSIZE)
+PARMSTR(bufoutfile,4,"","",PMFctrl,,,FNSIZE)
+PARMFLG(share,2,FALSE,TRUE,PMFndisp,PRbuffer)
+PARMSTR(useshare,5,"","",PMFndisp,,,FNSIZE)
+PARMFLG(huge,2,FALSE,TRUE,PMFctrl)
+
+				/* current file parameters	*/
+PARMSTR(filename,4,"","/cs/lib/b.help",PMFfprop,PRflname,,FNSIZE)
+PARMFLG(curcrypt,5,FALSE,TRUE,PMFndisp|PMFfprop|PMFfldflt|PMFfdset,,crypt)
+PARMFLG(curstream,5,FALSE,TRUE,PMFndisp|PMFfprop|PMFfdset|PMFfldflt,,stream)
+PARMFLG(curtabin,4,FALSE,TRUE,PMFndisp|PMFfdset|PMFreset|PMFfprop|PMFfldflt,,tabin)
+PARMFLG(curtabout,2,TRUE,FALSE,PMFndisp|PMFfdset|PMFfprop|PMFfldflt,,tabout)
+PARMFLG(curcrlf,4,TRUE,FALSE,PMFndisp|PMFfdset|PMFreset|PMFfprop|PMFfldflt,,crlf)
+PARMFLG(curindent,5,TRUE,FALSE,PMFfprop|PMFfdset|PMFndisp,,indent)
+PARMNUM(curline,5,0,0,PMFfdset|PMFfprop|PMFninit|PMFfldflt|PMFnhist,
+		PRscrchk,line,0,1000000000)
+PARMNUM(curchar,5,0,0,PMFfdset|PMFfprop|PMFninit|PMFfldflt|PMFnhist,
+		PRscrchk,character,0,LINESIZE)
+PARMNUM(curscreen,5,0,0,PMFfdset|PMFdisp|PMFfprop|PMFninit|PMFfldflt,PRscrchk,screen,0,1000000000)
+PARMNUM(curmargin,5,0,0,PMFfdset|PMFdisp|PMFfprop|PMFninit|PMFfldflt,PRscrchk,margin,0,LINESIZE)
+PARMNUM(curwindow,6,0,0,PMFfprop|PMFninit|PMFdisp,PRwindow,,0,2)
+PARMFLG(curreadonly,5,FALSE,TRUE,PMFfprop|PMFndisp|PMFfldflt|PMFfdset,,readonly)
+PARMSTR(curlanguage,5,"","",PMFfprop|PMFndisp|PMFfldflt|PMFfdset,PRlanguage,language,16)
+PARMNUM(fileid,6,0,0,PMFfprop)
+
+PARMFLG(curcopy,7,FALSE,TRUE,PMFfdset|PMFndisp,,copy)
+
+
+				/* previous file parameters	*/
+PARMSTR(Pfilename,3,"/cs/lib/b.help","",PMFndisp|PMFfprop|PMFprev,,filename,FNSIZE)
+PARMFLG(Pcrypt,3,FALSE,TRUE,PMFndisp|PMFfprop|PMFprev|PMFfldflt,,curcrypt)
+PARMFLG(Pstream,3,FALSE,TRUE,PMFndisp|PMFfprop|PMFprev,,curstream)
+PARMFLG(Ptabin,5,FALSE,TRUE,PMFndisp|PMFfprop|PMFprev,,curtabin)
+PARMFLG(Ptabout,3,TRUE,FALSE,PMFndisp|PMFfprop|PMFprev,,curtabout)
+PARMFLG(Pcrlf,5,TRUE,FALSE,PMFndisp|PMFfprop|PMFprev,,curcrlf)
+PARMFLG(Pindent,3,TRUE,FALSE,PMFndisp|PMFfprop|PMFprev,,curindent)
+PARMNUM(Pline,3,0,0,PMFndisp|PMFfprop|PMFprev|PMFninit,,curline,0,16777215)
+PARMNUM(Pchar,3,0,0,PMFndisp|PMFfprop|PMFprev|PMFninit,,curchar,0,LINESIZE)
+PARMNUM(Pscreen,3,0,0,PMFndisp|PMFfprop|PMFprev|PMFninit,,curscreen,0,16777215)
+PARMNUM(Pmargin,3,0,0,PMFndisp|PMFfprop|PMFprev|PMFninit,,curmargin,0,LINESIZE,)
+PARMNUM(Pwindow,3,0,0,PMFndisp|PMFfprop|PMFprev|PMFninit,,curwindow,0,2)
+PARMFLG(Preadonly,2,FALSE,TRUE,PMFndisp|PMFfprop|PMFprev,,curreadonly)
+PARMSTR(Planguage,3,"","",PMFndisp|PMFfprop|PMFprev,,curlanguage,16)
+PARMNUM(Pfileid,5,0,0,PMFndisp|PMFfprop|PMFprev,,fileid)
+
+				/* alternate file parameters	*/
+PARMSTR(Qfilename,3,"/cs/lib/b.help","",PMFndisp|PMFfprop|PMFaltf,,filename,FNSIZE)
+PARMFLG(Qcrypt,3,FALSE,TRUE,PMFndisp|PMFfprop|PMFaltf|PMFfldflt,,curcrypt)
+PARMFLG(Qstream,3,FALSE,TRUE,PMFndisp|PMFfprop|PMFaltf,,curstream)
+PARMFLG(Qtabin,5,FALSE,TRUE,PMFndisp|PMFfprop|PMFaltf,,curtabin)
+PARMFLG(Qtabout,3,TRUE,FALSE,PMFndisp|PMFfprop|PMFaltf,,curtabout)
+PARMFLG(Qcrlf,5,TRUE,FALSE,PMFndisp|PMFfprop|PMFaltf,,curcrlf)
+PARMFLG(Qindent,3,TRUE,FALSE,PMFndisp|PMFfprop|PMFaltf,,curindent)
+PARMNUM(Qline,3,0,0,PMFndisp|PMFfprop|PMFaltf|PMFninit,,curline,0,16777215)
+PARMNUM(Qchar,3,0,0,PMFndisp|PMFfprop|PMFaltf|PMFninit,,curchar,0,LINESIZE)
+PARMNUM(Qscreen,3,0,0,PMFndisp|PMFfprop|PMFaltf|PMFninit,,curscreen,0,16777215)
+PARMNUM(Qmargin,3,0,0,PMFndisp|PMFfprop|PMFaltf|PMFninit,,curmargin,0,LINESIZE,)
+PARMNUM(Qwindow,3,0,0,PMFndisp|PMFfprop|PMFaltf|PMFninit,,curwindow,0,2)
+PARMFLG(Qreadonly,2,FALSE,TRUE,PMFndisp|PMFfprop|PMFaltf,,curreadonly)
+PARMSTR(Qlanguage,3,"","",PMFndisp|PMFfprop|PMFaltf,,curlanguage,16)
+PARMNUM(Qfileid,5,0,0,PMFndisp|PMFfprop|PMFaltf,,fileid)
+
+
+				/* stacked file parameters	*/
+PARMSTR(Xfilename,9,"/cs/lib/b.help","",PMFndisp|PMFstkd,,filename,FNSIZE)
+PARMFLG(Xcrypt,6,FALSE,TRUE,PMFndisp|PMFstkd|PMFfldflt,,curcrypt)
+PARMFLG(Xstream,7,FALSE,TRUE,PMFndisp|PMFstkd|PMFfldflt,,curstream)
+PARMFLG(Xtabin,6,FALSE,TRUE,PMFndisp|PMFstkd,,curtabin)
+PARMFLG(Xtabout,7,TRUE,FALSE,PMFndisp|PMFstkd,,curtabout)
+PARMFLG(Xcrlf,6,TRUE,FALSE,PMFndisp|PMFstkd,,curcrlf)
+PARMFLG(Xindent,7,TRUE,FALSE,PMFndisp|PMFstkd,,curindent)
+PARMNUM(Xcurline,8,0,0,PMFndisp|PMFstkd|PMFninit,,curline,0,16777215)
+PARMNUM(Xcurchar,8,0,0,PMFndisp|PMFstkd|PMFninit,,curchar,0,LINESIZE)
+PARMNUM(Xcurscreen,10,0,0,PMFndisp|PMFstkd|PMFninit,,curscreen,0,16777215)
+PARMNUM(Xcurmargin,10,0,0,PMFndisp|PMFstkd|PMFninit,,curmargin,0,LINESIZE,)
+PARMNUM(Xcurwindow,6,0,0,PMFndisp|PMFstkd|PMFninit,,curwindow,0,2)
+PARMFLG(Xreadonly,9,FALSE,TRUE,PMFndisp|PMFstkd,,curreadonly)
+PARMSTR(Xlanguage,9,"","",PMFndisp|PMFstkd|PMFfldflt,,curlanguage,16)
+PARMNUM(Xfileid,7,0,0,PMFndisp|PMFstkd,,fileid)
+
+
+PARMSTR(terminal,1,"TERM","ap",PMFenv|PMFdisp,PRdisplay,,16)
+PARMSTR(interminal,3,"INTERM","ap",PMFenv|PMFdisp,PRdisplay,,16)
+PARMNUM(backup,1,1,0,PMFnone,,,0,9)
+PARMFLG(slow,2,FALSE,TRUE,PMFnone|PMFndisp)
+PARMFLG(rowarn,3,TRUE,FALSE)
+PARMNUM(savecount,2,20,0,PMFnone,,,0,32767)
+PARMFLG(doboth,2,TRUE,FALSE)
+PARMFLG(doset,0,FALSE,TRUE,PMFndisp)
+PARMFLG(nlock,2,FALSE,TRUE)
+
+PARMSTR(filetail,5,"","",PMFndisp|PMFnone,PRflname,,FNSIZE)
+PARMSTR(directory,2,"","",PMFndisp|PMFnone,PRflname,,FNSIZE)
+PARMSTR(tdirect,7,"/tmp","/usr/tmp",PMFndisp,PRdirchk,,24)
+
+PARMFLG(crypt,1,FALSE,,PMFreset|PMFnoflip)
+PARMFLG(stream,1,FALSE,,PMFreset|PMFnoflip)
+PARMFLG(indent,1,TRUE,,PMFreset|PMFnoflip)
+PARMFLG(readonly,1,FALSE,,PMFreset|PMFnoflip)
+PARMSTR(language,2,"","",PMFreset,,,16)
+PARMFLG(tabin,4,FALSE,TRUE,PMFreset|PMFnoflip)
+PARMFLG(tabout,2,TRUE,FALSE,PMFdelay|PMFnoflip,,curtabout)
+PARMFLG(crlf,4,TRUE,FALSE,PMFreset|PMFnoflip)
+
+PARMFLG(newfile,1,FALSE,TRUE,PMFndisp|PMFfile)
+PARMSTR(nextfile,4,"/cs/lib/b.help","/cs/lib/b.help",
+		PMFfile|PMFndisp|PMFnhist,,,FNSIZE)
+PARMSTR(afterfile,6,"","",0,,,1024)
+PARMSTR(editor,0,"/cs/bin/bb",,PMFndisp,,,FNSIZE)
+PARMFLG(nonewfile,5,FALSE,TRUE,PMFndisp)
+
+PARMNUM(curwidth,0,0,0,PMFndisp|PMFdisp|PMFninit,,,16,LINESIZE)
+PARMNUM(curlength,0,0,0,PMFndisp|PMFdisp|PMFninit,,,6,64)
+PARMNUM(width,5,0,0,PMFdisp|PMFdinit,PRdisplay,,0,LINESIZE)
+PARMNUM(length,2,0,0,PMFdisp|PMFdinit,PRdisplay,,0,64)
+PARMNUM(termwidth,7,0,0,PMFdisp|PMFndisp,PRdisplay,,0,LINESIZE)
+PARMNUM(termlength,7,0,0,PMFdisp|PMFndisp,PRdisplay,,0,64)
+PARMFLG(silent,0,FALSE,FALSE,PMFndisp)
+PARMNUM(filesize,0,0,0,PMFndisp|PMFninit)
+
+
+PARMNUM(line,2,0,0,PMFreset|PMFndisp,PRscrchk,,0,16777215)
+PARMNUM(character,2,0,0,PMFreset|PMFndisp,,,0,LINESIZE)
+PARMNUM(screen,2,0,0,PMFreset|PMFndisp,PRscrchk,,0,16777215)
+PARMNUM(margin,2,0,0,PMFreset|PMFndisp,,,0,LINESIZE)
+PARMNUM(window,2,0,0,PMFdisp,PRwindow,,0,2)
+PARMSTR(winmark,4,"-"," ",PMFdisp,,,2)
+
+PARMNUM(brief,2,1,0,PMFdisp,PRdisplay,,0,64)
+
+PARMSTR(home,0,"HOME","",PMFndisp|PMFenv,,,256)
+PARMSTR(shell,0,"SHELL","",PMFenv,,,64)
+
+PARMFLG(localcontrol,2,FALSE,TRUE)
+PARMFLG(nocontrol,4,FALSE,TRUE)
+
+PARMFLG(nochange,3,TRUE,FALSE,,PRchange)
+PARMFLG(savequery,9,TRUE,FALSE)
+
+PARMNUM(history,2,20,0,,,,0,16777215)
+
+PARMNUM(bells,4,2,0,,,,0,5)
+PARMNUM(errordelay,3,2,1,,,,0,10)
+
+PARMFLG(minustop,6,FALSE,TRUE,PMFndisp)
+PARMFLG(search,3,FALSE,TRUE)
+PARMFLG(endclear,5,TRUE,FALSE)
+PARMNUM(rhsoption,5,1,0,,,,0,2)
+PARMNUM(priority,8,19,,PMFndisp|PMFninit,,,0,40)
+PARMFLG(backspace,5,FALSE,TRUE)
+PARMFLG(tabtypein,5,FALSE,TRUE)
+PARMFLG(movewindow,5,FALSE,TRUE)
+PARMFLG(eolspace,5,FALSE,TRUE)
+PARMFLG(suspend,4,TRUE,FALSE)
+
+PARMFLG(ateof,0,FALSE,TRUE,PMFndisp)
+PARMNUM(eofmark,3,1,0,PMFdisp,,,0,2)
+
+PARMFLG(autolang,5,TRUE,FALSE)
+
+PARMFLG(mesg,4,TRUE,FALSE,PMFninit,PRmesg)
+PARMSTR(mail,4,"MAILBOX","",PMFenv,,,FNSIZE)
+PARMFLG(motd,4,FALSE,TRUE)
+
+PARMFLG(marking,0,FALSE,TRUE,PMFndisp)
+PARMNUM(markline,8,0,0,PMFndisp,,,0,16777215)
+PARMNUM(markchar,8,0,0,PMFndisp,,,0,LINESIZE)
+PARMNUM(mcntline,0,0,0,PMFndisp,,,0,16777215)
+PARMNUM(mcntchar,0,0,0,PMFndisp,,,0,LINESIZE)
+
+PARMFLG(copmode,0,FALSE,TRUE,PMFndisp)
+PARMFLG(lopmode,0,FALSE,TRUE,PMFndisp)
+PARMFLG(dosave,0,FALSE,TRUE,PMFndisp|PMFnhist)
+PARMFLG(douse,0,FALSE,TRUE,PMFndisp|PMFnhist)
+PARMFLG(srching,0,FALSE,TRUE,PMFndisp)
+PARMSTR(find,2,"",,PMFndisp,,,FNSIZE)
+
+PARMFLG(ioerr,0,FALSE,TRUE,PMFndisp)
+PARMFLG(alternate,0,FALSE,TRUE,PMFndisp)
+
+
+					/* command parameters		*/
+PARMNUM(Apage,3,1,,PMFcmd)
+PARMNUM(Aline,3,7,,PMFcmd)
+PARMNUM(Aslide,3,16,,PMFcmd)
+PARMBFCT(Agoto,3,BFCMAKE(BADBUF,0),0,PMFcmd)
+PARMBFCT(Agotoend,3,BFCMAKE(BADBUF,0),0,PMFcmd)
+PARMBFCT(Agotobeg,3,BFCMAKE(BADBUF,0),0,PMFcmd)
+PARMBUF(Asavpos,3,BADBUF,0,PMFcmd)
+PARMSTR(Asearch,3,"",,PMFctrl|PMFcmd,,,512)
+PARMSTR(Arsearch,3,"",,PMFctrl|PMFcmd,,,512)
+PARMSTR(Afsearch,3,"",,PMFctrl|PMFcmd,,,512)
+PARMBFCT(Absearch,3,BFCMAKE(BF_A,1),PMFcmd)
+PARMBFCT(Acedit,3,BFCMAKE(23,1),,PMFcmd)
+PARMBFCT(Aledit,3,BFCMAKE(24,1),,PMFcmd)
+PARMBFCT(A1edit,3,BFCMAKE(BF_1,1),,PMFcmd)
+PARMBFCT(A2edit,3,BFCMAKE(BF_2,1),,PMFcmd)
+PARMBFCT(A3edit,3,BFCMAKE(BF_3,1),,PMFcmd)
+PARMBFCT(A4edit,3,BFCMAKE(BF_4,1),,PMFcmd)
+PARMBFCT(A5edit,3,BFCMAKE(BF_5,1),,PMFcmd)
+PARMSTR(Aexit,3,"",,PMFctrl|PMFcmd,,,FNSIZE)
+PARMSTR(Asystem,3,"",,PMFcmd,,,FNSIZE)
+PARMSTR(Acommand,3,"",,PMFcmd,,,512)
+PARMSTR(Abfsave,3,"",,PMFctrl|PMFcmd,,,512)
+PARMBFCT(Ado,3,BFCMAKE(BF_DO,1),BFCMAKE(BF_DO,-1),PMFcmd)
+PARMSTR(Afile,3,"",,PMFcmd,,,FNSIZE)
+PARMBFCT(Ajoin,3,BFCMAKE(BF_SINK,1),,PMFcmd)
+PARMNUM(Aindent,3,1,,PMFcmd)
+PARMSTR(Ashow,3,"",,PMFcmd,,,FNSIZE)
+PARMNUM(Aundo,3,1,,PMFcmd)
+
+PARMSTR(L0,2,"",,PMFcmd,,,FNSIZE)
+PARMSTR(L1,2,"",,PMFcmd,,,FNSIZE)
+PARMSTR(L2,2,"",,PMFcmd,,,FNSIZE)
+PARMSTR(L3,2,"",,PMFcmd,,,64)
+PARMNUM(L4,2,0,,PMFcmd)
+PARMNUM(L5,2,0,,PMFcmd)
+PARMNUM(L6,2,0,,PMFcmd)
+PARMNUM(L7,2,0,,PMFcmd)
+
+
+
+
+/* end of parameter list */
+
+
+divert
+
+cdefine PFILECT NUMFILE 	/* number of file parameters	*/
+cdefine PCTRLCT NUMCTRL 	/* number of control parameters */
+cdefine PFILEST FILESTSZ	/* total file string size	*/
+cdefine PCTRLST CTRLSTSZ	/* total control string size	*/
+
+
+
+/* end of parameters */
+

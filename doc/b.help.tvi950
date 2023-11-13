@@ -1,0 +1,74 @@
+tvi950 bb input definitions
+
+function keys:
+escape/shift/no shift
+------------------------------------------------------------------------------
+|F1    |F2    |F3    |F4    |F5    |F6    |F7    |F8    |F9    |F10   |F11   |
+|Lang1 |Lang2 |Lang3 |Lang4 |Lang5 |Lang6 |Lang7 |Lang8 |Lang9 |Lang0 | ---  |
+|+Para |-Para |+BlkLn|-BlkLn|OpenLn|Reset |+RSrch|-RSrch|Indent| -EOL | +EOL |
+|+Pages|-Pages|+Lines|-Lines|AddCh |LReset|+Srch |-Srch | Join |-Word |+Word |
+------------------------------------------------------------------------------
+-------------------------------------------------------------------------
+|INS CHAR |DEL CHAR |INS LINE |DEL LINE | |LN ERASE |PG ERASE |SEND     |
+|   ---   |   ---   |   ---   |   ---   | |  PutEOL |  PutWrd |  SvPos  |
+|  PutCh  |  PckCh  |  PutLn  |  PckLn  | |  PckEOL |  PckWrd | SetFile |
+|  InsCh  |  DelCh  |  InsLn  |  DelLn  | |  DelEOL |  DelWrd |  Enter  |
+-------------------------------------------------------------------------
+--------------------------------
+|PRINT    |FUNCT    ||CLR SPACE|
+|  DoSet  |         ||    ---  |
+|   Do    | Key Pad ||    ---  |
+|  Mark   |         ||   Stop  |
+--------------------------------
+
+keypad:
+   escape funct/funct
+-----------------------
+|7     |8      |9     |
+|  --- |  ---  |  --- |
+|  --- |  ---  |  --- |
++------+-------+------+
+|4     |5      |6     |
+|  --- |  ---  |  --- |
+|  --- |  ---  |  --- |
++---------------------+
+|1     |2      |3     |
+|  --- |  ---  |  --- |
+|  --- |  ---  |  --- |
++------+-------+------+
+|,     |0      |.     |
+|  --- |  ---  |  --- |
+| Mark |SetFile|  Do  |
++---------------------+
+|Enter         |-     |
+|     ---      |  --- |
+|    Enter     |  --- |
++---------------------+
+        Control Sequences
+-----------------------------------
+|^@ SvPos  | ^l ->    | ^w -Word  |
+|^a ---    | ^n Join  | ^x delete |
+|^b back   | ^o OpenLn| ^y yank   |
+|^c Command| ^p put   | ^z Stop   |
+|^d Exit   | ^r Enter | ^\ Knock  |
+|^e GoEnd  | ^t to    | ^] InsCh  |
+|^f +Word  | ^u Undo  | ^^ Home   |
+|^g GoTo   | ^v \/    | ^_ Do	  |
+|^k /\     |          |           |
+             Items:
+-----------------------------------
+|l  Lines  | w  Words | c  Chars  |
+|e  EOL    | b  BlkLn |		  |
+|p  Pages  | ]  Para  | s  Search |
+|t  Tab    | h  HfTab | v  VTab   |
+|r  Return | o  Home  |		  |
+        Escape Sequences:
+-----------------------------------
+|-  VTab   | =  BHome | `  BReturn|
+|'  Help   | /  Parm  | {  Reset  |
++----------+----------+-----------+
+|1  <-Slide| 4  Show  | 7  MakFile|
+|2  ->Slide| 5  BfSave| 8  AltFile|
+|3  Restart| 6  BfRstr| 9  NxtFile|
+|          |          | 0  LReset |
+	Escape { : Reset

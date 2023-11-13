@@ -1,0 +1,99 @@
+dv|vt52|dec vt100 in vt52 mode:\
+	:is=\E<\E7\E[1;24r\E[m\E8\E[?2l:\
+	:ae=\EG:ao=\EF:as=\EF:\
+	:am:ms:\
+	:bi=is,ks,z0:bf=ke,z1:\
+	:cc=\E<\E[7m%.\E[m\E[?2l:\
+	:ke=\E>:ks=\E=:\
+	:kn#8:k1=\E?P:k2=\E?Q:k3=\E?R:k4=\E?S:\
+	:k5=\E?m:k6=\E?l:k7=\E?M:k8=\E?n:\
+	:re=5\E<\Ec\E[?2l:ri=\EI:\
+	:sb:se=\E<\E[m\E[?2l:so=\E<\E[7m\E[?2l:\
+	:ue=\E[m\E[?2l:us=\E<\E[4m:\
+	:ws=\E<\E[%r%i%d;%dr\E[?2l:\
+	:z0=\E2\E<\E[?7l\E[?2l:\
+	:z1=\E<\E[?7h\E[?2l:
+da|vt100|vt320|vt100w|vt125|vt125w|vt100s|vt125s|vt100q|vt100wq|vt125q|vt102|vt102s|vt102q|vt132|vt132s|vt132q|vt13wh|dec vt100 family:\
+	:ae=^O:as=^N:\
+	:bi=vs,ks:bf=ve,ke:bs:\
+	:cc=\E[7m%.\E[m:\
+	:sb:\
+	:ve=\E[?7h:vs=\E<\E[?7l:\
+	:ws=\E[%r%i%d;%dr:
+da|vt100-am|vt100-np|vt100-nam|vt100-s|vt100-s-bot|vt100-nav|vt100-w|vt100-w-nam|dec vt100 family:\
+	:ae=^O:as=^N:\
+	:bi=vs,ks:bf=ve,ke:bs:\
+	:cc=\E[7m%.\E[m:\
+	:sb:\
+	:ve=\E[?7h:vs=\E<\E[?7l:\
+	:ws=\E[%r%i%d;%dr:
+vx|xterm|vs100|vt220|xterm-q|xterm-s|xterms|rxvt|xterm-sun|xterm terminal emulator (X window system):\
+	:bi=vs,ks,z0,z2:bf=z1,z3,ve,ke:\
+	:cc=\E[7m%.\E[m:sb:ms:\
+	:z0=\E[?9h:z1=\E[?9l:\
+	:z2=\E[?42s\E[?42l\E[?43s\E[?43l\E[?46s\E[?46l\E[?47l:\
+	:z3=\E[?42r\E[?43r\E[?46r:\
+	:ve=\E[?7h:vs=\E<\E[?7l:
+sw|sun|sun workstation:\
+	:is=\E[s:\
+	:bw:sb:\
+	:cc=\E[7m%.\E[m:\
+	:pt:
+k2|h29|z29|zenith z29:\
+	:is=\E<\E[s\E[r\E[m\E[u\E(B\E)0^O:\
+	:sb:\
+	:bi=z4,ks:bf=z3,ke:bs:\
+	:cc=\E[7m%.\E[m:\
+	:ke=\E>:ks=\E=:\
+	:z3=\E[?7h:z4=\E<\E[?7l:
+k1|h19|z19|z19f|z19r|heath|heathkit|heathkit h19:\
+	:ao=\EF\
+	:bw:\
+	:bi=z1,ks,z4:bf=z4,ke,z2:\
+	:cc=\Ep%.\Eq:\
+	:is=\Ey1\Ey4\Ev:\
+	:ke=\E>:ks=\E=:\
+	:pt:re=50\Ez:ri=1*\EI:sb:\
+	:z3=\Et:z4=\Eu:\
+	:z0=50\E[z:z1=\Ew:z2=\Ev:
+a1|ap111|apollo landscape 111 wide:\
+	:co#111:li#38:am@:tc=apollo:
+a8|ap80|apollo 80 wide:\
+	:co#80:am@:tc=apollo:
+ap|apollo:\
+	:al=^_:bs:bt=^N:cd=^S:ce=^R:cl=^V:cm=^O%+ %+ :\
+	:co#84:dc=^Q:dl=^P:do=^]:ei=^U:im=^T:li#50:mi:\
+	:nd=^[:sf=^~:sr=^E:up=^C:so=^A:se=^B:sb:\
+	:cc=^A%.^B:
+apt|apollo_term:\
+	:is=\E[m\E[?7h:\
+	:sb:\
+	:bi=vs:bf=ve:bs:\
+	:cc=\E[4m%.\E[m:\
+	:bs:cl=\E[2J:li#53:co#87:\
+	:cm=\E[%d;%dH:nd=\E[C:up=\E[A:do=\E[B:\
+	:cd=\E[J:ce=\E[K:so=\E[7m:se=\E[m:\
+	:ue=\E[m:us=\E[4m:\
+	:kd=\E[B:kl=\E[D:ku=\E[A:kr=\E[C:\
+	:kn#9:k1=\EOP:k2=\EOQ:k3=\EOR:k4=\EOS:\
+	:al=\E[L:dl=\E[M:\
+	:ve=\E[?7h:vs=\E[?7l:\
+	:he=\Ea:hr:hs=\E[1a\EH:\
+	:im=\E[4h:ei=\E[4l:mi:dc=\E[P:bw:
+aQ|apollo_19L|apollo 19 inch display:\
+	:dN@:tc=vt132s:
+h1|hp|hpex|h0|hpsub|262x|2622|2623|2624|2625|2626|2627|2628|2647|9836|9837|9826|9020|9836te|9837te|hp extended capabilites:\
+	:bw:sb:cc=\E&dB%.\E&d@:\
+	:z1=\E&f2a1k7d3LPICK LN\E?p:\
+	:z2=\E&f2a2k6d3LPUT LN\E?q:\
+	:z3=\E&f2a3k7d3LPICK CH\E?r:\
+	:z4=\E&f2a4k6d3LPUT LN\E?s:\
+	:z5=\E&f2a5k8d3LINS MODE\E?t:\
+	:z6=\E&f2a6k6d3L+ SRCH\E?u:\
+	:z7=\E&f2a7k6d3L- SRCH\E?v:\
+	:z8=\E&f2a8k5d3LENTER\E?w:\
+	:z0=\E&k0A\E&jB\ER:\
+	:z9=\E&j@\ER:\
+	:bi=ks,z1,z2,z3,z4,z5,z6,z7,z8,z0:bf=ke,z9:bs:
+ibm6155:\
+	:bw:

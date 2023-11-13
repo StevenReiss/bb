@@ -1,0 +1,50 @@
+/********************************************************/
+/*							*/
+/*		PARMDEF.H  (from parmdef.hm)		*/
+/*							*/
+/*	This file contains the definitions for using	*/
+/*   parameters within the parameter processing module. */
+/*   Functions that use parameters externally should	*/
+/*   include parms.h rather than this file.		*/
+/*							*/
+/********************************************************/
+/*	Copyright 1984 Brown University					*/
+
+
+include(parmlist.m)
+
+
+
+
+/********************************************************/
+/*							*/
+/*	Parameter definitions				*/
+/*							*/
+/********************************************************/
+
+
+				/* parameter routines	*/
+undivert(4)
+
+
+
+				/* string buffers	*/
+undivert(3)
+
+
+
+
+BPARM	PARMS[] = {		/* parameters		*/
+
+undivert(2)
+
+};
+
+
+divert(-1) undivert divert
+
+
+
+
+
+/* end of parmdef.h */

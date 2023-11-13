@@ -1,0 +1,10 @@
+/************************************************************************/
+/*									*/
+/*	FILES -- location of system files for bb			*/
+/*									*/
+/************************************************************************/
+
+
+#define DEFFILE 	"/home/spr/binpdef"
+
+#define BTCPFILE	"/home/spr/btermcap"

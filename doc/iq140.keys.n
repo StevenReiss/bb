@@ -1,0 +1,27 @@
+
+.nr SS .25v
+.sp
+.ll 6i
+\s8\fI\(uaa\fP\s0/shift/\f3no shift\fP
+.TS
+box expand tab($) ;
+lp6e | lp6e | lp6e | lp6e | lp6e | lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2
+ce | ce | ce | ce | ce | ce | ce | ce
+cef3 | cef3 | cef3 | cef3 | cef3 | cef3 | cef3 | cef3
+lp6e | lp6e | lp6e | lp6e | lp6e | lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2
+ce | ce | ce | ce | ce | ce | ce | ce
+cef3 | cef3 | cef3 | cef3 | cef3 | cef3 | cef3 | cef3 .
+f1$f2$f3$f4$f5$f6$f7$f8
+---$---$PBSRCH$---$---$---$FNEXT$RSTRT
+LSLIDE$VTAB$PRSRCH$PARM$CPUT$LPUT$FALT$RESET
+PPAGE$PLINE$PSRCH$COPEN$CINS$LINS$FSET$LRESET
+.sp \n(SSu
+_
+f9$f10$f11$f12$f13$f14$f15$f16
+---$---$MBSRCH$---$---$---$SHOW$HELP
+RSLIDE$BRET$MRSRCH$INDENT$CPICK$LPICK$DOSET$MARK
+MPAGE$MLINE$MSRCH$JOIN$CDEL$LDEL$DO$ENTER
+.sp \n(SSu
+.TE

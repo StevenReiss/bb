@@ -1,0 +1,41 @@
+.bp
+.ll 3.5i
+.sz 8
+.TS
+center tab($) ;
+cpf2 s s s s s s s
+l1 l2 | l1 l2 | l1 l2 | l1 l2 .
+Control Sequences
+_
+\(ua@$SVPOS$\(uag$GOTO$\(uar$PLINE$\(uay$KNOCK
+\(uaa$MARK$\(uak$0BTAB$\(uat$MLINE$\(uaz$STOP
+\(uab$MPAGE$\(ual$INDENT$\(uau$UNDO$\(ua\e$CDEL
+\(uac$COMMAND$\(uan$JOIN$\(uav$LINS$\(ua]$CINS
+\(uad$EXIT$\(uao$LOPEN$\(uaw$1BTAB$\(ua^$GOBEG
+\(uae$GOEND$\(uap$RUNCMD$\(uax$1DEL$\(ua_$DO
+\(uaf$1TAB
+.T&
+cpf2 s s s s s s s
+l1 l2 | l1 l2 | l1 l2 | l1 l2 .
+Escape Sequences:
+_
+q$1DEL$w$2DEL$e$3DEL$r$4DEL
+a$1PUT$s$2PUT$d$3PUT$f$4PUT
+z$1PICK$x$2PICK$c$3PICK$v$4PICK
+_
+t$5DEL$y$PBSRCH$h$PFSRCH$n$PRSRCH
+g$5PUT$u$MBSRCH$j$MFSRCH$m$MRSRCH
+b$5PICK$$$$$$
+_
+i$2TAB$k$3TAB$,$4TAB$p$5TAB
+o$2BTAB$l$3BTAB$.$4BTAB$;$5BTAB
+_
+-$VTAB$\&=$BHOME$\`$BRET${$RESET
+\'$HELP$/$PARM$\e$SYSTEM$$
+_
+1$LSLIDE$4$SHOW$7$FMAKE$0$LRESET
+2$RSLIDE$5$BSAVE$8$FALT$$
+3$RSTRT$6$BRSTR$9$FNEXT$$
+.TE
+.ce 1
+Three escapes: RESET

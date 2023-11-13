@@ -1,0 +1,75 @@
+tvi920 bb input definitions
+ escape/shift/no shift
+------------------------------------------------------------------------------
+|F1    |F2    |F3    |F4    |F5    |F6    |F7    |F8    |F9    |F10   |F11   |
+|Lang1 |Lang2 |Lang3 |Lang4 |Lang5 |Lang6 |Lang7 |Lang8 |Lang9 |Lang0 | ---  |
+|+Para |-Para |+BlkLn|-BlkLn|OpenLn|Reset |+RSrch|-RSrch|Indent| -EOL | +EOL |
+|+Pages|-Pages|+Lines|-Lines|AddCh |LReset|+Srch |-Srch | Join |-Word |+Word |
+------------------------------------------------------------------------------
+
+   shift funct/funct
+-----------------------
+|7     |8      |9     |
+| PutCh|  ---  | PckCh|
+| InsCh|  ---  | DelCh|
++------+-------+------+
+|4     |5      |6     |
+|PutEOL|PckEOL |DelEOL|
+|PutWrd|PckWrd |DelWrd|
++---------------------+
+|1     |2      |3     |
+| PutLn|       | PckLn|
+| InsLn|  ---  | DelLn|
++------+-------+------+
+|,     |0      |.     |
+|  --- |AltFile| DoSet|
+| Mark |SetFile|  Do  |
++---------------------+
+|Enter         |-     |
+|     ---      |  --- |
+|    Enter     |  --- |
+-----------------------
+          Control Sequences
+-------------------------------------
+|^@ SvPos   |^j \/      |^v \/      |
+|^a ---     |^k /\      |^w -Word   |
+|^b back    |^l ->      |^x delete  |
+|^c Command |^n Join    |^y yank    |
+|^d Exit    |^o OpenLn  |^z Stop    |
+|^e GoEnd   |^p put     |^\ Knock   |
+|^f +Word   |^r Enter   |^] InsCh   |
+|^g GoTo    |^t to      |^^ Home    |
+|^h <-      |^u Undo    |^_ Do      |
+               Items:
+-------------------------------------
+|l  Lines   |w  Words   |c  Chars   |
+|e  EOL     |b  BlkLn   |	    |
+|p  Pages   |]  Para    |s  Search  |
+|t  Tab     |h  HfTab   |v  VTab    |
+|r  Return  |o  Home    |	    |
+          Escape Sequences:
+-------------------------------------
+|q  DelWrd  |a  PutWrd  |z  PckWrd  |
+|w  DelEOL  |s  PutEOL  |x  PckEOL  |
+|e  DelBlkLn|d  PutBlkLn|c  PckBlkLn|
+|r  DelPara |f  PutPara |v  PckPara |
+|t  DelHfTab|g  PutHfTab|b  PckHfTab|
++-----------+-----------+-----------+
+|y  +BfSrch |h  +FSrch  |n  +RSrch  |
+|u  -BfSrch |j  -FSrch  |m  -RSrch  |
++-----------+-----------+-----------+
+|i  +EOL    |k  +BlkLn  |,  +Para   |
+|o  -EOL    |l  -BlkLn  |.  -Para   |
+|p  +HfTab  |;  -HfTab  |	    |
++-----------+-----------+-----------+
+|<- -HfTab  |-> +HfTab  |	    |
+|^i BTab    |\/ NxtLine |	    |
++-----------+-----------+-----------+
+|-  VTab    |=  BHome   |`  BReturn |
+|'  Help    |/  Parm    |{  Reset   |
++-----------+-----------+-----------+
+|1  <-Slide |4  Show    |7  MakFile |
+|2  ->Slide |5  BfSave  |8  AltFile |
+|3  Restart |6  BfRstr  |9  NxtFile |
+|           |           |0  LReset  |
+	   Escape { : Reset

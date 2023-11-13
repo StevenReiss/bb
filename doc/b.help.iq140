@@ -1,0 +1,23 @@
+==============================================================================
+|PutBLNKL | PutPARA |PutWORD |PutENDLN |DelBLNKL| DelPARA |BufRestr| Restart | <-^A
+| +BLNKL  | +PARA   |+BSEARCH| +ENDLN  |PutCHAR | PutLINE | ALTFile|  RESET  | <-Shift
+|	  |	    |	     |	       |	|	  |	   |	     |	
+| +PAGE   | +LINES  |+SEARCH | AddCHAR |InsCHAR | InsLINE |SETFile |LineRESET| <-
+==============================================================================	
+|PickBLNKL|PickPARA |PickWORD|PickENDLN|DelWORD |DelENDLN |BufSave |  HELP   | <-^A
+| -BLNKL  | -PARA   |-BSEARCH| -ENDLN  |PickCHAR|PickLINE |  UNDO  |  MARK   | <-Shift
+|	  |	    |	     |	       |	|	  |	   |	     |	
+| -PAGE   | -LINES  |-SEARCH |	JOIN   |DelCHAR | DelLINE |   DO   |  ENTER  | <-
+==============================================================================
+
+---------Control Codes--------	   --Language Commands--
+   tab:+Tab    newline:-Tab
+^b:-Word  ^o:Insert  ^x:Command     ^a0:Lang0  ^a5:Lang5
+^c:Stop   ^p:Parm    ^y:VTab	    ^a1:Lang1  ^a6:Lang6
+^d:Exit   ^r:RtSlide ^z:Stop	    ^a2:Lang2  ^a7:Lang7
+^e:GoEnd  ^t:LtSlide ^[:-Ret	    ^a3:Lang3  ^a8:Lang8
+^f:+Word  ^u:Undo    ^\:Knock	    ^a4:Lang4  ^a9:Lang9
+^g:Goto   ^v:SvPos   ^]:NextFile
+^n:Knock  ^w:Indent
+
+

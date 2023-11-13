@@ -1,0 +1,427 @@
+/********************************************************************************/
+/*                                                                              */
+/*              HumpTabler.java                                                 */
+/*                                                                              */
+/*      Code to read in results and output tables                               */
+/*                                                                              */
+/********************************************************************************/
+/*      Copyright 2006 Brown University -- Steven P. Reiss                    */
+/*********************************************************************************
+ *  Copyright 2006, Brown University, Providence, RI.                            *
+ *                                                                               *
+ *                        All Rights Reserved                                    *
+ *                                                                               *
+ *  Permission to use, copy, modify, and distribute this software and its        *
+ *  documentation for any purpose other than its incorporation into a            *
+ *  commercial product is hereby granted without fee, provided that the          *
+ *  above copyright notice appear in all copies and that both that               *
+ *  copyright notice and this permission notice appear in supporting             *
+ *  documentation, and that the name of Brown University not be used in          *
+ *  advertising or publicity pertaining to distribution of the software          *
+ *  without specific, written prior permission.                                  *
+ *                                                                               *
+ *  BROWN UNIVERSITY DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS                *
+ *  SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND            *
+ *  FITNESS FOR ANY PARTICULAR PURPOSE.  IN NO EVENT SHALL BROWN UNIVERSITY      *
+ *  BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY          *
+ *  DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,              *
+ *  WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS               *
+ *  ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE          *
+ *  OF THIS SOFTWARE.                                                            *
+ *                                                                               *
+ ********************************************************************************/
+
+/* RCS: $Header$ */
+
+
+/*********************************************************************************
+ *
+ * $Log$
+ *
+ ********************************************************************************/
+
+
+
+package edu.brown.cs.wadi.hump;
+
+import edu.brown.cs.ivy.file.IvyFile;
+import edu.brown.cs.ivy.xml.IvyXml;
+import edu.brown.cs.ivy.xml.IvyXmlWriter;
+import edu.brown.cs.wadi.weir.*;
+import edu.brown.cs.wadi.hump.scan.*;
+
+import org.eclipse.jdt.core.dom.ASTNode;
+import org.w3c.dom.Element;
+
+import java.io.*;
+import java.util.*;
+import java.text.*;
+
+
+public class HumpTabler implements HumpConstants {
+
+
+
+/********************************************************************************/
+/*                                                                              */
+/*      Main program                                                            */
+/*                                                                              */
+/********************************************************************************/
+
+public static void main(String [] args)
+{
+   HumpTabler hm = new HumpTabler(args);
+   hm.process();
+}
+
+
+
+
+/********************************************************************************/
+/*                                                                              */
+/*      Private storage                                                         */
+/*                                                                              */
+/********************************************************************************/
+
+private List<Result>    result_set;
+private File            input_directory;
+private String          output_prefix;
+
+
+private static Map<String,String> learn_names;
+
+static {
+   learn_names = new LinkedHashMap<String,String>();
+   learn_names.put("WT","Weka J48 Tree");
+   learn_names.put("WB","Weka Bayes Net");
+   learn_names.put("WS","Weka SMO");
+   learn_names.put("WK","Weka K-Star");
+   learn_names.put("WR","Weka JRip Rules");
+   learn_names.put("WP","Weka Perceptron");
+   learn_names.put("WN","Weka RBF Network");
+   learn_names.put("WF","Weka Random Forest");
+   learn_names.put("MB","Mallet Naive Bayes");
+   learn_names.put("MM","Mallet Max Ent");
+   learn_names.put("MA","Mallet Ada Boost");
+   learn_names.put("MT","Mallet C45 Tree");
+   learn_names.put("OM","OpenNlp Max Ent");
+   learn_names.put("SH","Svm Hmm");
+}
+
+static NumberFormat SCORE_FORMAT = new DecimalFormat("#0.0%");
+static NumberFormat SIZE_FORMAT = new DecimalFormat("0.0");
+static NumberFormat TIME_FORMAT = new DecimalFormat("0.0");
+
+
+
+/********************************************************************************/
+/*                                                                              */
+/*      Constructors                                                            */
+/*                                                                              */
+/********************************************************************************/
+
+HumpTabler(String [] args)
+{
+   result_set = new ArrayList<Result>();
+   input_directory = new File("/map/volfred/spr/hump/results");
+   output_prefix = "/u/spr/papers/wadi/tables/humptable_";
+
+   scanArgs(args);
+}
+
+
+
+
+/********************************************************************************/
+/*                                                                              */
+/*      Argument scanning                                                       */
+/*                                                                              */
+/********************************************************************************/
+
+private void scanArgs(String [] args)
+{
+   for (int i = 0; i < args.length; ++i) {
+    }
+}
+
+
+
+
+/********************************************************************************/
+/*                                                                              */
+/*      Processing methods                                                      */
+/*                                                                              */
+/********************************************************************************/
+
+private void process()
+{
+   loadResults();
+
+   spacingTable();
+}
+
+
+
+
+/********************************************************************************/
+/*                                                                              */
+/*      Methods to load the results                                             */
+/*                                                                              */
+/********************************************************************************/
+
+private void loadResults()
+{
+   File [] fls = input_directory.listFiles(new ResultFilter());
+
+   for (int i = 0; i < fls.length; ++i) {
+      File f1 = fls[i];
+      File f2 = new File(f1.getPath().replace(".report",".learn"));
+
+      Element el = IvyXml.loadXmlFromFile(f2);
+      Element er = IvyXml.loadXmlFromFile(f1);
+      if (er == null) {
+         System.err.println("IGNORE  " + f1 + " & " + f2);
+         continue;
+       }
+      System.err.println("WORK ON " + f1 + " & " + f2);
+
+      Result r = new Result(el,er);
+      result_set.add(r);
+    }
+}
+
+
+
+
+private static class ResultFilter implements FilenameFilter
+{
+   public boolean accept(File dir,String name) {
+      return name.endsWith(".report");
+    }
+}       // end of subclass ResultFilter
+
+
+
+
+/********************************************************************************/
+/*                                                                              */
+/*      Global table methods                                                    */
+/*                                                                              */
+/********************************************************************************/
+
+private void spacingTable()
+{
+   try {
+      File f = new File(output_prefix + "method.txt");
+      FileWriter fw = new FileWriter(f);
+      PrintWriter pw = new PrintWriter(fw);
+      pw.println("Method;Output;% Difference;Score;Model Size;Learning Time;Format Time");
+
+      for (String s : learn_names.keySet()) {
+         for (int i = 0; i < 2; ++i) {
+            boolean usebool = (i == 1);
+            Result best = null;
+            for (Result r : result_set) {
+               if (r.matchSpacing(s,usebool)) {
+                  if (best == null || r.betterSpacingThan(best)) best = r;
+                }
+             }
+            if (best != null) best.writeSpacing(pw);
+          }
+       }
+
+      pw.close();
+    }
+   catch (IOException e ) {
+      System.err.println("TABLER: Problem writing spacing table: " + e);
+      System.exit(1);
+    }
+}
+
+
+
+
+/********************************************************************************/
+/*                                                                              */
+/*      Subclass to hold the results                                            */
+/*                                                                              */
+/********************************************************************************/
+
+private static class Result {
+
+   private String indent_mode;
+   private String space_mode;
+   private String space_learning_method;
+   private String name_learning_method;
+   private String short_learning_method;
+   private String order_learning_method;
+   private boolean space_learn_boolean;
+   private boolean name_learn_boolean;
+   private boolean order_learn_boolean;
+   private double  spacing_size;
+   private double  naming_size;
+   private double shortname_size;
+   private double sequence_size;
+   private double pattern_size;
+   private int apply_time;
+   private double same_pct;
+   private int  num_token;
+   private int  num_diffs;
+   private int  indent_diffs;
+   private int  indent_token_diffs;
+   private int  space_diffs;
+   private int  space_short_diffs;
+   private int  space_token_diffs;
+   private int  line_diffs;
+   private int  break_diffs;
+   private int  line_short_diffs;
+   private int  line_token_diffs;
+   private double spacing_time;
+   private double raw_space_score;
+   private double space_score;
+
+   Result(Element el,Element ed) {
+      Element p = IvyXml.getElementByTag(ed,"PARAMETERS");
+      indent_mode = IvyXml.getTextElement(p,"INDENTMODE");
+      space_mode = IvyXml.getTextElement(p,"SPACEMODE");
+      space_learning_method = IvyXml.getTextElement(p,"SPACINGMETHOD");
+      name_learning_method = IvyXml.getTextElement(p,"NAMINGMETHOD");
+      short_learning_method = IvyXml.getTextElement(p,"SHORTNAMEMETHOD");
+      order_learning_method = IvyXml.getTextElement(p,"ORDERMETHOD");
+      space_learn_boolean = !getBoolean(p,"SP_BOOLEAN");
+      name_learn_boolean = !getBoolean(p,"NM_BOOLEAN");
+      order_learn_boolean = !getBoolean(p,"SQ_BOOLEAN");
+      p = IvyXml.getElementByTag(ed,"MODEL");
+      spacing_size = IvyXml.getAttrDouble(p,"SP_SIZE");
+      naming_size = IvyXml.getAttrDouble(p,"NM_SIZE");
+      shortname_size = IvyXml.getAttrDouble(p,"SH_SIZE");
+      sequence_size = IvyXml.getAttrDouble(p,"SQ_SIZE");
+      pattern_size = IvyXml.getAttrDouble(p,"PT_SIZE");
+      p = IvyXml.getElementByTag(ed,"TIMING");
+      apply_time = IvyXml.getAttrInt(p,"TIME");
+      p = IvyXml.getElementByTag(ed,"SPACING");
+      Element p1 = IvyXml.getElementByTag(p,"TOKENS");
+      num_token = IvyXml.getAttrInt(p1,"COUNT");
+      num_diffs = IvyXml.getAttrInt(p1,"DIFF");
+      p1 = IvyXml.getElementByTag(p,"INDENT");
+      indent_diffs = IvyXml.getAttrInt(p1,"DIFFS");
+      indent_token_diffs = IvyXml.getAttrInt(p1,"TOKEN");
+      p1 = IvyXml.getElementByTag(p,"SPACES");
+      space_diffs = IvyXml.getAttrInt(p1,"DIFFS");
+      space_short_diffs = IvyXml.getAttrInt(p1,"SHORT");
+      space_token_diffs = IvyXml.getAttrInt(p1,"TOKEN");
+      p1 = IvyXml.getElementByTag(p,"LINES");
+      line_diffs = IvyXml.getAttrInt(p1,"DIFFS");
+      break_diffs = IvyXml.getAttrInt(p1,"BREAK");
+      line_short_diffs = IvyXml.getAttrInt(p1,"SHORT");
+      line_token_diffs = IvyXml.getAttrInt(p1,"TOKEN");
+      for (Element p2 : IvyXml.elementsByTag(el,"LEARN")) {
+         String what = IvyXml.getAttrString(p2,"WHAT");
+         if (what.equals("SPACING")) {
+            p1 = IvyXml.getElementByTag(p2,"STATS");
+            spacing_time = getInteger(p1,"TIME");
+          }
+       }
+      raw_space_score = ((double) num_diffs)/num_token;
+      space_score = num_diffs;
+      space_score += indent_token_diffs * 7;                            // 8: token indent
+      space_score += (indent_diffs - indent_token_diffs) * 1;           // 2: comment indent
+      space_score -= space_short_diffs * 0.5;                           // 0.5: short space
+      space_score -= (line_diffs - line_short_diffs) * 1;               // 0 : long line diffs
+      space_score -= (line_short_diffs - line_token_diffs) * 0.5;       // 0.5: comment spacing
+      space_score /= num_token;
+    }
+
+   private boolean getBoolean(Element p,String itm) {
+      String t = IvyXml.getTextElement(p,itm);
+      return Boolean.parseBoolean(t);
+    }
+
+   private int getInteger(Element p,String itm) {
+      String t = IvyXml.getTextElement(p,itm);
+      return Integer.parseInt(t);
+    }
+
+   boolean matchSpacing(String typ,boolean usebool) {
+      if (space_learning_method.equals(typ) && space_learn_boolean == usebool) return true;
+      return false;
+    }
+
+   int spacingCompareTo(Result r) {
+      double v0 = space_score - r.space_score;
+      if (v0 < 0) return -1;
+      if (v0 > 0) return 1;
+      v0 = spacing_time - r.spacing_time;
+      if (v0 < 0) return -1;
+      if (v0 > 0) return 1;
+      v0 = spacing_size - r.spacing_size;
+      if (v0 < 0) return -1;
+      if (v0 > 0) return 1;
+      v0 = getOutputType.compareTo(r.getOutputType());
+      if (v0 < 0) return -1;
+      if (v0 > 0) return 1;
+      return space_learning_method.compareTo(r.space_learningMethod);
+    } 
+
+   boolean betterSpacingThan(Result r) {
+      return spacingCompareTo(r) < 0;
+    }
+
+   void writeSpacing(PrintWriter pw) {
+      String s1 = learn_names.get(space_learning_method);
+      if (space_learn_boolean) s1 += " Bool";
+      String s2 = getOutputType();
+
+      pw.println(s1 + ";" + s2 + ";" +
+                    SCORE_FORMAT.format(raw_space_score) + ";" +
+                    SCORE_FORMAT.format(space_score) + ";" +
+                    getSize(spacing_size) + ";" +
+                    getTime(spacing_time) + ";" +
+                    getTime(apply_time));
+    }
+
+   private String getOutputType() {
+      StringBuffer buf = new StringBuffer();
+      if (!indent_mode.equals("NONE")) {
+         buf.append("I=");
+         buf.append(indent_mode.charAt(0));
+         if (!space_mode.equals("NONE")) buf.append(", ");
+       }
+      if (!space_mode.equals("NONE")) {
+         buf.append("S=");
+         buf.append(space_mode.charAt(0));
+         if (space_mode.endsWith("_LAST")) buf.append("L");
+       }
+      return buf.toString();
+    }
+
+   private String getSize(double s) {
+      if (s > 1024*1024) return SIZE_FORMAT.format(s/1024/1024) + "M";
+      else if (s > 1024) return SIZE_FORMAT.format(s/1024) + "K";
+      return SIZE_FORMAT.format(s);
+    }
+
+   private String getTime(double t) {
+      return TIME_FORMAT.format(t / 1000);
+    }
+
+}       // end of subclass Result
+
+
+
+
+private static class SpacingComparator implements Comparator<Result> {
+
+   public int compareTo(Result r1,Result r2) {
+      return r1.spacingCompareTo(r2);
+    }
+
+
+   
+
+}       // end of class HumpTabler
+
+
+
+
+/* end of HumpTabler.java */

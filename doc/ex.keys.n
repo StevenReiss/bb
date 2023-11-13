@@ -1,0 +1,59 @@
+.bm .25i
+.ll 3.25i
+.ce
+\f3exidy\fP bb input definitions
+.nr SS .25v
+.br
+.sz 8
+.ce
+\s6graph-shift/\f3graph\fP/\s8\f2control\fP/\s10shift/\f3no shift\fP\s8
+.TS
+center box tab($) ;
+c1ep6 | c1ep6 | c1ep6 | c1ep6
+c1ep6f3 | c1ep6f3 | c1ep6f3 | c1ep6f3
+c1ef2 | c1ef2 | c1ef2 | c1ef2
+c1ep10 | c1ep10 | c1ep10 | c1ep10
+c1ep10f3 | c1ep10f3 | c1ep10f3 | c1ep10f3
+c1ep6 | c1ep6 | c1ep6 | c1ep6
+c1ep6f3 | c1ep6f3 | c1ep6f3 | c1ep6f3
+c1ef2 | c1ef2 | c1ef2 | c1ef2
+c1ep10 | c1ep10 | c1ep10 | c1ep10
+c1ep10f3 | c1ep10f3 | c1ep10f3 | c1ep10f3
+c1ep6 | c1ep6 | c1ep6 | c1ep6
+c1ep6f3 | c1ep6f3 | c1ep6f3 | c1ep6f3
+c1ef2 | c1ef2 | c1ef2 | c1ef2
+c1ep10 | c1ep10 | c1ep10 | c1ep10
+c1ep10f3 | c1ep10f3 | c1ep10f3 | c1ep10f3
+c1ep6 | c1ep6 | c1ep6 | c1ep6
+c1ep6f3 | c1ep6f3 | c1ep6f3 | c1ep6f3
+c1ef2 | c1ef2 | c1ef2 | c1ef2
+c1ep10 | c1ep10 | c1ep10 | c1ep10
+c1ep10f3 | c1ep10f3 | c1ep10f3 | c1ep10f3 .
+RSLIDE$7LANG$8LANG$9LANG
+LSLIDE$4PUT$4DEL$4PICK
+GOTO$COPEN$3BTAB$KNOCK
+MPAGE$CPUT$2BTAB$CPICK
+PPAGE$CINS$UP$CDEL
+.sp \n(SSu
+_
+HELP$4LANG$5LANG$6LANG
+GOEND$3PUT$3DEL$3PICK
+SVPOS$4BTAB$VTAB$4TAB
+MLINE$1BTAB$BHOME$1TAB
+PLINE$LEFT$HOME$RIGHT
+.sp \n(SSu
+_
+RSTRT$1LANG$2LANG$3LANG
+RESET$2PUT$2DEL$2PICK
+LRESET$LOPEN$3TAB$JOIN
+MSRCH$LPUT$2TAB$LPICK
+PSRCH$LINS$DOWN$LDEL
+.sp \n(SSu
+_
+SHOW$0LANG$BRSTR$BSAVE
+PARM$1PUT$1DEL$1PICK
+STOP$FNEXT$UNDO$COMMAND
+MBSRCH$FALT$DOSET$MARK
+PBSRCH$FSET$DO$ENTER
+.sp \n(SSu
+.TE

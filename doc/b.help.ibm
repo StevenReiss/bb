@@ -1,0 +1,84 @@
+escape/no shift/alt
+------
+__________________
+attr     erase eol
+   ---     -EOL
+   ---    -Lines
+   ---    -Pages
+__________________
+esc      erase eos
+   ---     +EOL
+   ---    +Lines
+   ---    +Pages
+__________________
+print msgsend msg
+  DoSet     ---
+   Do       ---
+  Join      ---
+__________________
+print    spkr
+  AddCh     ---
+  Enter     ---
+   ---      ---
+__________________
+reset/cancel
+       ---
+       ---
+     SetFile
+__________________
+
+   ibm 3101 bb input definitions
+       escape/escape alt/alt
+       ------
+    __________________________
+     7        8        9
+     LANG7    LANG8    LANG9
+     +RSrch   -RSrch    ---
+     +Srch    -Srch     ---
+    __________________________
+     4        5        6
+     LANG4    LANG5    LANG6
+      ---      ---     PckCh
+     InsCh    DelCh    PutCh
+    __________________________
+     1        2        3
+     LANG1    LANG2    LANG3
+      ---      ---     PckLn
+     InsLn    DelLn    PutLn
+    __________________________
+     ,        0        .
+      ---     LANG0     ---
+      ---      ---      ---
+      ---      ---      ---
+    __________________________
+
+        Control Sequences
+__________________________________
+^[ SvPos    ^j NxtLine  ^v InsLn
+^a Mark     ^k BTab     ^w -Word
+^b back     ^l Indent   ^x delete
+^c Command  ^n Join     ^y yank
+^d Exit     ^o OpenLn   ^z Stop
+^e GoEnd    ^p put      ^= Knock
+^f +Word    ^r Enter    ^{ InsCh
+^g GoTo     ^t to       ^- Home
+^h BackSp   ^u Undo     ^' Do
+              Items:
+__________________________________
+l  Lines    w  Words    c  Chars
+e  EOL      b  BlkLn
+p  Pages    ]  Para     s  Search
+t  Tab      h  HfTab    v  VTab
+r  Return   o  Home   
+        Escape Sequences:
+__________________________________
+<- -HfTab   -> +HfTab   ^i BTab
+__________________________________
+-  VTab     =  BHome    `  BReturn
+'  Help     /  Parm     {  Reset
+__________________________________
+1  <-Slide  4  Show     7  MakFile
+2  ->Slide  5  BfSave   8  AltFile
+3  Restart  6  BfRstr   9  NxtFile
+                        0  LReset
+   Escape { : Reset

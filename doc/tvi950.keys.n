@@ -1,0 +1,110 @@
+.nr hm 1v
+.nr fm 1v
+.nr tm 2v
+.nr bm 2v
+.nr SS .25v
+.po .5i
+.sz 10
+.ll 4.5i
+\s8\fIescape\fP\s0/shift/\f3no shift\fP
+.TS
+box expand tab($) ;
+lp6e    | lp6e    | lp6e    | lp6e    | lp6e    | lp6e
+cp8ef2  | cp8ef2  | cp8ef2  | cp8ef2  | cp8ef2  | cp8ef2
+cp10e   | cp10e   | cp10e   | cp10e   | cp10e   | cp10e
+cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 .
+F1$F2$F3$F4$F5$F6
+1LANG$2LANG$3LANG$4LANG$5LANG$6LANG
+4TAB$4BTAB$3TAB$3BTAB$LOPEN$RESET
+PPAGE$MPAGE$PLINE$MLINE$COPEN$LRESET
+.sp \n(SSu
+.TE
+.ll 3.75i
+.TS
+box expand tab($) ;
+lp6e    | lp6e    | lp6e    | lp6e    | lp6e
+cp8ef2  | cp8ef2  | cp8ef2  | cp8ef2  | cp8ef2
+cp10e   | cp10e   | cp10e   | cp10e   | cp10e
+cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 .
+F7$F8$F9$F10$F11
+7LANG$8LANG$9LANG$0LANG$---
+PRSRCH$MRSRCH$INDENT$2BTAB$2TAB
+PSRCH$MSRCH$JOIN$1BTAB$1TAB
+.sp \n(SSu
+.TE
+.ll 5.625i
+.TS
+box expand tab($) ;
+lp6e    | lp6e    | lp6e    | lp6e    | lw(12p) | lp6e    | lp6e    | lp6e    
+cp8ef2  | cp8ef2  | cp8ef2  | cp8ef2  | lw(12p) | cp8ef2  | cp8ef2  | cp8ef2
+cp10e   | cp10e   | cp10e   | cp10e   | lw(12p) | cp10e   | cp10e   | cp10e
+cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 | lw(12p) | cp10ef3 | cp10ef3 | cp10ef3 .
+INSERT CHAR$DELETE CHAR$INSERT LINE$DELETE LINE$$LINE ERASE$PAGE ERASE$SEND
+---$---$---$---$$2PUT$1PUT$SVPOS
+CPUT$CPICK$LPUT$LPICK$$2PICK$1PICK$FSET
+CINS$CDEL$LINS$LDEL$$2DEL$1DEL$ENTER
+.sp \n(SSu
+.TE
+.ll 2.30i
+.TS
+box expand tab($) ;
+lp6e    | lp6e    || lp6e
+cp8ef2  | cp8ef2  || cp8ef2
+cp10e   | cp10e   || cp10e
+cp10ef3 | cp10ef3 || cp10ef3 .
+PRINT$FUNCT$CLEAR SPACE
+DOSET$$---
+DO$Key Pad$---
+MARK$$STOP
+.sp \n(SSu
+.TE
+.ll 2.25i
+.sz 10
+.sp
+.ce
+\f3tvi950\fP bb input definitions
+.br
+.ce
+\s8\f2escape funct\fP\s0\f3/funct\fP
+.TS
+expand box tab($) ;
+lp6e    | lp6e    | lp6e
+cp8ef2  | cp8ef2  | cp8ef2
+cp10ef3 | cp10ef3 | cp10ef3
+lp6e    | lp6e    | lp6e
+cp8ef2  | cp8ef2  | cp8ef2
+cp10ef3 | cp10ef3 | cp10ef3
+lp6e    | lp6e    | lp6e
+cp8ef2  | cp8ef2  | cp8ef2
+cp10ef3 | cp10ef3 | cp10ef3
+lp6e    | lp6e    | lp6e
+cp8ef2  | cp8ef2  | cp8ef2
+cp10ef3 | cp10ef3 | cp10ef3
+lp6e    s | lp6e
+cp8ef2  s | cp8ef2
+cp10ef3 s | cp10ef3 .
+7$8$9
+---$---$---
+---$---$---
+.sp \n(SSu
+_
+4$5$6$
+---$---$---
+---$---$---
+.sp \n(SSu
+_
+1$2$3
+---$---$---
+---$---$---
+.sp \n(SSu
+_
+,$0$.
+---$---$---
+MARK$FSET$DO
+.sp \n(SSu
+_
+Enter$-
+---$---
+ENTER$---
+.sp \n(SSu
+.TE

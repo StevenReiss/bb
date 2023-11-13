@@ -1,0 +1,4528 @@
+.po 1.1i
+;lg;dsli
+.fo '\*(td'\Version 1.0'%'
+.tp
+.lp
+.sp 2i
+.(l C
+.sz +4
+.b
+BB Reference Guide and User's Manual
+.sp 1i
+.sz -4
+.i
+Linda Medvene
+Margo Lustig
+Steven Reiss
+.sp .5i
+.r
+Department of Computer Science
+Box 1910
+Brown University
+Providence, Rhode Island 02912
+.)l
+.sp 1i
+.(l C
+.b Abstract
+.)l
+.(q
+.sp
+    This manual contains information concerning the usage of the
+.i bb
+editor, Brown University's VAX 11/780 editor, which was written
+by Steven P. Reiss.  Contained within is an overview, a quick
+reference guide, and a user's guide.
+.sp
+    Any questions or comments should be directed to one of the authors.
+.)q
+.ba 8
+.he ''Table of Contents''
+.bp
+.nf
+i. Preface
+     A. Notes on the manual
+     B. Comments from authors
+.sp
+I. Overview of BB Editor
+     A. Introduction to the editor
+	1. Philosophy of the screen editor - "what you see is what you get"
+	2. Conceptual viewpoint of a file (temp copy, etc.)
+     B. Related Documents
+	1. USR/INFO/B.HELP
+	2. USR/INFO/B.HELP.<terminal>
+	3. USR/INFO/B.<terminal>
+	4. UNIX Manual
+.sp
+II. Notes on the 2nd Edition of B (BB)
+     A. Overview of the Differences
+     B. Notation used to differentiate between the old and
+	new or revised commands.
+.sp
+III. BB User's Guide
+     A. Introduction
+	  1. Getting started
+	       a. Getting in and out of BB
+	       b. Help
+	  2. Command Format
+	       a. Syntax
+	       b. Arguments
+	  3. Movement
+	       a. Cursor
+	       b. Screen
+	  4. Modification functions
+	       a. Buffers
+	  5. Parameters
+.sp
+     B. Time-Saving Devices
+	  1. File manipulation and windows
+	  2. Marking
+	  3. Do's
+	       a. Global changes
+	  4. Overriding system defaults
+	       a. Terminals
+	       b. Parameters
+.sp
+IV. Quick Reference Guide to BB
+.sp
+V. BB Reference Guide
+     A. When there's no input sequence and using control characters
+	  1. COMMAND command
+	  2. KNOCK
+.sp
+     B. Movement Functions
+	  1. Screen Movement
+		a. Lines
+		   (1). +
+		   (2). -
+		b. Pages
+		   (1). +
+		   (2). -
+		c. Slide Screen
+		   (1). Right
+		   (2). Left
+		d. Goto
+		   (1). position
+		   (2). beginning
+		   (3). end
+		e. Save Position
+		f. Psearch
+		   (1). Fast
+		   (2). Regular Expression
+		g. Msearch
+		   (1). Fast
+		   (2). Regular Expression
+		h. Buffer Search
+		   (1). +
+		   (2). -
+.sp
+	  2. Cursor Movement
+		a. right
+		b. Left
+		c. up
+		d. down
+		e. home
+		    (1). HOME
+		    (2). BHOME
+		f. return
+		    (1). RET
+		    (2). BRET
+		    (3). NL
+		g. tabs
+		    (1). forward  OTAB
+		    (2). backward OBTAB
+		    (3). tabs 1-5 1TAB-5TAB
+		    (4). vertical VTAB
+		h. backspace
+.sp
+     C. Modification Functions
+	  1. Buffered Commands
+		 a. Deletes
+		     (1). Chardel
+		     (2). Linedel
+		     (3). 1DEL-5DEL
+		 b. Picking
+		     (1). Charpick
+		     (2). Linepick
+		     (3). 1PICK-5PICK
+		 c. Puts
+		     (1). Charput
+		     (2). Lineput
+		     (3). 1PUT-5PUT
+		 d. Buffers
+.sp
+	  2. Insertion
+		 a. Blanks
+			(1). Charins
+			(2). Lineins
+		 b. Characters
+			(1). Copen
+		 c. Lines
+			(1). Lopen
+	  3. Others
+		 a. Join
+		 b. Resets
+			 (1). reset
+			 (2). Linereset
+		 c. Undo
+		 d. Indent
+.sp
+     D. Parameters
+.sp
+	  1. Description
+	  2. Show
+.sp
+     E. File Manipulation
+.sp
+	  1. Ending
+		 a. Exit
+		 b. Abort
+		 c. Stop
+		 d. Crash
+.sp
+	  2. Restart
+.sp
+	  3. Manipulation
+		  a. Fset
+		  b. Falt
+		  c. Fmake
+		  d. Fnext
+.sp
+	   4. Saves
+		  a. Buffer
+			 (1). Bsave
+			 (2). Brstr
+		  b. Save
+			(1). Recovery
+.sp
+     F. Arguments
+	    1. Mark
+	    2. Enter
+.sp
+     G. Command Macros
+	    1. DO
+	    2. Doset
+.sp
+     H. Language Specific Commands
+	    1. Lang0-Lang9
+.sp
+     I. System
+	    1. System
+	    2. Help
+	    3. Terminals
+	    4. Environment
+.sp
+V. Index
+.sp 3
+.fi
+.he''Preface''
+.bp
+i. Preface
+
+    A. Notes on the manual
+.sp 2
+    This manual is a compilation of the information found in the help
+file /usr/info/b.help and information written and edited by Margo
+Lustig and Linda Medvene.  It was designed to serve two
+major functions, first as an introductory tutorial and secondly
+as a reference guide for experienced users.
+The manual is set up in that general scheme, the first section gives
+an overview of the editor, the second lists the differences between the bb editor
+and its predecessor, the b editor.  The third section is the tutorial
+for novices, the fourth section is a quick reference guide and the fifth
+section is a full reference guide.
+.sp
+    The bb editor is continuously being updated and enhanced and as such
+this manual is as up to date as possible.  All terminal specific information
+has been left out of the manual for simplicity.  there is currently a proposal
+for standardizing the bb input sequences, should this come about, this
+information will be added to the manual in a later version.  In this version, all
+commands are referred to by their name or abbreviation and not by their input
+sequence.
+.sp
+    Please address any comments or suggestions on the editor to SPR or the manual
+to ML or LRM.
+.sp 2
+    B. Comments from the authors
+.sp
+    This manual was originally meant to be all things for all people and, as is
+the fate of most such ventures, we fell short of that mark.
+The tutorial and reference manual are both generally correct and, we hope,
+more of a help than a hindrance in learning and using the bb editor.  The
+last thing we want to do is present some of the features in a way that
+they appear unusable and cause them to be just that, unused.  If there are any suggestions
+on usability of this manual, its user friendliness, or its correctness, please
+let either Margo Lustig (ML) or Linda Medvene (LRM) know.
+.he''Overview of bb editor''
+.bp
+I.  Overview of the bb editor
+.sp
+    A.	Introduction to the editor
+.sp
+    This is a scope editing program.  Your file will appear on the screen and can
+be modified exactly as you see it.  Commands exist for moving around within
+your program, for locating a given line or text string, and for modifying the
+program.  The editor also supports multiple windows, language specific editing,
+a limited macro capability, backups, and recovery.
+.sp
+    The editor supports a host of commands.  How these commands are input will
+differ from one terminal to another.  The commands are discussed here by there
+global name.  The files /usr/info/b.help.<terminal> will provide the mapping
+for a specific terminal.
+.sp
+    The simplest way to modify a file is to just type in the changes.  What you see
+will be what you get.  The editor also provides a wide variety of commands to
+handle different types of modifications.
+.sp
+    The editor will save backup copies of your source file in the directory
+./bBACKUP.  It also remembers the last file you worked on in the file bCONTROL.
+.sp 2
+    B. Related Documents
+.sp
+    The file /usr/info/b.help is a brief reference guide to the editor
+and can be used for online help while in bb by using the HELP command.
+The files /usr/info/b.help.<terminal> will provide the input sequence
+for a particular terminal. And finally, the Unix manual will be helpful
+for things like regular expressions and environment variables.
+.he''Notes on the Second Edition of B (BB)''
+.bp
+II. Notes on the Second Edition of B (BB)
+.sp
+    A. Overview of Differences between B and BB.
+.sp 2
+    The new version of b is upward compatible with the old version with a few minor
+exceptions.  The command assignments have been made to preserve the previous
+commands.  Most of the differences are in additional features and commands
+provided by the new editor.  The additional features are listed below.
+.sp 2
+Features:
+ * Language dependent commands can be added
+ * Terminals defined from file, not builtin
+ * Language dependent tabbing
+ * Multiple windows
+ * Regular expression searching
+ * Marking display in reverse video
+ * Intelligent screen update
+ * Abbreviated display for slow terminals
+ * Buffer save and restore
+ * Join command to fill lines
+ * Recursive DOs
+ * Recovery from editor and system crashes
+ * Two previous files
+ * Help command to provide on-line assistance
+ * Show command to allow easy parameter setting
+ * Default word pick, delete, and put commands (1PICK,1DELETE,1PUT)
+ * Default delete to end of line command (2DELETE)
+ * Automatic indent mode available
+ * C/Lisp language indentation
+.sp 3
+    B. Comments on Notation
+.sp 2
+	 The new or revised commands are preceded by an asterisk.
+.he $$BB User's Guide$$
+.bp
+III.  BB User's Guide
+.sp 3
+    The purpose of this introduction is to help new users get acquainted
+with the basics of the BB editor, so that they can begin using it
+quickly and effectively.
+.sp 2
+.nf
+ A. Introduction
+.sp
+    1. Getting Started
+.sp
+	a. Getting in and out of bb
+.fi
+.sp 3
+    To create a new file or to edit an existing one, type
+.sp 2
+	  bb <filename>
+.sp 2
+    If this is a new file, the editor will respond with the question
+.sp 2
+       'File doesn't exist.  Create (yes,no,rename, or abort)?'
+.sp 2
+    Type y, and you will be placed within the environment of the BB
+editor.
+.sp
+    To exit the editor and save the work you have done, hit the EXIT key.
+Your
+screen will clear and your prompt sign will appear at the top of the
+screen.  To exit without saving the file (which appears on the
+screen), hit the ABORT key.  You will be asked the question:
+.sp 2
+       'Interrupt.  Abort (Y or N)?'
+.sp 2
+    Type y, and your screen will clear;  your prompt sign will appear at
+the top of the screen.	Typing n will put you back in the editor, where
+you just were.	You will often hit the ABORT key by accident and also
+be asked this question.
+.bp
+	b. Help
+.sp
+    If you want some more information on a command, you can receive
+on-line help.  For example, if you want to know more about EXIT, first
+hit
+.sp
+.nf
+     <ENTER> 'EXIT'    (hit the ENTER key;  you will be prompted
+			at the bottom of your screen; then type exit)
+
+.fi
+.sp
+as the argument and then hit the HELP key (note, not all terminals
+have a HELP key: see the bb key chart taped to your terminal).
+Then an explanation of EXIT
+will be displayed on the screen.  This explanation is part of a file,
+which you are currently bb'ing.  Thus, you can execute any editor commands
+on the help file.  To leave help, hit the EXIT key.
+.bp
+    2. Command Format
+.sp
+	a. Syntax
+.sp 3
+    Due to the inherent nature of a screen editor, no commands can be
+typed directly onto the screen (since everything typed becomes part of
+the file).  Thus, all commands must be executed through terminal keys.
+Command keys are notated: <command name>;  strings to be typed are
+notated 'string'.
+This guide gives all examples using the command mnemonic and not the
+exact terminal key, as this information is terminal specific.  For a
+correspondence of the command names and the terminal keys on the specific
+terminals see the bb guides pasted on your
+terminal.
+.sp 3
+	b. Command arguments
+.sp 2
+    Many of the commands can have a numeric or alphabetic argument or
+both (if two arguments are given, they should be typed consecutively, with
+no intervening blanks).  They must be entered by first hitting the
+<ENTER>. A '>' will appear at the bottom of the screen as a prompt:
+the argument can then be directly typed.  After this argument is typed
+the command key should be hit.
+.sp
+    For example, if you want to search for a string, the string
+to be searched for must be given as an argument to the search command.
+So, hit <ENTER>, type the string, and hit <PSEARCH> (plus search)
+.sp
+    If no argument is given (the argument is optional, such
+as in PLUS LINE or PLUS PAGE), the command can be directly
+executed and the default values will be used.
+Paired commands generally share the same default value.  The default
+argument for a command may be changed with the sequence <ENTER>-<ENTER>-
+argument-<command> which sets the default to the given value, or the sequence
+<ENTER>-<ENTER>-<command> which resets it to its initial value.
+.sp .7i
+.bp
+    3. Movement
+.sp
+	a. Cursor Movement
+.sp
+    When editing a file, you are free to move about the screen, using
+the four cursor keys (left,right,up, and down arrows).	For example,
+to move the current cursor to the left four spaces, hit the left arrow
+key four times.  You can use these cursor keys to position the current
+cursor (blinking underscore or box) wherever you want it.
+.sp
+    In addition to moving the cursor one position, you can move it
+8 positions, using the TABs.  For example, to move the cursor to the
+right 16 positions, hit <TAB> 2 times.	You can also TAB by
+words, which is a useful time saving feature.
+For example, to reposition your cursor at the beginning of the
+next word, hit FORWARD WORD.
+.sp
+    To reposition the cursor at the beginning of the next line,
+hit <CARRIAGE RETURN> or <LINE FEED>.
+.sp 3
+	b. Screen Movement
+.sp
+    In addition to moving the cursor about your screen, you
+can also move your screen.  For example,   to see what is ahead in
+your file, hit <PPAGE> (plus page).  This will display the next "pagefull" of
+text on
+your screen.  Similarly, if you want to only see the next few lines
+of your file, hit <PLINE> (plus line).	MPAGE and MLINE (minus page and line)
+are the counterparts
+for backward movement.
+.sp
+    If you want to go to the top of the file, hit <TOPFILE>.
+Also, to go to the end of the file, hit <GOTOEND>.  This
+will move the screen to the bottom of the file.
+.sp
+    To see what is to the left of the currently displayed text, hit
+<RSLIDE>.  This will shift the screen to the right.  Similarly, you
+should hit <LSLIDE> to see what is to the right of your displayed text.
+.sp
+    If you want to search for a particular string, you have to first
+specify the string to look for and then issue one of the search commands.
+For example, to find the next occurrence of 'TABLE' (be careful, TABLE
+is different from table), type
+.sp
+	<ENTER> 'TABLE'
+.sp
+and hit <PSEARCH>.  The current cursor will then be repositioned
+at the next occurrence of 'TABLE'.  To look for the last occurrence
+of 'TABLE', repeat this sequence, hitting <MSEARCH> instead of <PSEARCH>.
+If the string you're searching for is not on the current screen, the
+screen will move to display the first occurrence of the string.
+If the string does not appear in the file, 'Not found' will appear
+at the bottom of your screen and your cursor will return to its original
+position.
+.bp
+    4. Modification
+.sp 2
+    If you want to simply delete characters, you must first position
+your cursor at the first character to delete.  Then, to delete four
+characters, hit <DELCHAR> four times.  Alternatively, you could have
+entered an
+argument (4 in this case) to indicate the number of characters to delete.
+If you make a mistake and really didn't want to delete the four characters,
+you can UNDO this command.  By hitting <UNDO> four times,
+the four deleted characters are replaced and your cursor remains
+in its current place.  Almost every editor command can be reversed
+through the UNDO function.
+.sp
+    To delete lines, position the cursor at the beginning of the
+first line to delete.  To delete four lines, hit <DEL LINE>
+four times.  Again, you could have entered 4 as a numeric argument.
+.sp
+    Also, you can delete an entire word (a word being defined
+as a non-blank character string delimited by blanks).
+First, position your cursor at
+the beginning of the word to delete and then hit the DELWORD key.
+.sp
+    When text is deleted, it is saved in a buffer.  Thus, the
+DELETE commands can be used in conjunction with the PUT commands to
+move text.  For example, if you want to move four lines
+to somewhere else in your file, first delete the four lines with one
+delete.  Then
+you should position
+your cursor to the place where you want to insert the lines.
+You can then put the lines directly into the file, by hitting
+the PUT LINE key.  Now, the lines have been deleted from one part
+of the file, and inserted into another, or 'MOVED'.
+.sp
+    If you want to duplicate, rather than move some text, you have
+to first identify the text (PICK it and place it into a buffer) and then
+place it where you want it (PUT it).  For example, if you want to
+duplicate the line
+.sp
+	'Computers Are Great.'
+.sp
+You first must position the cursor at the beginning of the line (through
+manual cursor movement or string searches).  Then, you should hit
+<PICK LINE>, which will write the contents of the line into a buffer (without
+deleting the line from the file).  Multiple lines can also be picked by
+entering a numeric argument to the PICK LINE command.
+After you've PICKED the text, you
+have to reposition the cursor at the place you want to duplicate the line.
+Finally, to actually place the text into the file, hit the PUT LINE key,
+this will insert whatever is in the PICK LINE buffer.
+.sp
+    In addition to lines, characters can be PICKED/PUT/DELETED.
+There are five other options to the PICK/PUT/DELETE commands:
+.sp
+.nf
+	PUT/PICK/DELETE  words
+	PUT/PICK/DELETE to END of LINE
+	PUT/PICK/DELETE to Blank Line
+	PUT/PICK/DELETE to next NROFF/TROFF paragraph marking
+	PUT/PICK/DELETE to half-tab stop
+.fi
+.sp
+    If you want to add text to a file, you can either enter the
+Addchar or Insert line mode.  For example, if you want to add an entire
+paragraph, without worrying about the number of lines you are writing,
+you can simply hit <LOPEN>.  Now you're free to add as many lines
+as you wish:  when you hit a carriage return, a new line is inserted into
+the file.  You can then write directly on this new line.  When you're
+finished adding text, hit LOPEN again.	Similarly, to add many characters
+you can hit <COPEN> and then type the characters right in.  These new
+characters
+will be embedded right in the line.
+To exit Addchar mode,
+hit <COPEN> a second time.
+.sp .5i
+    a. Buffers
+.sp 2
+    The editor maintains a set of 26 buffers, 9 of which are reserved
+and shouldn't be used explicitly.  The buffers are named a-z (or A-Z).
+The reserved buffers are:
+.sp
+.lp
+.TS
+center box tab($);
+l c l.
+a$\-$Default for 1LANG
+b$\-$Default for 2LANG
+c$\-$Default for 3LANG
+d$\-$Default for 4LANG
+e$\-$Default for 5LANG
+f$\-$Default for 6LANG
+h$\-$Default for 8LANG
+i$\-$Default for 9LANG
+j$\-$Default for 0LANG
+r$\-$1PICK,1PUT,1DEL (word)
+s$\-$2PICK,2PUT,2DEL (to EOL)
+t$\-$3PICK,3PUT,3DEL (to blank line)
+u$\-$4PICK,4PUT,4DEL (to NROFF/TROFF paragraph)
+v$\-$5PICK,5PUT,5DEL (to half tab)
+w$\-$DO command buffer
+x$\-$Character delete/pick/put buffer
+y$\-$Line delete/pick/put buffer
+z$\-$sink (write only memory)
+.TE
+.sp
+    Whenever a delete or pick operation is done, the text that is
+deleted or picked is saved in a buffer.  Normally this is either buffer
+x or y depending on the command used.  The user may select any of the
+26 buffers by entering the buffer name as part of the command argument.
+A PUT command is used to place the contents of the buffer back in the file.
+.sp
+    The DO command also makes use of buffers to save the command sequence.
+It normally uses buffer w, but can be made to use any of the buffers by
+entering the buffer name as part of the command.
+.bp
+    5. Parameters
+.sp 2
+    The editor has a list of parameters which are associated with
+various argument default values and terminal keywords. Although these
+parameters have default values, they may be manually changed.  Inside
+the BB editor, the SETPARM command changes the value of the
+given parameter.  The argument to this command tells
+which parameter is to be changed.
+Examples of some of the parameters include the number of commands to be
+executed between each autosave, the flag which says whether searches are to
+be fast searches or regular expression
+searches, or the number of windows in which you are working.
+Many of the parameters have default values,
+for instance, the default for the SAVECOUNT parameter, autosave,
+is twenty commands.
+An example of a parameter which many user's find useful to change is
+the INDENT parameter, which causes automatic indentation if the
+parameter is set, the default is off.  This means that when the parameter is
+set
+a RET will seek the first non-blank character in the line.  This can
+be undesirable if you want to add characters at the beginning of a line
+which starts with blanks.  To toggle the current value of INDENT the
+following command would be entered:
+.sp
+.nf
+	<ENTER> '-indent'
+	<SETPARM>
+.fi
+.sp
+Similarly, it is useful to change certain parameters
+when you are working in an NROFF/TROFF (UNIX text processing packages) file,
+like
+the TABIN/TABOUT parameters (TABS do not always cause a problem, many
+user's do not worry about these characters).
+These parameters have to do with the
+interpretation of TAB marks inside the file.  TABIN
+determines whether the characters are left in when entering a file or
+are changed to blanks, and TABOUT determines whether blanks are changed
+to tab characters or not when exiting the file.  The default values are
+for TAB characters to be changed to blanks upon entering the editor
+and for strings of blanks to be changed into TABS when exiting.
+For NROFF/TROFF files, this is not desirable, because those tab characters will be
+interpreted as special characters.  For a file like this you would want
+to change the parameter values to leave any tabs in when entering BB
+and to leave blanks in when exiting the editor.  This would be done
+like this:
+.sp
+.nf
+	<ENTER> '-tabin'
+	<SETPARM>
+
+	and
+
+	<ENTER>  '-tabout'
+	<SETPARM>
+.fi
+This toggles the values of the two flags.  Parameters which are flags are
+changed like that (-<parameter name>) and parameters which have a numeric
+or character value are changed by typing <parameter name> = <value>
+as the argument.
+.sp
+    Another way to change parameters is to display them using the
+SHOW command and then use editor commands to change the values of the
+parameters manually.  One of the differences between this method and the SET
+command is that some of the changes made in by SET remain in effect as
+permanent editor changes.  This is because certain parameters are stored in
+the bCONTROL file, which contains the parameters which have defaults in effect
+when the editor is invoked.  Another advantage of the SHOW command is that
+you can see the current value of all of the parameters.
+.sp
+    Other useful parameters include BUFINFILE and BUFOUTFILE which
+allow you to have the editor buffers saved and restored to/from the
+specified file automatically upon exiting and entering BB. These file
+names also act as defaults for the BUFSAVE and BUFRSTR editor commands.
+The HISTORY parameter specifies the number of commands to save for
+UNDOS (the default value is 20).  Advanced manipulation of parameters
+will be discussed later in this User's Guide.
+.sp
+    The home directory of every user contains a control file
+which contains information about your most recent BB editing session,,
+including the name of the file and the current value of some of the parameters,
+including any changes which were made using the SHOW command.
+This information allows you to invoke the editor
+on that file again by simply typing BB (without specifying the filename).
+In addition, this allows you to
+change parameters in one editing session and have them remain permanently
+set.
+.sp
+    In conclusion, with the information you are currently armed with
+you are set to go out and use the editor.  This manual also contains
+an introduction to advanced editing techniques, a quick reference
+guide to the editor, and a complete reference guide.
+.bp
+B. Time-Saving Devices
+.sp 2
+    There are many fancy things which can be done with the BB editor.
+What is contained here is an introduction to some of those features
+which can make life easier if one chooses to explore the editor, but which
+are not inherently necessary to use the beast.
+.sp 2
+    1. File Manipulation and Windows
+.sp
+    One of the basic tools for editing large files is the ability to
+move around within two or three files either full screen or within
+two windows.  In order to merge two files from within the editor you must first
+pick the second file as the setfile with the FSET command. To copy
+text from the second file into the first, you then
+PICK the lines which you would like to insert into the first file. Then
+switch back to the first file (FSET again) and PUT the lines
+which were picked where you
+want them.  In a similar manner you can jump around within three files
+moving lines around (the delete commands store the information before
+deleting it and can then be PUT somewhere else) and copying lines.  The
+third file is accessed using the FALT command.	FSET and FALT both toggle
+between the current file and the SET or ALT
+file.  Thus, each command is its own inverse, meaning you get back to
+the current file by hitting either FALT or FSET twice.
+.sp
+    An obvious improvement would be to be able to display two files
+at once.  This can be done by setting the WINDOW parameter with either
+the SET  or the SHOW commands.	The parameter defaults to 0 windows,
+meaning that the text is not seen through a window.  It may be
+reset to display two windows.  When this parameter is set to two,
+two files will be displayed. One will be the current file and the
+other can be either the SET file or ALT file.  The only way to switch
+current files is still by using FSET or FALT.  You cannot simply move from
+one file to another by changing the cursor's location.
+For example, if FILEA is
+displayed in the top window and you're currently editing FILEA and
+FILEB is the SET file (it is in the bottom window),
+in order to edit FILEB you must hit FSET;  to
+edit FILEA again, FSET must be hit again.  Any editing which can be done
+in the editor in standard mode, can be done in window mode also.  In
+order to return to the standard mode, you must reset the window parameter
+to 0 windows.
+.bp
+    2. Marking
+.sp 2
+    An alternate way to specify text is to actually mark it.  For
+example, if you want to PICK many characters and you don't want to count
+them (and then enter a numeric argument) you can MARK them and then
+PICK them.  First, position your cursor at the current character,
+then hit the MARK key.	'Marking' will be displayed at the
+bottom of your screen.	Using any movement command (e.g. plus/minus words),
+move the cursor to one
+character past the last character to include.  These characters will
+be displayed in reverse video.	When you've marked the correct text,
+you can exit marking mode by issuing a PICK command (i.e. hit the
+PICK CHAR key).  Thus, those characters which you specified are picked
+and placed into a buffer.
+Marking mode can be used for any of the PICKS or
+DELETES and it is the most human-efficient way to delete characters, text, etc.
+.sp 3
+    3. DO Macros
+.sp 2
+    If you want to make the same change many times, you should
+use the DO command.  The DO command is simply an editor macro.
+.sp
+    First, the change needs to be specified and stored in a buffer
+(in specifying the commands, they are executed also).  Then
+the command series can be executed again by simply hitting the DO key.
+.sp
+    For example, if you want to change every occurrence of 'dog' to  'me',
+you would first goto the top of the file.  Then you're ready to
+start setting up the commands for the change.  First, hit the ENTERDO
+key.  'Compiling Do' will be displayed at the bottom of the screen.
+All following commands (until the completion of the DO) will be stored
+in a buffer.  So, now do a PSEARCH for the string 'dog' by typing
+.sp
+.nf
+	<ENTER> 'dog'
+	<PSEARCH>
+.fi
+.sp
+    Then the cursor will be repositioned at the next occurrence of 'dog'.  You
+can now simply overwrite the 'dog' with 'me' by typing
+.sp
+	'me'
+.sp
+and then delete the next character, by issuing a DELCHAR command.  Thus,
+after the change has been made, the DO should be completed by hitting
+<ENTERDO> again.
+This is how the entire sequence of commands would look to change the
+first occurrence and set up the macro:
+.sp
+.nf
+	<ENTERDO>
+	<ENTER> 'dog'
+	<PSEARCH>
+	 'me'
+	<DELCHAR>
+	<ENTERDO>
+.fi
+.sp
+    To execute this change again, simply hit the DO key, which
+will change the next occurrence of 'dog' to 'me'.  A numeric argument
+can be entered to indicate the number of times to execute this change.
+.sp 3
+    4. Overriding System Defaults
+.sp 2
+    All of the terminal keyboard definitions are done using files of
+command -> key correspondences.  In order to change these definitions you
+must create your own copy of both the /ETC/TERMCAP and /ETC/BINPDEF files.
+BINPDEF describes the relationship between the terminal keys and
+the editor commands and TERMCAP describes the terminal for output
+purposes.  In your own copy the necessary changes can be made to change
+keys around.
+.sp
+    Similarly, if you wish to change the parameters around you
+can use the SHOW command to manually change the parameters and these will
+become a part of bCONTROL.
+Not all of the parameters are contained in bCONTROL, in order to see which
+ones are, simply edit or CAT the file.	If the parameter you wish to
+change permanently is not in bCONTROL then it is necessary to change
+it using the environment parameter, bPARM.  This is done
+by adding a string containing the parameters to the environment
+variable.
+.he''Quick Reference Guide''
+.bp
+IV. Quick Reference Guide
+.sp 2
+    The Quick Reference Guide to the BB Editor contains a one
+line comment for each command.	The commands are roughly divided
+into the categories of Screen Movement, Modification Functions, and
+Others.  The new bb commands are preceded by an asterisk.
+.sp
+   Following the brief comments are more detailed explanations
+of the fundamental aspects of the editor:  command arguments,
+buffers, marking and do commands are discussed here.
+.sp
+.lp
+.TS
+box center tab($);
+cb s s s
+c l l l.
+Commands to Move Around
+_
+$COMMAND$HELP ABBR.$FUNCTION
+_
+$Plus-pages$PPAGE$Move forward 1 or more pages
+$Minus-pages$MPAGE$Move backward 1 or more pages
+$Plus-lines$PLINE$Move forward 1 or more lines
+$Minus-lines$MLINE$Move backward 1 or more lines
+$Goto$GOTO$Goto line or saved position
+$Goto End$GOEND$Goto end of file
+*$Goto Beg.$GOBEG$Goto beginning of file
+$Save pos$SVPOS$Save the current cursor position
+$Plus-search$PSRCH$Search for specific string
+$Minus-search$MSRCH$Search backward for string
+*$Plus-regexp$PRSRCH$Search for regular expression
+*$Minus-regexp$MRSRCH$Search backward for regular expression
+*$Plus-bufsrch$PBSRCH$Search for buffer contents
+*$Minus-bufsrch$MBSRCH$Search backward for buffer contents
+$Tab$OTAB$Move cursor to next tab stop
+*$Back tab$OBTAB$Move cursor back to last tab stop
+$Word-Forward$1TAB$Tab forward one word
+$Word-Backward$1BTAB$Tab backward one word
+*$TabtoEOL$2TAB$Tab forward to EOL
+*$BakToEOL$2BTAB$Tab backward to EOL
+*$TabToBl$3TAB$Tab forward to blank line
+*$BakToBl$3BTAB$Tab backward to blank line
+*$TabPara$4TAB$Tab forward to paragraph command
+*$BackPara$4BTAB$Tab backward to paragraph command
+*$HalfTab$5TAB$Tab forward to next 1/2 tab stop
+*$BackHalfTab$5BTAB$Tab backward to next 1/2 tab stop
+*$Vertical Tab$VTAB$Move cursor to next vertical tab position
+$Slide-left$LSLIDE$Move file left on screen
+$Slide-right$RSLIDE$Move file right on screen
+$Home$HOME$Move cursor to top left
+*$Bottom Home$BHOME$Move cursor to bottom left corner of screen
+$Carriage Return$RET$Move cursor to beginning of next line
+*$Backward Return$BRET$Move cursor to beginning of previous line
+$Line feed$NL$Move cursor to column 1 of next line
+$Up,Down$UP,DOWN,$Move cursor in indicated
+$Left,Right$LEFT,RIGHT$direction
+$Backspace$BS$Move to the left one space
+.TE
+.bp
+.lp
+.TS
+box center tab($);
+cb s s s
+rb lb lb lb
+r l l l.
+Commands for Modifying the File
+_
+$COMMAND$HELP ABBREV.$FUNCTION
+_
+$Insert-spaces$CINS$Insert one or more spaces in line
+$Delete-spaces$CDEL$Delete one or more characters on line
+$Put characters$CPUT$Replace last lines PICKed or DELETEd
+$Pick characters$CPICK$Pick up a sequence of characters
+$Insert-lines$LINS$Insert one or more lines in file
+$Delete-lines$LDEL$Delete one or more lines from file
+$Put-lines$LPUT$Replace last lines PICKed or DELETEd
+$Pick-lines$LPICK$Pick up a sequence of lines
+*$Delete word$1DEL$Delete one or more words from file
+*$Put word$1PUT$Replace last words PICKed or DELETEd
+*$Pick word$1PICK$Pick up a sequence of words
+*$Delete to EOL$2DEL$Delete up to EOL
+*$Put to EOL$2PUT$Replace last lines PICKed or DELETEd
+*$Pick to EOL$2PICK$Pick up a sequence of lines to EOLs.
+*$Delete to bl ln$3DEL$Delete up to a blank line
+*$Put to bl line$3PUT$Replace last lines PICKed or DELETEd
+*$Pick to bl line$3PICK$Pick up lines until a blank line.
+*$Delete to Para$4DEL$Delete lines until a paragraph command
+*$Put to Para$4PUT$Replace last lines PICKed or DELETEd
+*$Pick to Para$4PICK$Pick up lines until a paragraph command
+*$Del to 1/2 tab$5DEL$Delete up to next 1/2 tab stop
+*$Put to 1/2 tab$5PUT$Replace last lines PICKed or DELETEd
+*$Pick to 1/2 tab$5PICK$Pick up chars until next 1/2 tab stop
+$Knockdown$KNOCK$Enter control character in file
+$Add characters$COPEN$Insert arbitrary number of characters
+$Open lines$LOPEN$Insert lines in file
+$Join lines$JOIN$Connect the present and next line
+$Indent$INDENT$Compute proper indentation for current line
+.TE
+.bp
+.lp
+.TS
+box center tab($);
+cb s s s
+rb lb lb lb
+r l l l.
+Miscellaneous Commands
+_
+$COMMAND$HELP ABBREV.$FUNCTION
+_
+*$help$HELP$receive on-line help for a bb command
+$Parameter$PARM$Enter editor parameter
+*$Show$SHOW$Display Parameter settings
+$System Command$SYSTEM$Execute system command
+$Enter Command$COMMAND$Allows user to specify any command
+$$$as a string argument.
+$$$process and return to c-shell.
+$Reset$RESET$Rewrite screen or ignore argument.
+*$Line reset$LRESET$Rewrite current line or ignore argument.
+*$Restart$RSTRT$Restart effectively executes an
+$$$ABORT followed by a BB
+$Set-file$FSET$Change to an old or previous file
+*$Alt-file$FALT$Define and change to an alt or previous file
+$Make-file$FMAKE$Make a new file (uses Set-file)
+*$Next-file$FNEXT$Change to next file on command line
+$Do$DO$Execute a series of commands
+*$Do Set$DOSET$Sets up DO macro
+$Save Position$SAVEPOS$Save position for later GOTO
+$Undo$UNDO$Undo previous command(s)
+$Enter$ENTER$Accept arguments for command
+$Mark$MARK$Set marker for indirect
+$$$arguments (ENTER-cursor
+$$$movement is equivalent).
+$Exit$EXIT$Exit the editor
+$Abort$ABORT$Exit without saving file
+$Crash editing$CRASH$User leaves editor, without making
+$$$permanent changes to file;
+$$$changes made can be
+$$$recovered using brecover.
+$Stop editing$STOP$Stops the editing session,
+$$$it can be recovered with fg
+*$Buffer Save$BSAVE$Save the buffers in specified file
+*$Buffer Restor$BRSTR$Restore the buffers from given file
+*$Recovery$BRECOVER$Recover file from a backup copy
+*$Lang. Spec. Cmd$LANG0-LANG9$Set of language specific commands
+*$Terminals$TERMINALS$File for defining new terminals
+$$$for altering the terminal def
+$$$for a terminal
+*$Environment$ENVIRONMENT$Variables defining BB
+$$$environment
+.TE
+.he$$BB Reference Guide$COMMAND$
+.bp
+V. BB Reference Guide
+.sp
+    A. When there's no input sequence and using control characters
+.sp
+	1. COMMAND command
+.sp 2
+.bd
+\f3COMMAND NAME:\fP COMMAND
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command allows the user to execute any command
+by typing in the command name (followed optionally by
+a space and any arguments) as a string argument to this command.  It
+acts as if the command and argument were entered directly through
+terminal keys.	This command is particularly useful for commands which
+are not provided for on the keyboard.  Note the commands can be entered
+in either upper or lower case.
+.sp
+For example, to execute the command BHOME,
+.nf
+	<ENTER>
+	'BHOME'
+	<COMMAND>
+.fi
+.sp
+which will execute the BHOME command.
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP
+.in 8
+The command to execute followed optionally by a space and any arguments
+to the command.
+.in 0
+.bd
+.sp
+\f3DEFAULTS:\fP
+.bd
+.sp
+\f3RELATED PARAMETERS:\fP
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$KNOCK$
+.bp
+	2. Entering control characters
+.sp 2
+.bd
+\f3COMMAND NAME:\fP KNOCK
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+To use a control character as a literal, type KNOCK
+followed by the character (i.e. KNOCK 'a' will
+put a <control a> in your file).  Similarly, KNOCK '<control>a' and KNOCK 'A'
+also work.  The special character DELETE can be gotten by doing a KNOCK '?'.
+The control character will be
+represented in reverse video (this feature is terminal dependent).
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP
+.bd
+.sp
+\f3DEFAULTS:\fP
+.bd
+.sp
+\f3RELATED PARAMETERS:\fP
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$PLINE$
+.bp
+B. Movement Commands
+.sp
+   1. Screen Movement
+.sp
+      a. Lines
+.bd
+.sp
+\f3COMMAND NAME:\fP PLINE - plus lines
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command moves the current screen forward in the file
+by n lines, where n is a numeric argument.  Nothing will happen
+if you are currently at end of file.
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of lines to move.
+.in 0
+.bd
+.sp
+\f3DEFAULTS:\fP    The default is page length/3 (approximately 7 line).
+.bd
+.sp
+\f3RELATED PARAMETERS:\fP
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$MLINE$
+.bp
+.bd
+.sp
+\f3COMMAND NAME:\fP MLINE - minus lines
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command moves the current screen backward in the
+file by n lines.
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of lines to move.
+.in 0
+.bd
+.sp
+\f3DEFAULTS:\fP
+.in 8
+The default number of lines is page length/3 (approximately 7 lines).
+.in 0
+.bd
+.sp
+\f3RELATED PARAMETERS:\fP
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$PPAGE$
+.bp
+	b. Pages
+.sp 2
+.bd
+\f3COMMAND NAME:\fP PPAGE - plus page(s)
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command moves the window forward in the file by a
+specified number of pages.
+.sp
+When executed immediately after ENTER, marking mode is entered.
+.in 0
+.sp 2
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating how many pages to move.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP     The default number of pages is 1.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$MPAGE$
+.bp
+.bd
+\f3COMMAND NAME:\fP MPAGE - minus page(s)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command moves the window backward in the file by a specified
+number of pages.
+.sp
+When executed immediately after ENTER, marking mode is entered.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+.sp
+The number of pages to move backwards.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.in 8
+The default is 1 page.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP MINUSTOP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$RSLIDE$
+.bp
+	c. Slide Screen
+.sp 2
+.bd
+\f3COMMAND NAME:\fP RSLIDE - right slide
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command moves the window to the right n characters, allowing the viewer to
+see what is to the left of the screen.
+To set the number of characters to shift, enter a numeric argument
+prior to the command.  The screen will automatically adjust
+when the user
+searches for a string which is off the screen.	To return the
+screen to its natural position, hit carriage return or line
+feed.
+.sp
+When executed immediately after an ENTER, marking mode is entered.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  The number of characters to slide over.
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default number of characters is 16.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$LSLIDE$
+.bp
+.bd
+\f3COMMAND NAME:\fP LSLIDE - left slide
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command moves the window to the left n characters, allowing the viewer to see
+what is to the right of the screen.  The screen will
+automatically adjust when the user searches for a string which
+is off the current screen.  To return the screen to its
+natural position, hit carriage return or line feed.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of characters to
+slide the screen.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP    The default number of characters is 16.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$GOTO$
+.bp
+	d. GOTO
+.sp 2
+.bd
+\f3COMMAND NAME:\fP GOTO
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command allows the user to go to a specific line in the
+current file.	The lines are numbered, beginning with 1.  The
+user can specify the line to GOTO through a numeric argument.
+Otherwise,
+the user can give a letter as an argument.  (Through the SAVEPOS
+command, the user can save the line position of the current
+character.
+If SAVEPOS is given a letter, the saved position is associated with
+that letter. Thus, twenty-six such positions can be saved.
+Otherwise, if no argument is given, the line position
+is saved on a stack).	If a letter argument is given,
+the current line position is reset to the start of the saved
+line. If just a GOTO command is given, the current position becomes
+the one saved on the top of the stack. If the stack is empty,
+or a GOTO command is executed without first specifying any arguments
+or executing a SAVEPOS command, the current line becomes the first
+line in the file.
+.sp
+For example, if the user wanted to GOTO line 4
+.sp
+.nf
+		<ENTER> '4'
+		GOTO
+.fi
+.sp
+If he wanted to GOTO the last position saved,
+.sp
+.nf
+		GOTO
+.fi
+.sp
+If he wanted to GOTO the position associated with 'z'
+through the SAVEPOS command.
+.sp
+.nf
+		<ENTER> 'z'
+		GOTO
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.in 8
+    A numeric argument indicating where to GOTO or a letter argument
+indicating the buffer containing the saved line position to GOTO.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP The default is GOTO line 1.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$ GOBEG$
+.bp
+.bd
+\f3COMMAND NAME:\fP  GOBEG - goto the top of the file
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command forces the cursor to the beginning of the nth line
+from the top.
+Note also that this is a terminal specific command.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the  number of lines from
+the top to GOTO.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP    GOTO the first line in the file (0 from the top).
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$GOEND$
+.bp
+.bd
+\f3COMMAND NAME:\fP GOEND - goto the end of the file
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command, which can be entered with a numeric argument,
+causes the current line to be the Nth line from the bottom
+of the file.
+.sp
+For example, to GOTO the 6th line from the bottom
+.sp
+.nf
+		<ENTER> '6'
+		<GOEND>
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.in 8
+A numeric argument indicating the line (from the bottom of the
+file) number, which will be the current line.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default is GO TO the last line in the file.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$SAVEPOS$
+.bp
+	e. Save Position
+.sp 2
+.bd
+\f3COMMAND NAME:\fP SAVEPOS - save current position
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command saves the line position of the current character.
+If a letter (upper or lower case) is entered, the current line position
+is associated with that letter(buffer).  For example, if your cursor is
+pointing to a character and you  enter 's' and then SAVEPOS, the
+current position (line) will be saved as relating to the 's' buffer.
+Thus, twenty-six such positions (line)
+can be saved.	If no argument is given, the current line
+position is saved on a stack.
+(this command can be used in conjunction with GOTO).
+.sp
+For example, the user may want to save the position of 'z'.  Thus,
+he would position his cursor at the occurrence of z to save,
+then ENTER 'a' (could be any letter),
+and finally do a SAVEPOS.  This would save the
+current line position in the 'a' buffer.
+.sp
+.nf
+		position cursor at 'z'
+		<ENTER> 'a'
+		SAVEPOS
+.fi
+.sp
+.in 0
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+An alphabetic character (a..z or A..Z).  The line position of this
+current character is saved in one of the twenty-six buffers associated
+with the alphabetic argument.
+.in 0
+.sp
+.bd
+\f3DEFAULT:\fP	   Saves position on a stack, rather than in a buffer.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$PSEARCH$
+.bp
+	f. Plus search
+.sp
+.bd
+\f3COMMAND NAME:\fP  PSEARCH - plus search
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command searches for a string in the remaining portion of the
+file.
+The string to be searched for should be entered as an argument.
+Repeated
+occurrences of the string can easily be located by repeatedly hitting
+the
+PSRCH key (the string need not be re-entered).
+.sp
+When executed immediately after an ENTER, marking mode is entered.
+.sp
+For example, if the user wanted to find the next occurrence of 'for'
+in the file, he would first enter 'for', and then a PSRCH
+.sp
+.nf
+		<ENTER> 'for'
+		PSEARCH
+.fi
+.sp
+To do a regular expression search for all words beginning with 'f',
+<ENTER> 'f*' would be entered (and the parameter SEARCH would need to
+be set to 1).  See UNIX Manual for further details on regular
+expression syntax.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  The string to search for.
+.sp
+.bd
+\f3DEFAULT:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.in 8
+SEARCH: 0 - a fast search is done on the string
+.br
+1 - a search is done on a UNIX regular expression
+.in 0
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$MSEARCH$
+.bp
+	g. Msearch
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  MSRCH - minus search
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command searches for a string in the preceding portion of the
+file.	The string to be searched for is entered as an argument.
+Repeated
+occurrences of the string can be easily located by repeatedly hitting
+the MSEARCH key (the string need not be re-entered).
+.sp
+When executed immediately after an ENTER, marking mode is entered.
+.sp
+For example, if the user wanted to find the string ENTER in the
+preceding text, he would enter the string 'ENTER' and then do
+a MSEARCH
+.sp
+.nf
+		<ENTER> 'ENTER'
+		MSEARCH
+.fi
+.sp
+To do a regular expression search for all words beginning with
+EN, the string would be 'EN*'.  See UNIX Manual for further
+details on regular expression syntax.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP   The string to search for.
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.in 8
+SEARCH: 0 - a fast search is done on the string
+.br
+1 - a search is done on a UNIX regular expression
+.in 0
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$PBSEARCH$
+.bp
+	h. Buffer Search
+.sp 2
+.bd
+\f3COMMAND NAME:\fP PBSEARCH - plus buffer search
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command takes a buffer name as an argument and performs a
+fast search through the remaining text of the file for the contents
+of the buffer.	The current position is set to the first occurrence
+of the buffer text.  For repeated occurrences of the buffer text, the
+buffer name has to be re-entered.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+An alphabetic character indicating the buffer to search for.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$MBSEARCH$
+.bp
+.bd
+\f3COMMAND NAME:\fP  MBSEARCH - minus buffer search
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command takes a buffer name as an argument and searches through
+the preceding text of the file for the contents of the buffer.	The
+current position is set to the first occurrence of the buffer text.
+For repeated occurrences of the buffer text, the buffer name has
+to be re-entered.
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP
+.in 8
+An alphabetic character indicating which buffer text to
+search for.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$RIGHT$
+.bp
+    2. Cursor Movement
+.sp
+	a. Right
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  RIGHT
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This key moves the cursor one space to the right in the window.   To go past
+the physical boundaries of the screen, use LSLIDE.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP Movewindow
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$LEFT$
+.bp
+	b. Left
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  LEFT
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This key moves the cursor to the left.	To go past the
+physical boundaries of the screen, use RSLIDE.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP Movewindow
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$UP$
+.bp
+	c. Up
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  UP
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This key moves the cursor up in the window.  To go beyond the
+physical boundaries of the screen, use MPAGE or MLINE
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP Movewindow
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$DOWN$
+.bp
+	d. Down
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  DOWN
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This key moves the cursor down in the window.	To go beyond the
+physical
+boundaries of the screen, use PPAGE or PLINE.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP Movewindow
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$HOME$
+.bp
+	e. Home
+.sp 2
+.bd
+\f3COMMAND NAME:\fP HOME
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command positions the cursor at the top left of the screen.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$BHOME$
+.bp
+.bd
+\f3COMMAND NAME:\fP BHOME
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command positions the cursor to bottom
+home, the bottom left hand corner of the screen.
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP
+.bd
+.sp
+\f3DEFAULTS:\fP
+.bd
+.sp
+\f3RELATED PARAMETERS:\fP
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$RET$
+.bp
+	f. Return
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  RET
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This key forces the  cursor to the beginning of the next line.	When
+autoindent is on, a carriage return forces the cursor to the first
+proper indentation location.  Thus, a carriage return readjusts the window,
+if necessary, to its natural position.	If INSERT mode is on then a RET
+causes a new line to be inserted so a constant stream of typing can be
+maintained.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP   Indent
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$BRET$
+.bp
+.bd
+\f3COMMAND NAME:\fP BRET
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command executes a backward carriage return,
+placing the cursor at column 1 of the immediately previous
+line.
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP
+.bd
+.sp
+\f3DEFAULTS:\fP
+.bd
+.sp
+\f3RELATED PARAMETERS:\fP
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$NL$
+.bp
+.bd
+\f3COMMAND NAME:\fP  Line feed
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This key forces the cursor to column 1 of the immediate next line.
+Thus, a line feed adjusts the window, if necessary, to its original
+position.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+.he$$BB Reference Guide$0TAB $
+.bp
+	g. Tabs
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  0TAB (forward tab)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command moves the cursor n characters to the right.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+Moves to the next standard UNIX tab stop
+( a multiple of 8 )
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$0BTAB $
+.bp
+.bd
+\f3COMMAND NAME:\fP  0BTAB (backward word tab)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+this command moves the cursor the tab stop immediately preceding
+the current position.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP Moves to the previous UNIX tab stop ( a multiple of 8 )
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$1TAB $
+.bp
+.bd
+\f3COMMAND NAME:\fP  1TAB (forward word tab)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command forces the cursor to the next word.
+A word is defined to be a non-blank character string delimited by
+blanks.  If there are no more words on the current line then the
+next word in the file will be found.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.in 8
+If the cursor
+is currently at one blank before the start of a word, the command
+will move the cursor to the beginning of the word FOLLOWING the
+immediate next word.
+.in 0
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$1BTAB $
+.bp
+.bd
+\f3COMMAND NAME:\fP  1BTAB (backward tab)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command  forces the cursor to the beginning of the immediate
+previous word.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$2TAB $
+.bp
+.bd
+\f3COMMAND NAME:\fP  2TAB (forward tab to EOL)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command forces the cursor to the end of the next line.  If EOL is past
+the physical boundary of the screen, the screen automatically adjusts
+to
+display EOL on the screen. The default tab  (tab to EOL) can be changed
+by changing the parameter string L1.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+.bd
+\f3RELATED PARAMETERS:\fP   L1
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$2BTAB $
+.bp
+.bd
+\f3COMMAND NAME:\fP  2BTAB (backward tab to EOL)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command forces the cursor to the end of the previous line.
+If EOL is past the physical boundary of the screen, the screen
+automatically adjusts to display the EOL.  The default tab (tab to
+EOL) can be changed by changing the parameter string L1.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.bd
+.sp
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP   L1
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$3TAB $
+.bp
+.bd
+\f3COMMAND NAME:\fP  3TAB (tab to next blank line)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command forces the cursor to the beginning of the next blank line.
+The default tab (tab to blank line) can be changed by changing the
+parameter string, L2.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP L2
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$3BTAB $
+.bp
+.bd
+\f3COMMAND NAME:\fP  3BTAB (tab back to prev blank line)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command forces the cursor to the beginning of the last blank line.
+The default tab (tab to blank line) can be changed by changing the
+parameter string, L2.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP TABIN, TABOUT, L2
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$4TAB $
+.bp
+.bd
+\f3COMMAND NAME:\fP  4TAB (tab to next NROFF/TROFF paragraph command)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command forces the cursor to the	beginning of the first
+line containing a NROFF/TROFF paragraph command. The default
+tab can be changed by changing the parameter string l3.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP L3
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.in 8
+If there are no paragraph commands in the text, a bell is sounded.
+.in 0
+.he$$BB Reference Guide$4BTAB $
+.bp
+.bd
+\f3COMMAND NAME:\fP  4BTAB (tab to last NROFF/TROFF paragraph command)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command forces the cursor to the beginning of the last line
+containing an NROFF/TROFF paragraph command.  The default tab
+(tab to NROFF/TROFF paragraph) can be changed by changing the
+parameter string, L3.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP L3
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$5TAB $
+.bp
+.bd
+\f3COMMAND NAME:\fP  5TAB (forward half tab)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command moves the cursor 4 characters to the right.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+Moves to the next standard UNIX  half tab stop
+( a multiple of 4 )
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$5BTAB $
+.bp
+.bd
+\f3COMMAND NAME:\fP  5BTAB (backward half word tab)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+this command moves the cursor the half tab stop immediately preceding
+the current position.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+Moves to the next UNIX half tab stop ( a multiple of 4 )
+.sp
+.in 0
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$VTAB$
+.bp
+.bd
+\f3COMMAND NAME:\fP VTAB
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command acts as a vertical tab, repositioning
+the cursor n lines further in the file.
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP
+.bd
+.sp
+\f3DEFAULTS:\fP
+.in 8
+The default number of lines is page length/3 (approximately 7).
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$BACKSPACE$
+.bp
+.in 0
+	h. Backspace
+.sp 2
+.bd
+\f3COMMAND NAME:\fP BACKSPACE
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+The BACKSPACE key moves the current cursor to the left
+without deleting characters.  To simply delete characters,
+refer to the DELCHAR command.  While in COPEN mode, however,
+the BACKSPACE key does delete characters.
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP
+.bd
+.sp
+\f3DEFAULTS:\fP
+.bd
+.sp
+\f3RELATED PARAMETERS:\fP BACKSPACE  (makes backspace an eraser)
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$CDEL$
+.bp
+C. Modification Functions
+.sp
+    1. Buffered Commands
+.sp
+	a. Deletes
+.sp 2
+.bd
+\f3COMMAND NAME:\fP CDEL  - character delete
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command deletes n characters, beginning with the current one.
+After all characters in a line are deleted, the cursor remains in
+column 1, i.e. CDEL does not back up to the previous line.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+Numeric argument indicating the number of characters to delete.
+An alphabetic argument indicating the buffer to put the
+characters into.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+Delete 1 character.  The default buffer is X.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$LDEL$
+.bp
+.bd
+\f3COMMAND NAME:\fP  LDEL - line delete
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command deletes n lines of text, beginning with the current
+character and continuing through to the next line feed or carriage
+return.  The next line is thus concatenated onto the remaining portion
+of the present line.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of lines to delete.
+An alphabetic argument indicating the buffer to put the
+text into.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP Delete 1 line.	The default buffer is Y.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$1DEL $
+.bp
+.bd
+\f3COMMAND NAME:\fP  1DEL (Delete word)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command deletes n words and saves them in a buffer.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of words to delete.
+An alphabetic argument indicating the buffer to place
+the word(s) in.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP Delete 1 word.	The default buffer is R.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$2DEL $
+.bp
+\f3COMMAND NAME:\fP  2DEL (delete to EOL)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command deletes n lines, placing them in a buffer, beginning with
+the current character
+through the end of the line.  The carriage return or line feed is
+NOT deleted, and thus the next line is not affected.  The default
+tab (to EOL) can be changed by changing the parameter string L1.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of lines to delete.
+An alphabetic argument indicating the buffer to place the
+text into.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP Delete 1 line.	The default buffer is S.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.in 8
+L1 - a regular expression search string.
+.in 0
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$3DEL $
+.bp
+.bd
+\f3COMMAND NAME:\fP  3DEL (Delete to next blank line)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command deletes text, placing it in a buffer, beginning with the
+current character
+and continuing through until the next blank line.  The default
+tab (to blank line) can be changed by changing the parameter
+L2.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating how many sets (lines followed
+by blank lines) to delete.
+An alphabetic argument indicating which buffer to place the
+text in.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+Delete 1 set of lines followed by a blank line.  The default
+buffer is T.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.in 8
+L3 - a regular expression search string.
+.in 0
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$4DEL $
+.bp
+.bd
+\f3COMMAND NAME:\fP 4DEL (delete to next NROFF/TROFF paragraph command).
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command deletes text, beginning with the current character
+and continuing through until the next NROFF/TROFF paragraph command.
+If no paragraph commands are present, the rest of the file will be
+deleted.  The default tab (to paragraph) can be changed by changing
+the parameter, L3.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating how many sets (of lines followed
+by a NROFF/TROFF command) are to be deleted.
+An alphabetic argument indicating the buffer to place the text
+into.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP Delete 1 set of lines.	The default buffer is U.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP L3 - a regular expression search string.
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$5DEL $
+.bp
+.bd
+\f3COMMAND NAME:\fP 5DEL (delete to next 1/2 tab stop).
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command deletes text, beginning with the current character
+and continuing through until the next half tab stop.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP   The default buffer is V.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$CPICK$
+.bp
+	b. Picking
+.sp 2
+.bd
+\f3COMMAND NAME:\fP CPICK
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command picks n characters, beginning with the current
+one and places them in a buffer. In marking mode, the characters
+through the one preceding
+the  final cursor position, will be picked.  Also, characters
+can be picked by simple cursor positioning or by entering a numeric
+argument.  This command can be used in conjunction with PUTS to move
+text around.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of characters to pick.
+An alphabetic argument indicating the buffer to place the text into.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is X.  DEFAULTS number of characters is 1.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$LPICK$
+.bp
+.bd
+\f3COMMAND NAME:\fP  LPICK
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command picks a line either by simple cursor positioning,
+by entering a numeric argument, or by marking the lines.  The lines
+are stored
+in a buffer.  This command can be used in conjunction with PUTS or
+DELS.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of lines to pick.
+An alphabetic character indicating which buffer to place the
+text into.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is Y.  The default number of lines to pick
+is 1.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$1PICK $
+.bp
+.bd
+\f3COMMAND NAME:\fP 1PICK (pick word)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command picks n words and stores them in a buffer.  The
+words can be chosen through marking mode, by entering a numeric
+argument, or by simple cursor positioning.  In marking mode,
+whatever is marked is PICKED.  By positioning the cursor at the
+word to pick, the next n words are picked.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of words to pick.
+An alphabetic argument indicating the buffer to store the
+word(s) into.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is R.  The default number of words to pick is 1.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$2PICK $
+.bp
+.bd
+\f3COMMAND NAME:\fP  2PICK (pick to EOL)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command picks n lines of text, storing them in a buffer.
+Picking can be done either through marking mode,
+by entering a numeric argument, or by cursor positioning.
+In marking mode, the entire line, not just the beginning, must
+be marked.  Otherwise, you can position the cursor at the beginning
+of the line to pick, and the next n lines (or text up to n EOL
+characters) will be picked.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of lines to pick.
+An alphabetic argument indicating the buffer to put the text
+into.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is S.  The default number of EOL characters to.
+pick is 1.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$3PICK $
+.bp
+.bd
+\f3COMMAND NAME:\fP  3PICK (pick to blank line)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command picks n sets of lines, which are followed by a blank
+line, storing them in a buffer.  The lines can be picked  by
+entering a numeric argument, simple cursor positioning or through
+marking mode (in marking mode, the entire set of lines before the
+blank line have to be marked).
+.sp
+This command is useful for choosing text to delete or put.  If the
+user wanted to choose n lines (preceding a blank line), he could
+position the cursor at the beginning of the first line, or mark
+the entire text to be chosen.
+.sp
+.nf
+	    position cursor
+	    <ENTER> n	(number of sets to choose)
+	    3PICK	(pick to blank line)
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating how many sets of lines to pick..
+An alphabetic argument indicating the buffer to store the
+lines into.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is T.  The default number of sets to pick is 1.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$4PICK $
+.bp
+.bd
+\f3COMMAND NAME:\fP  4PICK
+.in 8
+(pick the lines preceding the next NROFF/TROFF paragraph.
+command).
+.in 0
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command picks text, beginning with the current character
+and continuing through until the next NROFF/TROFF paragraph command.
+If no paragraph commands are present, the rest of the file will be
+picked.  The default tab (to paragraph) can be changed by changing
+the parameter, L3.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating how many sets (of lines followed
+by a NROFF/TROFF command) are to be picked.
+An alphabetic argument indicating the buffer to place the text
+into.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP Pick 1 set of lines.  The default buffer is U.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP L3 - a regular expression search string.
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$5PICK $
+.bp
+.bd
+\f3COMMAND NAME:\fP  5PICK (pick to half tab stop)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+.sp
+This command picks text, beginning with the current character
+and continuing through until the next half tab stop.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+An alphabetic argument indicating the buffer to place the text
+into.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP  The default buffer is V.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$CPUT$
+.bp
+	c. Puts
+.sp
+.bd
+\f3COMMAND NAME:\fP  CPUT - put character
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command places the contents of a specified or implied buffer
+into the current position in the file, for a specified number of
+times.	This command should be used in conjunction with CPICK.
+.sp
+A typical usage of this command would be duplicating text.  For
+example,
+if a user wants to duplicate 'DECLARE', he would first do a CPICK
+on DECLARE in the text, and then do a CPUT where he wanted to PUT
+'DECLARE.'
+.sp
+.nf
+	      position cursor to  'DECLARE'
+	      <ENTER> '7'
+	      CPICK
+	      position cursor to where you want to PUT
+	      CPUT
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of times to PUT the.
+characters in the file.
+An alphabetic argument indicating the buffer to retrieve the
+characters from.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is X. PUT characters in 1 time.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$LPUT$
+.bp
+.bd
+\f3COMMAND NAME:\fP  LPUT
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command places the contents of a specified or implied buffer, n
+times into the current position in the file.
+.sp
+This command is useful for duplicating text.  For example, if a user
+wanted to duplicate 3 lines, he would first pick the lines, using
+LPICK, and then PUT the lines into the file at the proper position.
+.sp
+.nf
+		position cursor to beginning of first line to PICK
+		<ENTER> '3'
+		LPICK
+		position cursor where you want to PUT the 3 lines
+		LPUT
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+The number of times to PUT the lines into the file..
+An alphabetic argument indicating which buffer to retrieve the
+text from.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is Y.  The default number of times to PUT is 1..
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$1PUT $
+.bp
+.bd
+\f3COMMAND NAME:\fP   1PUT (put a word)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command puts the contents of a specified or implied buffer n
+times into the current position of the file.  This command is used
+in conjunction with the PICK and DELETE commands.
+.sp
+This command is useful for duplicating text.  For example, if the
+user wants to duplicate the text 'Dear Sir', he would first
+PICK the words, position his cursor to the place of insertion,
+and then PUT the words.
+.sp
+.nf
+		position cursor to 'Dear Sir'
+		<ENTER> '2'
+		PICKWORD
+		position cursor to place of insertion
+		PUTWORD
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of times to PUT the buffer
+contents.
+An alphabetic argument indicating the buffer from which to
+retrieve the text.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is R.  The default number of times to PUT is 1.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$2PUT $
+.bp
+.bd
+\f3COMMAND NAME:\fP  2PUT (Put to EOL)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command puts the contents of a specified or implied buffer n
+times into the current position of the file.  This command is used
+in conjunction with the PICK and DELETE commands.
+.sp
+This command is useful in duplicating text. For example, if the
+user wants to copy text up to the EOL mark, he would first position
+his cursor at the text to copy, then PICKTOEOL the lines, and finally
+PUTTOEOL the buffer contents.
+.sp
+.nf
+		position cursor to text to copy
+		<ENTER> n
+		PICKTOEOL
+		position cursor to place of insertion
+		PUTTOEOL
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number of times to PUT the buffer
+contents.
+An alphabetic argument	indicating the buffer from which to
+retrieve the text.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is S.  The default number
+of times to PUT is 1.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$3PUT $
+.bp
+.bd
+\f3COMMAND NAME:\fP  3PUT (Put to blank line)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command puts the contents of a specified or implied buffer n
+times into the current position of the file.  This command is used
+in conjunction with PICKS and DELS.
+.sp
+This command is useful for duplicating text.  For example, if the user
+wants to
+duplicate n lines, up to the next blank line, he first picks
+the lines with the PICKLINE command, then positions his cursor to
+where he wants to PUT, and finally does a PUTLINE to put the lines
+into his file.
+.sp
+.nf
+		position cursor to lines to duplicate
+		<ENTER> n
+		PICKTOBL
+		position cursor to place to PUT
+		PUTTOBL
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating the number
+to put the buffer contents.
+An alphabetic argument indicating the buffer from which
+to retrieve the text.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is T.  The default number of times to PUT is 1.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$4PUT $
+.bp
+.bd
+\f3COMMAND NAME:\fP  4PUT (Put to NROFF/TROFF paragraph marking)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command puts the contents of a specified or implied buffer n times
+into the current position of the file.	This command is used in
+conjunction with PICKS and DELS.
+.sp
+This command is useful in duplicating text.  For example, if the
+user wants to PUT lines, up to the next paragraph command, he
+would first position his cursor at the lines to duplicate, then
+do a PICKPARA, and finally a PUTPARA.
+.sp
+.nf
+		position cursor to lines to duplicate
+		<ENTER> n
+		PICKTOPARAGRAPH
+		position cursor to where to PUT
+		PUTTOPARAGRAPH
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating how many times to PUT the buffer.
+An alphabetic argument indicating the buffer from which to
+retrieve the text.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is U.  The default number of PUTS is 1.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$5PUT $
+.bp
+.bd
+\f3COMMAND NAME:\fP  5PUT (Put to next half tab stop)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command puts the contents of a specified or implied buffer n times
+into the current position of the file.	This command is used in
+conjunction with PICKS and DELS.
+.sp
+This command is useful in duplicating text.  For example, if the
+user wants to PUT lines, up to the next half tab stop, he
+would first position his cursor at the lines to duplicate, then
+do a PICKHTAB, and finally a PUTHTAB.
+.sp
+.nf
+		position cursor to chars to duplicate
+		<ENTER> n
+		PICKTOHALFTAB
+		position cursor to where to PUT
+		PUTTOHALFTAB
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating how many times to PUT the buffer.
+An alphabetic argument indicating the buffer from which to
+retrieve the text.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default buffer is V.  The default number of PUTS is 1.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$BUFFERS$
+.bp
+.bd
+\f3COMMAND NAME:\fP  BUFFERS
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+Twenty-six buffers are available (a..z,A..Z) for use with the PICK/
+DELETE/PUT and DO commands.  The default buffers for commands:
+.sp 2
+.lp
+.TS
+center box tab($);
+l c l.
+a$\-$Default for 1LANG
+b$\-$Default for 2LANG
+c$\-$Default for 3LANG
+d$\-$Default for 4LANG
+e$\-$Default for 5LANG
+f$\-$Default for 6LANG
+h$\-$Default for 8LANG
+i$\-$Default for 9LANG
+j$\-$Default for 0LANG
+r$\-$1PICK,1PUT,1DEL (word)
+s$\-$2PICK,2PUT,2DEL (to EOL)
+t$\-$3PICK,3PUT,3DEL (to blank line)
+u$\-$4PICK,4PUT,4DEL (to NROFF/TROFF paragraph)
+v$\-$5PICK,5PUT,5DEL (to half tab)
+w$\-$DO command buffer
+x$\-$Character delete/pick/put buffer
+y$\-$Line delete/pick/put buffer
+z$\-$sink (write only memory)
+.TE
+.sp 2
+A different buffer can be used by entering arguments to these commands.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$CINS $
+.bp
+    2. Insertion
+.sp
+	a. Blanks
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  CINS (Character Insert)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command inserts n blanks into the file, at the current position.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating how many blanks to insert.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP   Insert 1 blank.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$LINS $
+.bp
+.bd
+\f3COMMAND NAME:\fP  LINS (Line insert)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command inserts n blank lines into the file, at the current
+position.
+Thus, a line feed is embedded preceding the current character.
+This command is useful for splitting a line and inserting into the
+middle of it.  For example, positioning the cursor at the p (in the
+above line) and then doing a LINS would place plitting... on the
+next line.
+.sp
+.in 0
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric argument indicating how many lines to insert.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP   Insert 1 line.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$COPEN $
+.bp
+	b. Characters
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  COPEN (Add characters)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command allows the user to add characters to the file, beginning
+at the current position.  The backspace and left cursor both serve as
+character erasers.  Use of the right, up and down cursor will cause this mode to
+be exited.
+This command is useful for continuously inserting characters into
+a file.  When in COPEN mode, 'Add-Char' is displayed on the bottom
+of the screen.	To exit, hit return or a second COPEN.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$LOPEN $
+.bp
+	c. Lines
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  LOPEN (Add lines)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command allows the user to insert lines into the file,
+preceding the current character.  When a carriage return in entered,
+a new line is inserted.  Thus, arbitrary blocks of text can be entered
+by continuous typing.	The mode is exited by entering LOPEN a second
+time.
+When in LOPEN mode, an 'Insert' is displayed at the bottom of the
+screen.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$JOIN$
+.bp
+    3. Others
+.sp
+	a. Join
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  JOIN
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command concatenates n lines together, placing one blank between
+the two
+to replace a line break or indentation.  Join works correctly in
+stream mode.  Thus, lines can be formatted so that each line is
+as long as possible (without exceeding the window size).
+.sp
+For example, if the user wanted to join line fragments, he could
+enter JOIN to connect them.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+A numeric  argument indicating the number of lines to join.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP   Join 2 lines (the current and next)
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$RESET$
+.bp
+	b. Resets
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  RESET
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command repaints the screen one time or cancels a command
+argument.
+If given without an argument, RESET causes the whole screen to be rewritten.
+If given within a command argument, it causes the argument to be ignored.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP    Rewrite the whole screen
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$LRESET $
+.bp
+.bd
+\f3COMMAND NAME:\fP  LRESET (Line reset)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command causes the current line to be repainted or the
+entered argument to be canceled.
+If given without an argument, LRESET causes the current line to be rewritten.
+If given within a command argument, it causes the argument to be ignored.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP   Rewrite the current line.
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$UNDO $
+.bp
+.bd
+\f3COMMAND NAME:\fP  UNDO (Undo last command)
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command will undo the previous command.  The HISTORY parameter
+specifies the number of commands which are saved so
+that they may be undone.  The default for the HISTORY parameter is 20.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+The number of commands to undo.
+.in 0
+.bd
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The previous command is undone.
+.in 0
+.bd
+.sp
+\f3RELATED PARAMETERS:\fP
+.in 8
+HISTORY
+.in 0
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$INDENT$
+.bp
+	d. Indent
+.sp 2
+.bd
+\f3COMMAND NAME:\fP INDENT
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command takes the current line and computes its indentation
+using the indentation algorithm for the current language.
+It then repositions the line accordingly.  The cursor is left
+at the first non-blank of the line.  This command can be used
+for formatting blocks of lines.  It takes the number of successive
+lines to indent as its argument, and will indent all lines in a marked
+block.	This is particularly useful for languages which rely heavily
+on indentation for structure, such as LISP or C.
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP  The number of lines to format
+.bd
+.sp
+\f3DEFAULTS:\fP  1 line is indented
+.bd
+.sp
+\f3RELATED PARAMETERS:\fP
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$PARM$
+.bp
+D. Parameters
+.sp
+.bd
+\f3COMMAND NAME:\fP  PARM
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command is used to set parameter values.  To toggle a parameter
+flag this command takes an argument of the form -<name>, to change
+the value of a parameter which has a numeric or string type the
+argument would be of the form  <name>=<value>.	No embedded spaces
+are allowed.
+.sp
+Parameters can be set from the command line, from the PARM command,
+from the previous invocation of the editor, and from the environment
+parameter bPARM.  They can also be specified along with the argument
+string for the FSET, FALT, and FMAKE commands.
+.sp
+An example would be if a user who wanted to change the 'savecount'
+option, the autosave, to a number other than 20.  To do this the
+command would be:
+.sp
+.nf
+		<enter>savecount=0 PARM
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+The name and value of the parameter to change.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP     none.
+.bd
+.sp
+\f3PARAMETERS:\fP
+.sp 2
+.sz 8
+.lp
+.TS
+box center tab($);
+lb lb lb lb lb
+l l l l l.
+NAME$ABBREV$TYPE$DEFAULT$DESCRIPTION
+_
+autolang$autol$FLAG$TRUE$Select language by file
+$$$$extension
+$$$$(for example .c,.p,.l ...)
+backspace$backs$FLAG$FALSE$Backspace erases if set
+$$$$otherwise it acts as <-
+backup$b$NUMBER$1$Number of backup versions to save
+bells$bell$NUMBER$2$Number of bells on error messages
+brief$br$FLAG$1$Selective slow display
+$$$$if set the baud rate of the terminal
+$$$$is checked and if it is 300 baud
+$$$$the a window length of three is
+$$$$used, otherwise a full screen
+$$$$window is used.  If it is not set
+$$$$then a full screen window is always
+$$$$used
+bufinfile$bufi$STRING$$Initial buffer contents file name
+$$$$If a file exists, the buffer
+$$$$contents are automatically read in
+bufoutfile$bufo$STRING$$Save buffer contents in file name
+$$$$If a file exists, the buffer contents
+$$$$are saved upon exiting BB
+character$ch$NUMBER$0$Initial character position upon
+$$$$entering BB
+copy$cop$FLAG$FALSE$Copy to preserve links if set.
+$$$$If a file is linked to more than
+$$$$one directory and you enter BB
+$$$$without the COPY option set then
+$$$$the directory links are destroyed
+crypt$c$FLAG$FALSE$File is encrypted if set
+directory$di$STRING$$Directory of current file
+doboth$do$FLAG$TRUE$Let DO be used for DOSET if true
+endclear$endcl$FLAG$TRUE$Clear screen when exiting if true
+eofmark$eof$NUMBER$1$Mark eof; 0 -- don't, 1 -- at page,
+$$$$2 -- at end of line
+eolspace$eolsp$FLAG$FALSE$Allow spaces at the end of a line
+errordelay$err$NUMBER$2$Time delay on error message
+$$$$(in seconds - to see message)
+filetail$filet$STRING$$Current file name without directory
+filename$file$STRING$$Current full file name
+find$fi$STRING$$Initial search string (Only effective
+$$$$from command line)
+history$hi$NUMBER$20$Number of commands to save for UNDO
+.TE
+.sz
+.bp
+.sz 8
+.TS
+box center tab($);
+lb lb lb lb lb
+l l l l l.
+NAME$ABBREV$TYPE$DEFAULT$DESCRIPTION
+_
+indent$i$FLAG$FALSE$Automatic indentation mode if set
+$$$$Cursor seeks the first non-blank
+$$$$character on the line;  if the
+$$$$first character is desired and
+$$$$is blank then a LINE FEED and and UP
+$$$$are necessary
+interminal$int$STRING$$Input terminal name if different
+language$la$STRING$$Language associated with current file
+length$$NUMBER$$Length (in lines) of window
+line$li$NUMBER$1$Current line number for set file
+localcontrol$lo$FLAG$FALSE$Control file based on current
+$$$$directory if set;
+$$$$home directory otherwise
+l1-l3$$$$REG EXP
+$$$$1 - EOL expressions which T2 - T3 search
+$$$$2 - BLn    for
+$$$$3 - nroff para beg
+margin$ma$NUMBER$$Initial left margin setting
+mesg$mesg$FLAG$TRUE$Allow messages if set (writes)
+minustop$minust$FLAG$FALSE$Have minus pages position at top
+motd$motd$FLAG$FALSE$Report changes in message of the day
+movewindow$movew$FLAG$FALSE$Cursor commands move window if
+$$$$an attempt is made to off
+$$$$the screen and it is set
+nocontrol$noco$FLAG$FALSE$No control file saved if set
+readonly$r$FLAG$FALSE$File will not be saved
+rhsoption$rhsop$FLAG$TRUE$Fixed margin if set
+$$$$otherwise an automatic right shift
+$$$$is done if and attempt is
+$$$$made to type past the right
+$$$$hand margin
+rowarn$row$FLAG$TRUE$Warn of changes to readonly file
+savecount$$NUMBER$20$Autosave - the number of changes
+$$$$done before a save is done
+savetemp$$FLAG$TRUE$if set the temporary file is
+$$$$periodically updated
+$$$$(i.e. RECOVERY is enabled)
+screen$sc$NUMBER$$Initial top of window line number
+search$sea$FLAG$FALSE$DEFAULTS search is regular expression
+stream$s$FLAG$FALSE$Stream mode; file is maintained within
+tabin$tabi$FLAG$FALSE$Tabs remain on input if set
+tabout$ta$FLAG$TRUE$Tabs inserted on output if set
+tabtypein$tabty$FLAG$FALSE$tabs are kept in COPEN mode
+terminal$t$STRING$$Terminal name; defaults to
+$$$$environment variable TERM
+width$width$NUMBER$80$Width of window in characters
+window$wi$NUMBER$0$Number of window; can be 0 or 2
+.TE
+.sz
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$SHOW$
+.bp
+.bd
+\f3COMMAND NAME:\fP  SHOW
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command causes the editor to write the parameters into
+a temporary file and to run the editor recursively on that file.
+The user can change any parameters using the normal editing
+commands.  When done he should hit the EXIT command to return to the
+original file with the new parameter settings.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  none
+.sp
+.bd
+\f3DEFAULTS:\fP   none
+.bd
+.sp
+\f3RELATED PARAMETERS: \fP
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$EXIT$
+.bp
+E. FILE MANIPULATION
+.sp
+    1. Ending
+.sp
+	a. Exit
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  EXIT
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+EXIT exits the editor while saving the current file and the set
+and alt files.	EXIT takes an optional string argument.  If present,
+it is taken as the command to execute immediately after exiting
+the editor.  This command will be saved for later exits.  It can be
+canceled by typing <enter> EXIT.  This feature allows for very
+simple EDIT-TEST-EDIT cycles.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  string argument - Unix command to execute
+.bd
+.sp
+\f3DEFAULTS:\fP none
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.nf
+.in 8
+ if BUFOUTFILE has a value then the buffers are saved in
+			that file upon exiting the file.
+ if ENDCLEAR is set then the screen is cleared upon exiting
+			the file.
+ if READONLY is set then the file will not be saved
+ if TABOUT is set then strings of blanks are converted to
+			tabs upon exiting the file.
+.fi
+.in 0
+.sp
+.bd
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$ABORT$
+.bp
+	b. Abort
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  ABORT
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+The editor is exited without saving the file.  Conformation of this
+request is necessary for the command to be executed.
+.sp
+Note that when an ABORT is done there is no record of the BB call and
+the next invocation of the editor will not know anything of that BB
+session.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  none
+.sp
+.bd
+\f3DEFAULTS:\fP  none
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP  none
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$STOP$
+.bp
+	c. Stop
+.sp 2
+.bd
+\f3COMMAND NAME:\fP STOP
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command allows the user to STOP the editor and
+return to cshell.  The user can re-continue editing by
+placing the job into the foreground.
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP
+.bd
+.sp
+\f3DEFAULTS:\fP
+.bd
+.sp
+\f3RELATED PARAMETERS:\fP
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$CRASH$
+.bp
+.bd
+\f3COMMAND NAME:\fP CRASH
+.bd
+.sp
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+CRASH causes the editor to terminate, without
+making permanent changes to the current file.  However,
+the editor workfiles (containing the changes just made) are placed in the
+temporary directory.  These files can later be recovered using brecover.
+.in 0
+.bd
+.sp
+\f3ARGUMENTS:\fP
+.bd
+.sp
+\f3DEFAULTS:\fP
+.bd
+.sp
+\f3RELATED PARAMETERS:\fP
+.bd
+.sp
+\f3BUGS:\fP
+.bd
+.sp
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$RESTART$
+.bp
+    2. Restart
+.sp 2
+.bd
+\f3COMMAND NAME:\fP RESTART
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+The restart command causes all changes made to the current file
+since the last file change or the start of the editing session to be
+cancelled.  It effectively reloads the original file as it is saved
+in disk.  The command requires conformation to execute successfully.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  none
+.sp
+.bd
+\f3DEFAULTS:\fP none
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP none
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$FSET$
+.bp
+    3. Manipulation
+.sp
+	a.Fset
+.sp 2
+.bd
+\f3COMMAND NAME:\fP FSET
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command is used to change files.  Changing files will save the
+current file unless no changes have been made or readonly mode is set.
+.sp
+FSET takes a file name as an optional argument.  If it is given, that
+file becomes the new current file, otherwise, the previous saved file
+is used.  In either case, the old current file becomes the new saved
+file.
+.sp
+FSET is its own inverse, by hitting FSET twice you return to the
+original current file.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+an optional file name may be given to indicate the file to become
+the new current file.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+if there is no argument file name given then the previous saved file
+is used,  this file does not have to have been saved recently,	the
+last saved file will be retained until a new SET file is given.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP  all parameters remain in affect
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$FALT $
+.bp
+	b. Falt
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  FALT
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+FALT is similar except it uses a different saved file.	Thus the
+editor can switch between three files.	Again, FALT is its own
+inverse and hitting it twice will get back to the same file.  It
+is not a circular operation between the three files.  FSET switches
+the current file and the SET file and FALT switches the current
+file and the ALT file, the only way to switch the SET and the ALT
+files is to make sure that one of them is the current file and switch
+it with the other one.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+an optional file name which defines the ALT file
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP  the previous saved file
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP  none
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$FMAKE$
+.bp
+	c. Fmake
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  FMAKE
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+FMAKE is similar to FSET except that it allows a file to be
+created without asking the user first.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  an optional file name
+.sp
+.bd
+\f3DEFAULTS:\fP  the previous saved file
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP  none
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$FNEXT$
+.bp
+	d. Fnext
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  FNEXT
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+FNEXT is used when the initial command line specifies more
+than one file.	The editor starts with the first file.	FNEXT
+will cause the next file to be the next one specified on the
+command line.  The current file becomes the saved file.  Once a
+file has been used it cannot be used again, the editor reads
+sequentially through the list and does not back up.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  none
+.sp
+.bd
+\f3DEFAULTS:\fP  none
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP  none
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$BSAVE$
+.bp
+    .4 Saves
+.sp
+	a. Buffer
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  BSAVE
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+BSAVE saves the current set of buffers.  It takes a file
+name as an optional argument, if no name is given, the default file
+(bufinfile), if defined, will be used.	Buffers are saved in an
+editable (although not too pleasant) manner.
+.in 0
+.sp
+\f3ARGUMENTS:\fP
+.in 8
+an optional file name in which to store the buffers
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP  bufinfile, if defined
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP  bufinfile
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$BRSTR$
+.bp
+.bd
+\f3COMMAND NAME:\fP  BRSTR
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command works hand in hand with BSAVE to be able to save a
+set of buffers and restore them later.	There is an optional
+file name argument which is the file name containing the previously
+stored buffers, if it is not given then the default file
+(bufoutfile), if defined, will be used.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+an optional file containing the stored buffers
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP  bufoutfile, if defined
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP   bufoutfile
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$BRECOVER$
+.bp
+	b. Save
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  BRECOVER
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+The editor periodically (every 10 or 20 updates - depending on the
+savecount parameter) saves an image of its workfile on disk.  In
+the event on an editor malfunction, the user can recover up to the
+last update by typing this command in SH or CSH.
+.sp
+In the event of a system crash, all workfiles that represented
+changes will be saved and the users will be sent mail instructing
+them how to recover their work.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  none
+.sp
+.bd
+\f3DEFAULTS:\fP  the most recently edited file
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP  Savetemp
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$MARK$
+.bp
+F. Arguments
+.sp
+    1. Mark
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  MARK
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.in 8
+This command enters marking mode.  This is used to visually define
+the arguments to many of the commands.	The area marked is that
+between the initial position when MARK was hit and the point at
+which a command which will use the marking is used.  The user is
+free to move about in the file while in marking mode.  All commands
+that take an argument describing a span of the file can be used with
+marking mode.  The insert, delete and pick commands are the common
+ones.
+.sp
+Marking mode can also be initiated by hitting ENTER followed
+immediately by a command that moves the cursor (other than UP or LEFT)
+or that moves the window around in the file (other than GOTO).
+.sp
+On terminals that support it, the marked area is displayed in reverse
+video.	While in marking mode, the flag Marking will appear on the
+command line.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  none
+.sp
+.bd
+\f3DEFAULTS:\fP  none
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP  none
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$ENTER$
+.bp
+    2. Enter
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  ENTER
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command allows the user to enter arguments to all other
+commands.  After it is typed, the cursor will move to the bottom
+of the screen with a prompt of '>'.   The argument can then be
+typed.
+.sp
+Within the argument, backspaces are interpreted as deleting the
+previous character; an UP command causes the previous command
+argument to be reinserted; and a RET command is ignored.  A
+second initial ENTER (ENTER-ENTER) is used to indicate that the
+subsequent argument should be saved as the current default.
+The initial default can be restored by entering ENTER-ENTER with
+no argument.  Typing a command will end the argument.
+.sp
+The DO commands allow multiple arguments to be given.  Later
+arguments are initiated with an ENTER after a non-null initial
+argument.  These are stored consecutively in buffers a,b,c...
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+this command allows the entering of all arguments
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+depends on the command taking the arguments
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP  none
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$DO$
+.bp
+G. Command Macros
+.sp
+    1. DO
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  DO
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command executes an editor macro, which is stored in a
+specific buffer, n times.  The macro is set up with the DOSET command.
+DO can be used without DOSET.  If DOSET is not defined, or
+if the doboth parameter is set, then ENTER-DO will act as a DOSET
+command with no argument.  ENTER-0-<buffer id>-DO will act as as
+a DOSET command with an argument.  Also, DO alone, when
+accessing the DO buffer of the DO being compiled, will terminate
+compilation of the current DO.
+.sp
+DO can be used for making repeated simple of complex changes
+throughout a file or set of files.  Some care must be taken about
+random cursor movements that might be off the screen after an
+arbitrary search.  Yet, DO is a very powerful CHANGE command.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+An alphabetic character (a..z,A..Z) indicating which buffer to use.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+The default number of times to execute is 1.  The default buffer is
+w.
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP DOBOTH
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$DOSET$
+.bp
+    2. DOSET
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  DOSET
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command sets up a DO macro.  First, a DOSET is typed, with
+the buffer name as an optional argument.  This will display the
+message 'Start Compiling Do.'  After this, whatever commands,
+text, and arguments that the user types will be saved.	This
+ends when the user types DOSET for a second time.
+.sp
+The DO command is very powerful, particularly for changes.  For
+example, if the user wanted to change all occurrences of '.pa' to
+'.bd' then
+.nf
+	DOSET
+	<ENTER> '.pa'
+	PSEARCH
+	LDEL
+	LOPEN
+	'.bd'       (type .bd)
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.in 8
+Commands, text, and arguments for DO macro.
+.in 0
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$LANG0 $
+.bp
+H. LANGUAGE SPECIFIC COMMANDS
+.sp
+    1. Lang0 - Lang9
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  LANG0 - LANG9
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+These commands are language specific.  They will have different
+meanings for different languages.  For the default language, they
+act like a DO or PUT command for buffers a (LANG1) through j (LANG0).
+This allows the user to store a block of text or a DO sequence in one
+of these buffers and then have a one key method of executing it.
+Since buffers are saved if desired, this provides a means for user-specific
+commands.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP Autolang, Language
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$SYSTEM$
+.bp
+I.  SYSTEM COMMANDS
+.sp
+    1. System
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  SYSTEM
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+This command takes an optional string argument.  If an argument
+is given, it is interpreted as a Unix command and executed.  IF
+no argument is given, then the user's shell is run.  To exit the
+shell and return to the editor, type <control>'d'.  The editor
+will not clear the screen from the command until requested to do
+so by the user.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  an optional Unix command
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+it puts the user into shell if no argument is given
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP  none
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$HELP$
+.bp
+    2. Help
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  HELP
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+The HELP command runs the  editor recursively on the file
+/usr/info/b.help.  If no argument is given, then it starts
+at the beginning of the file.  If an argument is given, it is taken
+as a command name and the display for that command will be shown.
+When the user has the necessary information, he should type the
+EXIT command.  This will cause the editor to return to what it was
+doing when help was requested.
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP  an optional bb command may be given
+.sp
+.bd
+\f3DEFAULTS:\fP
+.in 8
+if no command is given then it starts at the beginning of the file
+.in 0
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP  none
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$TERMINALS$
+.bp
+    3. Terminals
+.sp 2
+.bd
+\f3COMMAND NAME:\fP  TERMINALS
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+New terminals can be defined for the editor by placing a suitable entry
+in both the /etc/termcap and the /etc/binpdef files.  The first
+describes the terminal for output purposes, while the second defines
+the
+association between the input of the terminal and the editor commands.
+.sp
+The following terminals are currently defined:
+.sp 2
+	h19	iq140	vt100
+.sp 2
+Information on how the commands are defined for these terminals
+can be found in
+	/usr/info/b.help.<terminal name>
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3DEFAULTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP Brief
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he$$BB Reference Guide$ENVIRONMENT$
+.bp
+    4. Environment
+.sp 2
+.bd
+\f3COMMAND NAME:\fP ENVIRONMENT
+.sp
+.bd
+\f3DESCRIPTION:\fP
+.sp
+.in 8
+The following environment variables are used by the editor:
+.sp
+.nf
+bPARM	Initial parameter settings
+TERM	Terminal type for output (see default for input)
+INTERM	Terminal type for input (defaults to TERM)
+BINPDEF Input definition or definition file
+TERMCAP Input definition or definition file
+MAIL	File containing user's mail ( A message will
+	indicate when the user gets new mail if this
+	is set).
+SHELL	DEFAULTS shell to run for SYSTEM command.
+HOME	User's home directory
+.fi
+.in 0
+.sp
+.bd
+\f3ARGUMENTS:\fP
+.sp
+.bd
+\f3RELATED PARAMETERS:\fP
+.sp
+.bd
+\f3BUGS:\fP
+.sp
+.bd
+\f3ERROR CONDITIONS AND MESSAGES:\fP
+.he''Index''
+.bp
+V. Index
+

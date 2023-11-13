@@ -1,0 +1,61 @@
+This directory and its subdirectorys contain sources for the Brown b
+editor (bb).  This is not officially supported and should not be
+widely distributed without the consent of persons at Brown University.
+
+The Makefile should create a new copy of the editor as newedit in this
+directory.  The command we use to install it is 'make bb'.  Note this
+runs bb and asks about a new file.  'a' is the proper response.
+
+The editor uses one or two non-standard features in addition to much of
+Berkeley unix.	Specific brown features that are handled are the lcnt
+option for display terminals.  It expects that ^q and ^s work correctly
+on the terminal.
+
+The editor can be customized by modifying the file parameters to reset
+default settings for much of its logic.  This includes such system-y
+features as the directory to use for temporary files, where the help
+file is to be stored, etc.  The editor uses termcap with minor additions
+(see dwtcinfo) for output, and uses the file /etc/binpdef to define the
+input mapping on a terminal-type basis.  Our current termcap and binpdef
+files are included.  The recovery program may also have to be changed if
+the directory to be used for temporarys or backup is changed.
+
+The editor will create backups in directory bBACKUP.  The number of backups
+to be stored can be controled by the appropriate parameter.  Temporary files
+are kept fairly up to date and the editor can sometimes recover from system
+crashes.  This code needs some work however.  The bBACKUP directorys will
+be created as necessary.  It is suggested that if the editor is widely used
+on a system, that a background program be written to purge bBACKUP directorys
+of files that are older than some given number of days.
+
+The editor is quite flexible and it is easy to add new commands, special
+code for new languages (eg. indentation), and special language-specific
+commands.  We would be interested in hearing of any modifications that are
+made.
+
+Documentation as it currently exists is in the doc subdirectory.  This includes
+the on-line help file (which should be properly installed), displays suitable
+for cat'ing to the benson-varion printer to make a crib sheet for various
+terminals, and a preliminary user's manual.  The editor contains a number of
+features that are only hinted at in the documentation however.
+
+Comments, suggestions, (and bugs) are always appreciated.  Known bugs that
+currently exist include:
+   1)  Improper handling of column 80 of a line at times
+   2)  Encrypted files can be randomly reencrypted under certain
+	   circumstances.  Care should be taken when switching from
+	   or to such a file within the editor.
+   3)  The window display is not completely reinitialized when the screen
+	   is redrawn after an exit or reset
+   4)  The order of saving the temp file can cause loss of information if
+	   the system crashes at the wrong time (which it always does).
+   5)  c indentation has a few anomalys.  It should be slightly more
+	   intelligent about various aspects of the language
+   6)  Redrawing the screen should be improved, especially within a line.
+	   Possibly by replacing terminal.c with curses.  Note that terminal.c
+	   is more sophisticated on inter-line updating.  The scheme of cmu
+	   from the text conference should possibly be used.
+   7)  History should not be kept of undo commands, allowing the command
+	   count to be more accurate (double or triple what you want for now).
+	   Also there should be a re-do command.  Also undo should work over
+	   file changes.

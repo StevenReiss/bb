@@ -1,0 +1,67 @@
+.nr SS .25v
+.sz 8
+.bm .25i
+.ll 6.75i
+\s8\fIescape\fP\s10/shift/\f3no shift\fP\s0
+.TS
+box expand tab($) ;
+lp6e | lp6e | lp6e | lp6e | lp6e | lp6e | lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2
+cp10e | cp10e | cp10e | cp10e | cp10e | cp10e | cp10e | cp10e | cp10e
+cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 | cp10ef3 .
+f1$f2$f3$f4$f5$erase$blue$red$white
+LSLIDE$RSLIDE$VTAB$BRET$PARM$RSTRT$PRSRCH$MRSRCH$INDENT
+---$---$---$---$---$RESET$---$---$---
+PPAGE$MPAGE$PLINE$MLINE$COPEN$LRESET$PSRCH$MSRCH$JOIN
+.sp \n(SSu
+.TE
+.sz 10
+.sp
+.ll 3.5i
+.ce
+\f3h19\fP bb input definitions
+.br
+.ce
+\s8\f2escape\fP\s0/shift/\f3no shift\fP
+.TS
+center box tab($) ;
+lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2
+cp10e | cp10e | cp10e
+cp10ef3 | cp10ef3 | cp10ef3
+lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2
+cp10e | cp10e | cp10e
+cp10ef3 | cp10ef3 | cp10ef3
+lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2
+cp10e | cp10e | cp10e
+cp10ef3 | cp10ef3 | cp10ef3
+lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2
+cp10e | cp10e | cp10e
+cp10ef3 | cp10ef3 | cp10ef3 .
+7$8$9
+LANG7$LANG8$LANG9
+CPUT$2BTAB$CPICK
+CINS$UP$CDEL
+.sp \n(SSu
+_
+4$5$6$
+LANG4$LANG5$LANG6
+1BTAB$BHOME$1TAB
+LEFT$HOME$RIGHT
+.sp \n(SSu
+_
+1$2$3
+LANG1$LANG2$LANG3
+LPUT$2TAB$LPICK
+LINS$DOWN$LDEL
+.sp \n(SSu
+_
+0$.$ENTER
+LANG0$DOSET$MARK
+---$---$---
+FSET$DO$ENTER
+.sp \n(SSu
+.TE

@@ -1,0 +1,143 @@
+/********************************************************/
+/*							*/
+/*		LANGMOD.C				*/
+/*							*/
+/*	This module contains the common routines for	*/
+/*	switching between separate languages		*/
+/*							*/
+/********************************************************/
+/*	Copyright 1984 Brown University 				*/
+
+
+#include "global.h"
+#include "editor.h"
+#include "langmod.h"
+#include "parms.h"
+
+
+include(langlist.m)
+include(languages)
+
+
+extern STRING match();
+
+
+
+/********************************************************/
+/*							*/
+/*	External routines				*/
+/*							*/
+/********************************************************/
+
+
+undivert(5)
+
+
+
+
+
+/********************************************************/
+/*							*/
+/*	Storage definitions				*/
+/*							*/
+/********************************************************/
+
+				/* language hdr blocks	*/
+undivert(1)
+
+
+static	LANGINFO LAtable[] = {	/* table of languages	*/
+undivert(2)
+};
+
+
+
+	LANGINFO LAcurrent = &DFLTLANG; /* current language	*/
+
+
+static	STRING	LAnames[] = {	/* names of languages	*/
+undivert(3)
+};
+
+
+
+static	STRING LAsfxs[] = {	/* extensions for language */
+undivert(4)
+};
+
+
+cdefine NUMLANG LANGCTR 	/* number of languages	*/
+
+
+
+
+
+
+/********************************************************/
+/*							*/
+/*	LAauto -- select language by extension		*/
+/*							*/
+/********************************************************/
+
+
+STRING
+LAauto()
+{
+   register STRING pt;
+   CHAR buf[32];
+   register INT i;
+
+   pt = PSVAL(filetail);
+   pt = strrchr(pt,'.');
+   if (pt == NULL) pt = "..";
+    else
+     { sprintf(buf,".%s.",++pt);
+       pt = buf;
+     };
+
+   for (i = 0; i < NUMLANG; ++i)
+      if (match(LAsfxs[i],pt) != NULL)
+	 return LAnames[i];
+
+   return NULL;
+}
+
+
+
+
+
+/********************************************************/
+/*							*/
+/*	LAnewlang -- change to a new language		*/
+/*							*/
+/********************************************************/
+
+
+int LAnewlang()
+{
+   register STRING pt;
+   register INT ln,i;
+
+   pt = PSVAL(curlanguage);
+   ln = strlen(pt);
+
+   for (i = 0; i < NUMLANG; ++i)	/* find language	*/
+      if (ln == 0 || strncmp(pt,LAnames[i],ln) == 0) break;
+
+   if (i >= NUMLANG)
+    { DSerror("Illegal language name");
+      i = 0;
+    };
+
+   if (LAfini != NULL) (*LAfini)();
+   LAcurrent = LAtable[i];
+   if (LAinit != NULL) (*LAinit)();
+
+   return TRUE;
+}
+
+
+
+
+
+/* end of langmod.cm */

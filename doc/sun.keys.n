@@ -1,0 +1,31 @@
+.bm .25i
+.ll 3i
+.ce
+\f3sun\fP bb input definitions
+.nr SS .25v
+.br
+.ce
+\s8\fIescape\fP\s0/\f3no shift\fP
+.TS
+center expand box tab($);
+lp6e | lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2
+cef3 | cef3 | cef3 | cef3.
+PF1$PF2$PF3$PF4
+CINS$FSET$DO$ENTER
+PPAGE$MPAGE$PLINE$MLINE
+.sp \n(SSu
+.TE
+.sp 4
+.ce
+\s8\fIescape\fP\s0/\f3no shift\fP
+.TS
+center expand box tab($);
+lp6e | lp6e | lp6e | lp6e
+cp8ef2 | cp8ef2 | cp8ef2 | cp8ef2
+cef3 | cef3 | cef3 | cef3.
+ $ 
+MSRCH$PSRCH
+UP$DOWN$LEFT$RIGHT
+.sp \n(SSu
+.TE

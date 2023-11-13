@@ -1,0 +1,39 @@
+From dw Thu Jul 31 10:48:27 1980
+To: spr
+Subject: new termcap capabilities
+
+Steve:
+        The following is what I have as the termcap entries desired.  Please
+send me back a copy of this file, appropriately modified, to confirm these
+capabilities.
+
+Name    type    pad?    description
+----    ----    ----    -----------
+dn      str             down (move cursor down one line; not \n)
+cc      str     P       display control character (in cm form)
+(dd)                    (display rubout string)
+                        I think we agreed to control-? for this.
+bi      str     P**     b initialization string
+bf      str     P**     b final string
+bw      bool    P       terminal wraps for b editor
+sf      str     P**     scroll forwards (See note below)
+sr      str     P**     scroll reverse  (See note below)
+sb      bool            Standout mode doesn't consume a character space
+                        (for b, see note below).
+
+Notes:
+P**:    There might be delay problems in specifying these sequences.  Two
+        possible solutions might be:
+                1) Specify these as a string of capabilities
+                   as in "ko" and add new capabilities (such as terminal reset).
+                2) Allow for delay specifications within a
+                   string. (i.e. bi=1*\Ez\P1*\E1...).
+        Pick one or suggest an alternative.
+
+sf,sr   default these to cm to last line, then line feed, and home, insert line
+        if not specified.  This should get around the delay problems mentioned
+        above.
+
+                                                doug.
+
+
